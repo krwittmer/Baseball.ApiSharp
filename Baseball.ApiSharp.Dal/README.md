@@ -24,5 +24,5 @@
 
 ###
 ### Note, prior to execution verify the status of the bool member, IsSqlServerDb
-### This should be set to false when accessing MySQL.
+### This flag should be set to false when accessing MySQL (otherwise the logic wants to revert to SQL Server).
 ###
