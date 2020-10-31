@@ -1,0 +1,6 @@
+﻿@model Baseball.ApiSharp.Mvc.Models.ViewModels.PlayerSearchResultsViewModel
+
+@foreach (var item in Model.Players)
+{
+    <li class="nav-item">@item.FirstName @item.LastName, hometown: @item.HomeTown, home runs, @item.HomeRuns, last game date: @item.FinalGame</li>
+}
