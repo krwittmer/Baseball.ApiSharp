@@ -7,7 +7,23 @@ See License.txt for more information (check Visual Studio Solution Items)
 
 @model Baseball.ApiSharp.Mvc.Models.ViewModels.PlayerSearchResultsViewModel
 
-@foreach (var item in Model.Players)
-{
-    <li class="nav-item">@item.FirstName @item.LastName, hometown: @item.HomeTown, home runs, @item.HomeRuns, last game date: @item.FinalGame</li>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Hometown</th>
+            <th>Home Runs</th>
+            <th>Last game date</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model.Players)
+    {
+        <tr>
+            <td>@item.FirstName @item.LastName</td>
+            <td>@item.HomeTown</td>
+            <td>@item.HomeRuns</td>
+            <td>@item.FinalGame</td>
+        </tr>
+    }
+</table>
