@@ -1,9 +1,65 @@
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS webapi-build
 
+WORKDIR /bbshapi/Baseball.ApiSharp.Data.Lahman
+COPY Baseball.ApiSharp.Data.Lahman/*.csproj /bbshapi/Baseball.ApiSharp.Data.Lahman
+
+wORKDIR /bbshapi/Baseball.ApiSharp.Dal
+COPY Baseball.ApiSharp.Dal/*.csproj /bbshapi/Baseball.ApiSharp.Dal
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Models
+COPY Baseball.ApiSharp.Models/*.csproj /bbshapi/Baseball.ApiSharp.Models
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Api
+COPY Baseball.ApiSharp.Api/*.csproj /bbshapi/Baseball.ApiSharp.Api
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Data.Lahman
+RUN dotnet restore Baseball.ApiSharp.Data.Lahman.csproj
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Dal
+RUN dotnet restore Baseball.ApiSharp.Dal.csproj
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Models
+RUN dotnet restore Baseball.ApiSharp.Models.csproj
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Api
+RUN dotnet restore Baseball.ApiSharp.Api.csproj
+
 WORKDIR /bbshapi
 
-COPY Baseball.ApiSharp.Data.Lahman/*.csproj /bbshapi/Baseball.ApiSharp.Data.Lahman
-COPY Baseball.ApiSharp.sln /bbshapi/
+COPY Baseball.ApiSharp.Data.Lahman/. /bbshapi/Baseball.ApiSharp.Data.Lahman
+COPY Baseball.ApiSharp.Dal/. /bbshapi/Baseball.ApiSharp.Dal
+COPY Baseball.ApiSharp.Models/. /bbshapi/Baseball.ApiSharp.Models
+COPY Baseball.ApiSharp.Api/. /bbshapi/Baseball.ApiSharp.Api
 
-RUN dotnet restore Baseball.ApiSharp.sln
+WORKDIR /bbshapi/Baseball.ApiSharp.Api
+RUN dotnet restore Baseball.ApiSharp.Api.csproj
+RUN dotnet publish -c Release -o api-binary-published
+
+
+FROM webapi-build AS webapi-tests
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Dal.Tests
+COPY Baseball.ApiSharp.Dal.Tests/*.csproj /bbshapi/Baseball.ApiSharp.Dal.Tests
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Models.Tests
+COPY Baseball.ApiSharp.Models.Tests/*.csproj /bbshapi/Baseball.ApiSharp.Models.Tests
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Api.Tests
+COPY Baseball.ApiSharp.Api.Tests/*.csproj /bbshapi/Baseball.ApiSharp.Api.Tests
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Dal.Tests
+RUN dotnet restore Baseball.ApiSharp.Dal.Tests.csproj
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Models.Tests
+RUN dotnet restore Baseball.ApiSharp.Models.Tests.csproj
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Api.Tests
+RUN dotnet restore Baseball.ApiSharp.Api.Tests.csproj
+
+COPY Baseball.ApiSharp.Dal.Tests/. /bbshapi/Baseball.ApiSharp.Dal.Tests
+COPY Baseball.ApiSharp.Models.Tests/. /bbshapi/Baseball.ApiSharp.Models.Tests
+COPY Baseball.ApiSharp.Api.Tests/. /bbshapi/Baseball.ApiSharp.Api.Tests
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Dal.Tests
+ENTRYPOINT ["dotnet", "test", "--filter=Category=Unit", "--logger:trx"]
 
