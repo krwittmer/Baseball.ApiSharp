@@ -35,7 +35,6 @@ WORKDIR /bbshapi/Baseball.ApiSharp.Api
 RUN dotnet restore Baseball.ApiSharp.Api.csproj
 RUN dotnet publish -c Release -o api-binary-published
 
-
 FROM webapi-build AS webapi-tests
 
 WORKDIR /bbshapi/Baseball.ApiSharp.Dal.Tests
