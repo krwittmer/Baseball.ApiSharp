@@ -31,9 +31,6 @@ COPY Baseball.ApiSharp.Dal/. /bbshapi/Baseball.ApiSharp.Dal
 COPY Baseball.ApiSharp.Models/. /bbshapi/Baseball.ApiSharp.Models
 COPY Baseball.ApiSharp.Api/. /bbshapi/Baseball.ApiSharp.Api
 
-WORKDIR /bbshapi/Baseball.ApiSharp.Api
-RUN dotnet restore Baseball.ApiSharp.Api.csproj
-RUN dotnet publish -c Release -o api-binary-published
 
 FROM webapi-build AS webapi-tests
 
@@ -62,3 +59,8 @@ COPY Baseball.ApiSharp.Api.Tests/. /bbshapi/Baseball.ApiSharp.Api.Tests
 WORKDIR /bbshapi/Baseball.ApiSharp.Dal.Tests
 ENTRYPOINT ["dotnet", "test", "--filter=Category=Unit", "--logger:trx"]
 
+
+FROM webapi-tests AS webapi-deploy
+
+WORKDIR /bbshapi/Baseball.ApiSharp.Api
+RUN dotnet publish -c Release -o api-binary-published
