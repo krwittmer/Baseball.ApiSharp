@@ -60,7 +60,8 @@ WORKDIR /bbshapi/Baseball.ApiSharp.Dal.Tests
 ENTRYPOINT ["dotnet", "test", "--filter=Category=Unit", "--logger:trx"]
 
 
-FROM webapi-tests AS webapi-deploy
+FROM webapi-build AS webapi-deploy
 
 WORKDIR /bbshapi/Baseball.ApiSharp.Api
-RUN dotnet publish -c Release -o api-binary-published
+ENTRYPOINT ["dotnet", "publish", "-c", "Release", "-o", "api-binary-published"]
+
