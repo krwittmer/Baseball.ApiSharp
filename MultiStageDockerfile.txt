@@ -1,0 +1,44 @@
+# Dockerfile for Baseball.api# ASP.NET Core project
+#
+# To tag the intermediate Docker image, I sometimes will build in single stages so that the Docker image is tagged.
+#   docker build -t kb8vme7/aspnet-core-chicago-repo:baseball-sdk-xunit-api2 --target webapi-tests -f Dockerfile .
+#
+# Build the runtime stage 
+#   docker build -t kb8vme7/aspnet-core-chicago-repo:baseball-sdk-api2 --target webapi-runtime -f Dockerfile .
+#
+#
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS webapi-build
+WORKDIR /webapi
+
+#
+# Copy csproj and restore as distinct layers
+#
+COPY *.sln .
+COPY src/*.csproj ./src/
+COPY tests/*.csproj ./tests/
+WORKDIR /webapi
+RUN dotnet restore
+
+#
+# Copy everything else and build API
+#
+COPY src/. ./src/
+WORKDIR /webapi/src
+RUN dotnet publish -c Release -o out
+
+#
+# Copy tests and run xunit-based API tests 
+#
+FROM webapi-build AS webapi-tests
+WORKDIR /webapi/tests
+COPY tests/. ./
+ENTRYPOINT ["dotnet", "test", "--filter=Category=Unit", "--logger:trx"]
+
+#
+# Prepare the final Docker image for runtime
+#
+FROM microsoft/dotnet:2.1-aspnetcore-runtime-alpine AS webapi-runtime
+WORKDIR /webapi
+COPY --from=webapi-build /webapi/src/out/ ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
