@@ -62,14 +62,15 @@ WORKDIR /bbshapi/Baseball.ApiSharp.Dal.Tests
 ENTRYPOINT ["dotnet", "test", "--filter=Category=Unit", "--logger:trx"]
 
 
-FROM webapi-build AS webapi-deploy
+FROM mcr.microsoft.com/dotnet/sdk:3.1-alpine AS webapi-runtime-alpine
+
+WORKDIR /bbshapi/
+COPY --from=webapi-build /bbshapi/Baseball.ApiSharp.Api/api-binary-published/ ./
+ENTRYPOINT ["dotnet", "BaseballApiServer.dll"]
+
+
+FROM webapi-build AS webapi-published-binaries
 
 WORKDIR /bbshapi/Baseball.ApiSharp.Api
 ENTRYPOINT ["dotnet", "publish", "-c", "Release", "-o", "api-binary-published"]
 
-
-FROM mcr.microsoft.com/dotnet/sdk:3.1-alpine AS webapi-runtime-alpine
-
-WORKDIR /bbshapi/
-COPY --from=webapi-deploy /bbshapi/Baseball.ApiSharp.Api/api-binary-published/ ./
-ENTRYPOINT ["dotnet", "BaseballApiServer.dll"]
