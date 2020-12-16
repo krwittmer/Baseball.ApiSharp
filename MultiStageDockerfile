@@ -31,6 +31,8 @@ COPY Baseball.ApiSharp.Dal/. /bbshapi/Baseball.ApiSharp.Dal
 COPY Baseball.ApiSharp.Models/. /bbshapi/Baseball.ApiSharp.Models
 COPY Baseball.ApiSharp.Api/. /bbshapi/Baseball.ApiSharp.Api
 
+WORKDIR /bbshapi/Baseball.ApiSharp.Api
+RUN dotnet publish -c Release -o api-binary-published
 
 FROM webapi-build AS webapi-tests
 
