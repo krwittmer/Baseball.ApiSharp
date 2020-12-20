@@ -1,7 +1,14 @@
--- This script assumes that the old format db is
--- called "tempdb" and the new one will be called
--- "bbdb." Search and replace in this file to change
--- the names.
+--
+-- O'Reilly Baseball Hacks source example
+--   browse https://resources.oreilly.com/examples/9780596009427/
+--   orig. file new_structure_db.sql   (also see bbdb.sql.gz)
+--
+-- SQL source updated to work on later versions of MySQL
+--
+
+-- This script assumes that the old format db is called "tempdb" and 
+-- the new one will be called "bbdb." Search and replace in this file 
+-- to change the names.
 
 -- 0. Create the new database
 GRANT ALL ON bbdb.* to 'someone'@'localhost';
