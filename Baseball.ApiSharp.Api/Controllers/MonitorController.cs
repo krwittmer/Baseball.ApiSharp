@@ -13,6 +13,9 @@ using Microsoft.Extensions.Logging;
 
 /*
   Visit https://stackoverflow.com/questions/41908957/get-all-registered-routes-in-asp-net-core for more details.
+
+  Note, this route monitor has issues to work in new versions of ASP.NET core.
+  To view routes, hit this server Url: http://yourHost:yourPort/monitor/routes
  */
 namespace Baseball.ApiSharp.Api.Controllers
 {
