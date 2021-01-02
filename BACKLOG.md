@@ -6,8 +6,8 @@ Exporting of data includes tagged data (to CSV, Excel, Google Sheets, Python (da
 # Development backlog:
 
 Add basic GraphQL support for batters, pitchers, and games (spike this before integration!)
-Get the startup and unit tests working from Oracle Linux; prepare for a multi-DB environment (3).
-Click here for an example of using EF Core with migrations from a console context
+Get the startup and unit tests working from Oracle Linux; prepare for a multi-DB environment (3)
+See Microsoft docs to source an example of using EF Core with migrations from a console context
 This example also quickly illustrates how to handle DI from a console context
 
 Revise logging factory injection  (remaining classes - borrow from Phil's approach)
@@ -15,15 +15,14 @@ Round-out TagHelper into TagRepository class (including tests!) - allow tag to b
 Implement MyFavorites to manage list of favorites & MyTags API to tag baseball stats or data (including teams, players and/or *dates*); implement thru
 Dockerize the API together with DB files (custom Docker image) - include other data sets such as retro sheets
 
-Finally, for tag supporting, introduce [FromServices]. For example, to bring in a repo instance.
-[FromServices] ICategoryRepo repo
-Check out the example from Phil Japiske for a good example of using [FromServices].
+Finally, for tag supporting, introduce [FromServices]. For example, to bring in a repo instance
+Impl. [FromServices] ICategoryRepo repo - check out the example from Phil Japiske for a good example of using [FromServices]
 
 Add config for data sets: include 10 all-time greats, my teams, MySQL external, Azure external
 Round-off basic search impl. (players, batters, hitters, ..search by name || player-id) w/revised unit tests
 Adjust unit tests to run (green) independent of Azure, MySQL, in-memory DB
 
-Upgrade the data generation .NET project - add support for MongoDB (including practices of schema design), Redis, Python and R
+Upgrade the associated data generation .NET project - add support for MongoDB (including practices of schema design). Also Redis, Python and R.
 
 Continue to apply the labs from VSL-Chicago, propagate to all types/APIs:
 Add in connection string to appsettings.Development.json - see lab 6 from VSL-Chicago labs
@@ -42,16 +41,18 @@ Categories, players and teams - lookup by API user or profile id
 Implement the majority of Web API guidelines (of best practices for API impl. - from Microsoft, Paypal, etc.)
 MyFavoritePlayers, MyTags, MyFanProfile and MyFandomNetwork.
 Make a 2nd pass at HATEOS link generation -- follow other blog examples -- implement for simple types such FanProfile, Roster, etc. (ref. PT API project as reference)
-Also, support looking up player and team photos using Microsoft Bing APIs.
-Consider to update data sets using CSV data files posted here: https://github.com/chadwickbureau/baseballdatabank/tree/master/core
+Also, support looking up player and team photos using Microsoft Bing APIs
 
-Build a new Docker image derived from Oracle adding in .NET Core 3.x.
+Build a new Docker image derived from Oracle adding in .NET Core 3.x
 Release Docker image for hub.docker.io by end of Q1, 2021
 
 # Other links
 
 Online baseball data from Retrosheets
 https://www.retrosheet.org/game.htm
+
+CSV data files posted here
+https://github.com/chadwickbureau/baseballdatabank/tree/master/core
 
 Baseball on a Stick
 https://sourceforge.net/projects/baseballonastic/
