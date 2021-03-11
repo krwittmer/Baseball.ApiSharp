@@ -1,0 +1,28 @@
+﻿<!--
+Copyright Information
+All source is copyright, Kevin Wittmer
+See License.txt for more information (check Visual Studio Solution Items)
+==================================
+-->
+
+@model Baseball.ApiSharp.Mvc.Models.ViewModels.BatterSearchResultsViewModel
+
+<table class="table">
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Hometown</th>
+    <th>Last game date</th>
+</tr>
+</thead>
+
+@foreach (var item in Model.Batters)
+{
+<tr>
+    <td>@item.Hr</td>
+    <td>@item.H</td>
+    <td>@item.R</td>
+    <td>@item.Ab</td>
+</tr>
+}
+</table>

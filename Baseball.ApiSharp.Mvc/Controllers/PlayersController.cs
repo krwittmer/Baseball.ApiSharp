@@ -41,27 +41,35 @@ namespace Baseball.ApiSharp.Mvc.Controllers
                 var filteredPeople = _repository.Filter<People>(m => (m.NameFirst + " " + m.NameLast).Contains(searchString));
                 foreach (var people in filteredPeople)
                 {
+                    int careerHomeRuns = 0;
                     var batters = _repository.Filter<Batting>(b => b.PlayerId == people.PlayerId);
-                    if (batters.Any())
+                    var sumHomeRuns = batters.Sum(b => b.Hr);
+                    bool hasValue = sumHomeRuns.HasValue;
+                    if (hasValue)
                     {
-                        var firstBatterData = batters.First();
-
-                        short homeRuns = 0;
-                        if (firstBatterData.Hr != null)
-                        {
-                            homeRuns = (short)firstBatterData.Hr;
-                        }
-
-                        var playerModel = new PlayerViewModel()
-                        {
-                            FirstName = people.NameFirst,
-                            LastName = people.NameLast,
-                            HomeTown = people.BirthCity,
-                            FinalGame = people.FinalGame,
-                            HomeRuns = homeRuns
-                        };
-                        arrayOfPlayers.Add(playerModel);
+                        careerHomeRuns = sumHomeRuns.Value;
                     }
+
+                    int careerWins = 0;
+                    var pitchers = _repository.Filter<Pitching>(b => b.PlayerId == people.PlayerId);
+                    var sumWins = pitchers.Sum(p => p.W);
+                    hasValue = sumWins.HasValue;
+                    if (hasValue)
+                    {
+                        careerWins = sumWins.Value;
+                    }
+
+                    var playerModel = new PlayerViewModel()
+                    {
+                        FirstName = people.NameFirst,
+                        LastName = people.NameLast,
+                        HomeTown = people.BirthCity,
+                        FinalGame = people.FinalGame,
+                        CareerHomeRuns = careerHomeRuns,
+                        CareerWins = careerWins
+                    };
+                    arrayOfPlayers.Add(playerModel);
+
                 }
             }
 

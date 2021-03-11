@@ -15,6 +15,7 @@ namespace Baseball.ApiSharp.Mvc.Models.ViewModels
         public string HomeTown { get; set; }
 
         public string FinalGame { get; set; }
-        public short HomeRuns { get; set; }
+        public int CareerHomeRuns { get; set; }
+        public int CareerWins { get; set; }
     }
 }

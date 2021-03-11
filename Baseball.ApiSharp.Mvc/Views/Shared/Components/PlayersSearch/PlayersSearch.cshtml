@@ -8,8 +8,15 @@ See License.txt for more information (check Visual Studio Solution Items)
 <form asp-controller="Players" asp-action="SearchPlayers" method="get">
     <div class="form-group">
         <div class="input-group">
+            <!-- TODO: Finish search by date range implementation
             <p>
-                Player search: <input type="text" name="SearchString" class="form-control" />
+                Search date range:
+                <input id="DateRange" type='text' class="form-control text-center" placeholder="DD MMM, YYYY" readonly="readonly"/>
+            </p>
+            -->
+
+            <p>
+                Player search: <input type="text" name="SearchString" class="form-control"/>
                 <span class="input-group-btn">
                     <button class="btn btn-default">
                         <i class="glyphicon glyphicon-search"></i>
