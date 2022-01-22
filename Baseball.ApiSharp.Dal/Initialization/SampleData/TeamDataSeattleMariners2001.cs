@@ -25,7 +25,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
         {
             if (dbContext.People.Count(m => m.PlayerId == "abbotpa01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "abbotpa01", Bats = "R", Throws = "R", NameFirst = "Paul", NameLast = "Abbott",
                     BbrefId = "abbotpa01", BirthCity = "Van Nuys", BirthDay = 15, BirthCountry = "USA",
@@ -36,7 +36,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "charlno01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "charlno01", Bats = "B", Throws = "L", NameFirst = "Norm", NameLast = "Charlton",
                     BbrefId = "charlno01", BirthCity = "Fort Polk", BirthDay = 6, BirthCountry = "USA",
@@ -47,7 +47,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "frankry01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "frankry01", Bats = "R", Throws = "R", NameFirst = "Ryan", NameLast = "Franklin",
                     BbrefId = "frankry01", BirthCity = "Fort Smith", BirthDay = 5, BirthCountry = "USA",
@@ -58,7 +58,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "fuentbr01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "fuentbr01", Bats = "L", Throws = "L", NameFirst = "Brian", NameLast = "Fuentes",
                     BbrefId = "fuentbr01", BirthCity = "Merced", BirthDay = 9, BirthCountry = "USA", BirthState = "CA",
@@ -69,7 +69,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "garcifr02") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "garcifr02", Bats = "R", Throws = "R", NameFirst = "Freddy", NameLast = "Garcia",
                     BbrefId = "garcifr03", BirthCity = "Caracas", BirthDay = 6, BirthCountry = "Venezuela",
@@ -80,7 +80,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "halamjo01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "halamjo01", Bats = "L", Throws = "L", NameFirst = "John", NameLast = "Halama",
                     BbrefId = "halamjo01", BirthCity = "Brooklyn", BirthDay = 22, BirthCountry = "USA",
@@ -91,7 +91,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "moyerja01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "moyerja01", Bats = "L", Throws = "L", NameFirst = "Jamie", NameLast = "Moyer",
                     BbrefId = "moyerja01", BirthCity = "Sellersville", BirthDay = 18, BirthCountry = "USA",
@@ -102,7 +102,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "nelsoje01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "nelsoje01", Bats = "R", Throws = "R", NameFirst = "Jeff", NameLast = "Nelson",
                     BbrefId = "nelsoje01", BirthCity = "Baltimore", BirthDay = 17, BirthCountry = "USA",
@@ -113,7 +113,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "paniajo01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "paniajo01", Bats = "R", Throws = "R", NameFirst = "Jose", NameLast = "Paniagua",
                     BbrefId = "paniajo01", BirthCity = "San Jose de Ocoa", BirthDay = 20, BirthCountry = "D.R.",
@@ -124,7 +124,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "pineijo01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "pineijo01", Bats = "R", Throws = "R", NameFirst = "Joel", NameLast = "Pineiro",
                     BbrefId = "pineijo01", BirthCity = "Rio Piedras", BirthDay = 25, BirthCountry = "P.R.",
@@ -135,7 +135,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "rhodear01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "rhodear01", Bats = "L", Throws = "L", NameFirst = "Arthur", NameLast = "Rhodes",
                     BbrefId = "rhodear01", BirthCity = "Waco", BirthDay = 24, BirthCountry = "USA", BirthState = "TX",
@@ -146,7 +146,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "sasakka01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "sasakka01", Bats = "R", Throws = "R", NameFirst = "Kazuhiro", NameLast = "Sasaki",
                     BbrefId = "sasakka01", BirthCity = "Sendai", BirthDay = 22, BirthCountry = "Japan",
@@ -157,7 +157,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "seleaa01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "seleaa01", Bats = "R", Throws = "R", NameFirst = "Aaron", NameLast = "Sele",
                     BbrefId = "seleaa01", BirthCity = "Golden Valley", BirthDay = 25, BirthCountry = "USA",
@@ -168,7 +168,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "starkde01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "starkde01", Bats = "R", Throws = "R", NameFirst = "Denny", NameLast = "Stark",
                     BbrefId = "starkde01", BirthCity = "Hicksville", BirthDay = 27, BirthCountry = "USA",
@@ -179,7 +179,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "tomkobr01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "tomkobr01", Bats = "R", Throws = "R", NameFirst = "Brett", NameLast = "Tomko",
                     BbrefId = "tomkobr01", BirthCity = "Cleveland", BirthDay = 7, BirthCountry = "USA",
@@ -190,7 +190,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "bellda01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "bellda01", Bats = "R", Throws = "R", NameFirst = "David", NameLast = "Bell",
                     BbrefId = "bellda01", BirthCity = "Cincinnati", BirthDay = 14, BirthCountry = "USA",
@@ -201,7 +201,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "boonebr01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "boonebr01", Bats = "R", Throws = "R", NameFirst = "Bret", NameLast = "Boone",
                     BbrefId = "boonebr01", BirthCity = "El Cajon", BirthDay = 6, BirthCountry = "USA",
@@ -212,7 +212,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "bordepa01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "bordepa01", Bats = "R", Throws = "R", NameFirst = "Pat", NameLast = "Borders",
                     BbrefId = "bordepa01", BirthCity = "Columbus", BirthDay = 14, BirthCountry = "USA",
@@ -223,7 +223,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "buhneja01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "buhneja01", Bats = "R", Throws = "R", NameFirst = "Jay", NameLast = "Buhner",
                     BbrefId = "buhneja01", BirthCity = "Louisville", BirthDay = 13, BirthCountry = "USA",
@@ -234,7 +234,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "camermi01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "camermi01", Bats = "R", Throws = "R", NameFirst = "Mike", NameLast = "Cameron",
                     BbrefId = "camermi01", BirthCity = "La Grange", BirthDay = 8, BirthCountry = "USA",
@@ -245,7 +245,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "gipsoch01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "gipsoch01", Bats = "R", Throws = "R", NameFirst = "Charles", NameLast = "Gipson",
                     BbrefId = "gipsoch01", BirthCity = "Orange", BirthDay = 16, BirthCountry = "USA", BirthState = "CA",
@@ -256,7 +256,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "guillca01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "guillca01", Bats = "B", Throws = "R", NameFirst = "Carlos", NameLast = "Guillen",
                     BbrefId = "guillca01", BirthCity = "Maracay", BirthDay = 30, BirthCountry = "Venezuela",
@@ -267,7 +267,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "javiest01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "javiest01", Bats = "B", Throws = "R", NameFirst = "Stan", NameLast = "Javier",
                     BbrefId = "javiest01", BirthCity = "San Francisco de Macoris", BirthDay = 9, BirthCountry = "D.R.",
@@ -278,7 +278,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "kingsge01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "kingsge01", Bats = "B", Throws = "R", NameFirst = "Gene", NameLast = "Kingsale",
                     BbrefId = "kingsge01", BirthCity = "Solito", BirthDay = 20, BirthCountry = "Aruba", BirthMonth = 8,
@@ -289,7 +289,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "lampkto01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "lampkto01", Bats = "L", Throws = "R", NameFirst = "Tom", NameLast = "Lampkin",
                     BbrefId = "lampkto01", BirthCity = "Cincinnati", BirthDay = 4, BirthCountry = "USA",
@@ -300,7 +300,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "martial03") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "martial03", Bats = "L", Throws = "L", NameFirst = "Al", NameLast = "Martin",
                     BbrefId = "martial03", BirthCity = "West Covina", BirthDay = 24, BirthCountry = "USA",
@@ -311,7 +311,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "martied01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "martied01", Bats = "R", Throws = "R", NameFirst = "Edgar", NameLast = "Martinez",
                     BbrefId = "martied01", BirthCity = "New York", BirthDay = 2, BirthCountry = "USA",
@@ -322,7 +322,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "mclemma01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "mclemma01", Bats = "B", Throws = "R", NameFirst = "Mark", NameLast = "McLemore",
                     BbrefId = "mclemma01", BirthCity = "San Diego", BirthDay = 4, BirthCountry = "USA",
@@ -333,7 +333,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "olerujo01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "olerujo01", Bats = "L", Throws = "L", NameFirst = "John", NameLast = "Olerud",
                     BbrefId = "olerujo01", BirthCity = "Seattle", BirthDay = 5, BirthCountry = "USA", BirthState = "WA",
@@ -344,7 +344,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "podsesc01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "podsesc01", Bats = "L", Throws = "L", NameFirst = "Scott", NameLast = "Podsednik",
                     BbrefId = "podsesc01", BirthCity = "West", BirthDay = 18, BirthCountry = "USA", BirthState = "TX",
@@ -355,7 +355,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "sandean01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "sandean01", Bats = "R", Throws = "R", NameFirst = "Anthony", NameLast = "Sanders",
                     BbrefId = "sandean01", BirthCity = "Tucson", BirthDay = 2, BirthCountry = "USA", BirthState = "AZ",
@@ -366,7 +366,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "spraged02") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "spraged02", Bats = "R", Throws = "R", NameFirst = "Ed", NameLast = "Sprague",
                     BbrefId = "spraged02", BirthCity = "Castro Valley", BirthDay = 25, BirthCountry = "USA",
@@ -377,7 +377,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "suzukic01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "suzukic01", Bats = "L", Throws = "R", NameFirst = "Ichiro", NameLast = "Suzuki",
                     BbrefId = "suzukic01", BirthCity = "Nichi Kasugai-gun", BirthDay = 22, BirthCountry = "Japan",
@@ -388,7 +388,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "vazqura01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "vazqura01", Bats = "L", Throws = "R", NameFirst = "Ramon", NameLast = "Vazquez",
                     BbrefId = "vazqura01", BirthCity = "Aibonito", BirthDay = 21, BirthCountry = "P.R.", BirthMonth = 8,
@@ -399,7 +399,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 
             if (dbContext.People.Count(m => m.PlayerId == "wilsoda01") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "wilsoda01", Bats = "R", Throws = "R", NameFirst = "Dan", NameLast = "Wilson",
                     BbrefId = "wilsoda01", BirthCity = "Arlington Heights", BirthDay = 25, BirthCountry = "USA",

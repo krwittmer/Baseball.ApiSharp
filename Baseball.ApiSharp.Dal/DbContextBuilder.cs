@@ -29,7 +29,7 @@ namespace Baseball.ApiSharp.Dal
             }
             else if (dbConfig.IsMySqlConnectionStringDefined())
             {
-                optionsBuilder.UseMySql(dbConfig.GenerateMySqlConnectionString());
+                optionsBuilder.UseMySql(dbConfig.GenerateMySqlConnectionString(), MySqlServerVersion.LatestSupportedServerVersion);
             }
         }
     }

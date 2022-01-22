@@ -38,7 +38,8 @@ namespace Baseball.ApiSharp.Mvc.Controllers
 
             if (!searchString.IsNullOrWhiteSpace())
             {
-                var filteredPeople = _repository.Filter<People>(m => (m.NameFirst + " " + m.NameLast).Contains(searchString));
+                // change from m.NameFirst + " " + m.NameLast to nameGiven
+                var filteredPeople = _repository.Filter<Person>(m => (m.NameFirst + " " + m.NameLast).Contains(searchString));
                 foreach (var people in filteredPeople)
                 {
                     int careerHomeRuns = 0;

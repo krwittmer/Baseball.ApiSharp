@@ -16,7 +16,7 @@ namespace Baseball.ApiSharp.Models.Tests
         [Fact]
         public void MapAnthonyRizoMasterPlayerDataTest()
         {
-            var anthonyRizoMasterPlayerData = new People
+            var anthonyRizoMasterPlayerData = new Person
             {
                 PlayerId = "rizzoan01",
                 Bats = "L",

@@ -5,7 +5,6 @@
 // ==================================
 #endregion
 
-#pragma warning disable 1591 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +61,7 @@ namespace Baseball.ApiSharp.Models
 
         private static void MasterToPlayerModel()
         {
-            MapperObject.AddMap<People, PlayerModel>(src =>
+            MapperObject.AddMap<Person, PlayerModel>(src =>
             {
                 var res = new PlayerModel
                 {
@@ -90,7 +89,7 @@ namespace Baseball.ApiSharp.Models
 
         private static void MasterToPlayerIdModel()
         {
-            MapperObject.AddMap<People, PlayerIdModel>(src =>
+            MapperObject.AddMap<Person, PlayerIdModel>(src =>
             {
                 var res = new PlayerIdModel
                 {
@@ -166,7 +165,7 @@ namespace Baseball.ApiSharp.Models
 
         private static void TeamsToTeamModeling()
         {
-            MapperObject.AddMap<Teams, TeamModel>(src =>
+            MapperObject.AddMap<Team, TeamModel>(src =>
                 {
                     var res = new TeamModel
                     {

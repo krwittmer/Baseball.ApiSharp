@@ -23,7 +23,7 @@ namespace Baseball.ApiSharp.Models
                 cfg.CreateMap<FielderModel, Fielding>();
                 cfg.CreateMap<PitcherModel, Pitching>();
 
-                cfg.CreateMap<TagModel, Tag>();
+                cfg.CreateMap<TagModel, Baseball.ApiSharp.Data.Lahman.Tag>();
             });
             _theMapper = config.CreateMapper();
         }

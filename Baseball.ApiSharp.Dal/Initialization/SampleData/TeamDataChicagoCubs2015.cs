@@ -25,203 +25,203 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
 		{
 			if (dbContext.People.Count(m => m.PlayerId == "arrieja01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "arrieja01", Bats = "R", Throws = "R", NameFirst = "Jake", NameLast = "Arrieta", BbrefId = "arrieja01", BirthCity = "Farmington", BirthDay = 6, BirthCountry = "USA", BirthState = "MO", BirthMonth = 3, BirthYear = 1986, Debut = "2010-06-10 00:00:00", FinalGame = "2018-09-27 00:00:00", Height = 76, Weight = 225, RetroId = "arrij001" });
+				dbContext.People.Add(new Person() { PlayerId = "arrieja01", Bats = "R", Throws = "R", NameFirst = "Jake", NameLast = "Arrieta", BbrefId = "arrieja01", BirthCity = "Farmington", BirthDay = 6, BirthCountry = "USA", BirthState = "MO", BirthMonth = 3, BirthYear = 1986, Debut = "2010-06-10 00:00:00", FinalGame = "2018-09-27 00:00:00", Height = 76, Weight = 225, RetroId = "arrij001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "beeleda01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "beeleda01", Bats = "R", Throws = "R", NameFirst = "Dallas", NameLast = "Beeler", BbrefId = "beeleda01", BirthCity = "Tulsa", BirthDay = 12, BirthCountry = "USA", BirthState = "OK", BirthMonth = 6, BirthYear = 1989, Debut = "2014-06-28 00:00:00", FinalGame = "2015-07-28 00:00:00", Height = 77, Weight = 225, RetroId = "beeld001" });
+				dbContext.People.Add(new Person() { PlayerId = "beeleda01", Bats = "R", Throws = "R", NameFirst = "Dallas", NameLast = "Beeler", BbrefId = "beeleda01", BirthCity = "Tulsa", BirthDay = 12, BirthCountry = "USA", BirthState = "OK", BirthMonth = 6, BirthYear = 1989, Debut = "2014-06-28 00:00:00", FinalGame = "2015-07-28 00:00:00", Height = 77, Weight = 225, RetroId = "beeld001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "cahiltr01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "cahiltr01", Bats = "R", Throws = "R", NameFirst = "Trevor", NameLast = "Cahill", BbrefId = "cahiltr01", BirthCity = "Oceanside", BirthDay = 1, BirthCountry = "USA", BirthState = "CA", BirthMonth = 3, BirthYear = 1988, Debut = "2009-04-07 00:00:00", FinalGame = "2018-09-29 00:00:00", Height = 76, Weight = 240, RetroId = "cahit001" });
+				dbContext.People.Add(new Person() { PlayerId = "cahiltr01", Bats = "R", Throws = "R", NameFirst = "Trevor", NameLast = "Cahill", BbrefId = "cahiltr01", BirthCity = "Oceanside", BirthDay = 1, BirthCountry = "USA", BirthState = "CA", BirthMonth = 3, BirthYear = 1988, Debut = "2009-04-07 00:00:00", FinalGame = "2018-09-29 00:00:00", Height = 76, Weight = 240, RetroId = "cahit001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "cokeph01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "cokeph01", Bats = "L", Throws = "L", NameFirst = "Phil", NameLast = "Coke", BbrefId = "cokeph01", BirthCity = "Sonora", BirthDay = 19, BirthCountry = "USA", BirthState = "CA", BirthMonth = 7, BirthYear = 1982, Debut = "2008-09-01 00:00:00", FinalGame = "2016-09-26 00:00:00", Height = 73, Weight = 210, RetroId = "cokep001" });
+				dbContext.People.Add(new Person() { PlayerId = "cokeph01", Bats = "L", Throws = "L", NameFirst = "Phil", NameLast = "Coke", BbrefId = "cokeph01", BirthCity = "Sonora", BirthDay = 19, BirthCountry = "USA", BirthState = "CA", BirthMonth = 7, BirthYear = 1982, Debut = "2008-09-01 00:00:00", FinalGame = "2016-09-26 00:00:00", Height = 73, Weight = 210, RetroId = "cokep001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "denorch01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "denorch01", Bats = "R", Throws = "R", NameFirst = "Chris", NameLast = "Denorfia", BbrefId = "denorch01", BirthCity = "Bristol", BirthDay = 15, BirthCountry = "USA", BirthState = "CT", BirthMonth = 7, BirthYear = 1980, Debut = "2005-09-07 00:00:00", FinalGame = "2015-10-04 00:00:00", Height = 72, Weight = 195, RetroId = "denoc001" });
+				dbContext.People.Add(new Person() { PlayerId = "denorch01", Bats = "R", Throws = "R", NameFirst = "Chris", NameLast = "Denorfia", BbrefId = "denorch01", BirthCity = "Bristol", BirthDay = 15, BirthCountry = "USA", BirthState = "CT", BirthMonth = 7, BirthYear = 1980, Debut = "2005-09-07 00:00:00", FinalGame = "2015-10-04 00:00:00", Height = 72, Weight = 195, RetroId = "denoc001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "edwarca01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "edwarca01", Bats = "R", Throws = "R", NameFirst = "Carl", NameLast = "Edwards", BbrefId = "edwarca01", BirthCity = "Newberry", BirthDay = 3, BirthCountry = "USA", BirthState = "SC", BirthMonth = 9, BirthYear = 1991, Debut = "2015-09-07 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 75, Weight = 170, RetroId = "edwac001" });
+				dbContext.People.Add(new Person() { PlayerId = "edwarca01", Bats = "R", Throws = "R", NameFirst = "Carl", NameLast = "Edwards", BbrefId = "edwarca01", BirthCity = "Newberry", BirthDay = 3, BirthCountry = "USA", BirthState = "SC", BirthMonth = 9, BirthYear = 1991, Debut = "2015-09-07 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 75, Weight = 170, RetroId = "edwac001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "germego01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "germego01", Bats = "R", Throws = "R", NameFirst = "Gonzalez", NameLast = "Germen", BbrefId = "germego01", BirthCity = "Guaymate", BirthDay = 23, BirthCountry = "D.R.", BirthState = "La Romana", BirthMonth = 9, BirthYear = 1987, Debut = "2013-07-12 00:00:00", FinalGame = "2016-08-10 00:00:00", Height = 73, Weight = 200, RetroId = "germg001" });
+				dbContext.People.Add(new Person() { PlayerId = "germego01", Bats = "R", Throws = "R", NameFirst = "Gonzalez", NameLast = "Germen", BbrefId = "germego01", BirthCity = "Guaymate", BirthDay = 23, BirthCountry = "D.R.", BirthState = "La Romana", BirthMonth = 9, BirthYear = 1987, Debut = "2013-07-12 00:00:00", FinalGame = "2016-08-10 00:00:00", Height = 73, Weight = 200, RetroId = "germg001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "grimmju01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "grimmju01", Bats = "R", Throws = "R", NameFirst = "Justin", NameLast = "Grimm", BbrefId = "grimmju01", BirthCity = "Bristol", BirthDay = 16, BirthCountry = "USA", BirthState = "TN", BirthMonth = 8, BirthYear = 1988, Debut = "2012-06-16 00:00:00", FinalGame = "2018-09-25 00:00:00", Height = 75, Weight = 210, RetroId = "grimj002" });
+				dbContext.People.Add(new Person() { PlayerId = "grimmju01", Bats = "R", Throws = "R", NameFirst = "Justin", NameLast = "Grimm", BbrefId = "grimmju01", BirthCity = "Bristol", BirthDay = 16, BirthCountry = "USA", BirthState = "TN", BirthMonth = 8, BirthYear = 1988, Debut = "2012-06-16 00:00:00", FinalGame = "2018-09-25 00:00:00", Height = 75, Weight = 210, RetroId = "grimj002" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "hammeja01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "hammeja01", Bats = "R", Throws = "R", NameFirst = "Jason", NameLast = "Hammel", BbrefId = "hammeja01", BirthCity = "Greenville", BirthDay = 2, BirthCountry = "USA", BirthState = "SC", BirthMonth = 9, BirthYear = 1982, Debut = "2006-04-11 00:00:00", FinalGame = "2018-09-27 00:00:00", Height = 78, Weight = 225, RetroId = "hammj002" });
+				dbContext.People.Add(new Person() { PlayerId = "hammeja01", Bats = "R", Throws = "R", NameFirst = "Jason", NameLast = "Hammel", BbrefId = "hammeja01", BirthCity = "Greenville", BirthDay = 2, BirthCountry = "USA", BirthState = "SC", BirthMonth = 9, BirthYear = 1982, Debut = "2006-04-11 00:00:00", FinalGame = "2018-09-27 00:00:00", Height = 78, Weight = 225, RetroId = "hammj002" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "harenda01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "harenda01", Bats = "R", Throws = "R", NameFirst = "Dan", NameLast = "Haren", BbrefId = "harenda01", BirthCity = "Monterey Park", BirthDay = 17, BirthCountry = "USA", BirthState = "CA", BirthMonth = 9, BirthYear = 1980, Debut = "2003-06-30 00:00:00", FinalGame = "2015-10-04 00:00:00", Height = 77, Weight = 215, RetroId = "hared001" });
+				dbContext.People.Add(new Person() { PlayerId = "harenda01", Bats = "R", Throws = "R", NameFirst = "Dan", NameLast = "Haren", BbrefId = "harenda01", BirthCity = "Monterey Park", BirthDay = 17, BirthCountry = "USA", BirthState = "CA", BirthMonth = 9, BirthYear = 1980, Debut = "2003-06-30 00:00:00", FinalGame = "2015-10-04 00:00:00", Height = 77, Weight = 215, RetroId = "hared001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "hendrky01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "hendrky01", Bats = "R", Throws = "R", NameFirst = "Kyle", NameLast = "Hendricks", BbrefId = "hendrky01", BirthCity = "Newport Beach", BirthDay = 7, BirthCountry = "USA", BirthState = "CA", BirthMonth = 12, BirthYear = 1989, Debut = "2014-07-10 00:00:00", FinalGame = "2018-09-28 00:00:00", Height = 75, Weight = 190, RetroId = "hendk001" });
+				dbContext.People.Add(new Person() { PlayerId = "hendrky01", Bats = "R", Throws = "R", NameFirst = "Kyle", NameLast = "Hendricks", BbrefId = "hendrky01", BirthCity = "Newport Beach", BirthDay = 7, BirthCountry = "USA", BirthState = "CA", BirthMonth = 12, BirthYear = 1989, Debut = "2014-07-10 00:00:00", FinalGame = "2018-09-28 00:00:00", Height = 75, Weight = 190, RetroId = "hendk001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "hunteto02") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "hunteto02", Bats = "R", Throws = "R", NameFirst = "Tommy", NameLast = "Hunter", BbrefId = "hunteto02", BirthCity = "Indianapolis", BirthDay = 3, BirthCountry = "USA", BirthState = "IN", BirthMonth = 7, BirthYear = 1986, Debut = "2008-08-01 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 75, Weight = 250, RetroId = "huntt002" });
+				dbContext.People.Add(new Person() { PlayerId = "hunteto02", Bats = "R", Throws = "R", NameFirst = "Tommy", NameLast = "Hunter", BbrefId = "hunteto02", BirthCity = "Indianapolis", BirthDay = 3, BirthCountry = "USA", BirthState = "IN", BirthMonth = 7, BirthYear = 1986, Debut = "2008-08-01 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 75, Weight = 250, RetroId = "huntt002" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "jacksed01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "jacksed01", Bats = "R", Throws = "R", NameFirst = "Edwin", NameLast = "Jackson", BbrefId = "jacksed01", BirthCity = "Neu-Ulm", BirthDay = 9, BirthCountry = "Germany", BirthState = "Bavaria", BirthMonth = 9, BirthYear = 1983, Debut = "2003-09-09 00:00:00", FinalGame = "2018-09-26 00:00:00", Height = 74, Weight = 215, RetroId = "jacke001" });
+				dbContext.People.Add(new Person() { PlayerId = "jacksed01", Bats = "R", Throws = "R", NameFirst = "Edwin", NameLast = "Jackson", BbrefId = "jacksed01", BirthCity = "Neu-Ulm", BirthDay = 9, BirthCountry = "Germany", BirthState = "Bavaria", BirthMonth = 9, BirthYear = 1983, Debut = "2003-09-09 00:00:00", FinalGame = "2018-09-26 00:00:00", Height = 74, Weight = 215, RetroId = "jacke001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "lestejo01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "lestejo01", Bats = "L", Throws = "L", NameFirst = "Jon", NameLast = "Lester", BbrefId = "lestejo01", BirthCity = "Tacoma", BirthDay = 7, BirthCountry = "USA", BirthState = "WA", BirthMonth = 1, BirthYear = 1984, Debut = "2006-06-10 00:00:00", FinalGame = "2018-09-27 00:00:00", Height = 76, Weight = 240, RetroId = "lestj001" });
+				dbContext.People.Add(new Person() { PlayerId = "lestejo01", Bats = "L", Throws = "L", NameFirst = "Jon", NameLast = "Lester", BbrefId = "lestejo01", BirthCity = "Tacoma", BirthDay = 7, BirthCountry = "USA", BirthState = "WA", BirthMonth = 1, BirthYear = 1984, Debut = "2006-06-10 00:00:00", FinalGame = "2018-09-27 00:00:00", Height = 76, Weight = 240, RetroId = "lestj001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "medinyo01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "medinyo01", Bats = "R", Throws = "R", NameFirst = "Yoervis", NameLast = "Medina", BbrefId = "medinyo01", BirthCity = "Puerto Cabello", BirthDay = 27, BirthCountry = "Venezuela", BirthState = "Carabobo", BirthMonth = 7, BirthYear = 1988, Debut = "2013-04-16 00:00:00", FinalGame = "2015-07-26 00:00:00", Height = 75, Weight = 245, RetroId = "mediy001" });
+				dbContext.People.Add(new Person() { PlayerId = "medinyo01", Bats = "R", Throws = "R", NameFirst = "Yoervis", NameLast = "Medina", BbrefId = "medinyo01", BirthCity = "Puerto Cabello", BirthDay = 27, BirthCountry = "Venezuela", BirthState = "Carabobo", BirthMonth = 7, BirthYear = 1988, Debut = "2013-04-16 00:00:00", FinalGame = "2015-07-26 00:00:00", Height = 75, Weight = 245, RetroId = "mediy001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "motteja01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "motteja01", Bats = "R", Throws = "R", NameFirst = "Jason", NameLast = "Motte", BbrefId = "motteja01", BirthCity = "Port Huron", BirthDay = 22, BirthCountry = "USA", BirthState = "MI", BirthMonth = 6, BirthYear = 1982, Debut = "2008-09-03 00:00:00", FinalGame = "2017-10-01 00:00:00", Height = 72, Weight = 205, RetroId = "mottj001" });
+				dbContext.People.Add(new Person() { PlayerId = "motteja01", Bats = "R", Throws = "R", NameFirst = "Jason", NameLast = "Motte", BbrefId = "motteja01", BirthCity = "Port Huron", BirthDay = 22, BirthCountry = "USA", BirthState = "MI", BirthMonth = 6, BirthYear = 1982, Debut = "2008-09-03 00:00:00", FinalGame = "2017-10-01 00:00:00", Height = 72, Weight = 205, RetroId = "mottj001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "ramirne01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "ramirne01", Bats = "R", Throws = "R", NameFirst = "Neil", NameLast = "Ramirez", BbrefId = "ramirne01", BirthCity = "Virginia Beach", BirthDay = 25, BirthCountry = "USA", BirthState = "VA", BirthMonth = 5, BirthYear = 1989, Debut = "2014-04-25 00:00:00", FinalGame = "2018-09-27 00:00:00", Height = 76, Weight = 215, RetroId = "ramin001" });
+				dbContext.People.Add(new Person() { PlayerId = "ramirne01", Bats = "R", Throws = "R", NameFirst = "Neil", NameLast = "Ramirez", BbrefId = "ramirne01", BirthCity = "Virginia Beach", BirthDay = 25, BirthCountry = "USA", BirthState = "VA", BirthMonth = 5, BirthYear = 1989, Debut = "2014-04-25 00:00:00", FinalGame = "2018-09-27 00:00:00", Height = 76, Weight = 215, RetroId = "ramin001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "richacl01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "richacl01", Bats = "L", Throws = "L", NameFirst = "Clayton", NameLast = "Richard", BbrefId = "richacl01", BirthCity = "Lafayette", BirthDay = 12, BirthCountry = "USA", BirthState = "IN", BirthMonth = 9, BirthYear = 1983, Debut = "2008-07-23 00:00:00", FinalGame = "2018-08-24 00:00:00", Height = 77, Weight = 240, RetroId = "richc002" });
+				dbContext.People.Add(new Person() { PlayerId = "richacl01", Bats = "L", Throws = "L", NameFirst = "Clayton", NameLast = "Richard", BbrefId = "richacl01", BirthCity = "Lafayette", BirthDay = 12, BirthCountry = "USA", BirthState = "IN", BirthMonth = 9, BirthYear = 1983, Debut = "2008-07-23 00:00:00", FinalGame = "2018-08-24 00:00:00", Height = 77, Weight = 240, RetroId = "richc002" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "roachdo01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "roachdo01", Bats = "R", Throws = "R", NameFirst = "Donn", NameLast = "Roach", BbrefId = "roachdo01", BirthCity = "Las Vegas", BirthDay = 14, BirthCountry = "USA", BirthState = "NV", BirthMonth = 12, BirthYear = 1989, Debut = "2014-04-02 00:00:00", FinalGame = "2016-08-02 00:00:00", Height = 72, Weight = 195, RetroId = "roacd001" });
+				dbContext.People.Add(new Person() { PlayerId = "roachdo01", Bats = "R", Throws = "R", NameFirst = "Donn", NameLast = "Roach", BbrefId = "roachdo01", BirthCity = "Las Vegas", BirthDay = 14, BirthCountry = "USA", BirthState = "NV", BirthMonth = 12, BirthYear = 1989, Debut = "2014-04-02 00:00:00", FinalGame = "2016-08-02 00:00:00", Height = 72, Weight = 195, RetroId = "roacd001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "rodnefe01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "rodnefe01", Bats = "R", Throws = "R", NameFirst = "Fernando", NameLast = "Rodney", BbrefId = "rodnefe01", BirthCity = "Santo Domingo", BirthDay = 18, BirthCountry = "D.R.", BirthState = "Distrito Nacional", BirthMonth = 3, BirthYear = 1977, Debut = "2002-05-04 00:00:00", FinalGame = "2018-09-29 00:00:00", Height = 71, Weight = 230, RetroId = "rodnf001" });
+				dbContext.People.Add(new Person() { PlayerId = "rodnefe01", Bats = "R", Throws = "R", NameFirst = "Fernando", NameLast = "Rodney", BbrefId = "rodnefe01", BirthCity = "Santo Domingo", BirthDay = 18, BirthCountry = "D.R.", BirthState = "Distrito Nacional", BirthMonth = 3, BirthYear = 1977, Debut = "2002-05-04 00:00:00", FinalGame = "2018-09-29 00:00:00", Height = 71, Weight = 230, RetroId = "rodnf001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "rondohe01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "rondohe01", Bats = "R", Throws = "R", NameFirst = "Hector", NameLast = "Rondon", BbrefId = "rondohe01", BirthCity = "Guatire", BirthDay = 26, BirthCountry = "Venezuela", BirthState = "Miranda", BirthMonth = 2, BirthYear = 1988, Debut = "2013-04-03 00:00:00", FinalGame = "2018-09-29 00:00:00", Height = 75, Weight = 230, RetroId = "rondh001" });
+				dbContext.People.Add(new Person() { PlayerId = "rondohe01", Bats = "R", Throws = "R", NameFirst = "Hector", NameLast = "Rondon", BbrefId = "rondohe01", BirthCity = "Guatire", BirthDay = 26, BirthCountry = "Venezuela", BirthState = "Miranda", BirthMonth = 2, BirthYear = 1988, Debut = "2013-04-03 00:00:00", FinalGame = "2018-09-29 00:00:00", Height = 75, Weight = 230, RetroId = "rondh001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "rosscza01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "rosscza01", Bats = "R", Throws = "L", NameFirst = "Zac", NameLast = "Rosscup", BbrefId = "rosscza01", BirthCity = "Clackamas", BirthDay = 9, BirthCountry = "USA", BirthState = "OR", BirthMonth = 6, BirthYear = 1988, Debut = "2013-09-03 00:00:00", FinalGame = "2018-09-29 00:00:00", Height = 74, Weight = 220, RetroId = "rossz001" });
+				dbContext.People.Add(new Person() { PlayerId = "rosscza01", Bats = "R", Throws = "L", NameFirst = "Zac", NameLast = "Rosscup", BbrefId = "rosscza01", BirthCity = "Clackamas", BirthDay = 9, BirthCountry = "USA", BirthState = "OR", BirthMonth = 6, BirthYear = 1988, Debut = "2013-09-03 00:00:00", FinalGame = "2018-09-29 00:00:00", Height = 74, Weight = 220, RetroId = "rossz001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "rossda01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "rossda01", Bats = "R", Throws = "R", NameFirst = "David", NameLast = "Ross", BbrefId = "rossda01", BirthCity = "Bainbridge", BirthDay = 19, BirthCountry = "USA", BirthState = "GA", BirthMonth = 3, BirthYear = 1977, Debut = "2002-06-29 00:00:00", FinalGame = "2016-10-01 00:00:00", Height = 74, Weight = 230, RetroId = "rossd001" });
+				dbContext.People.Add(new Person() { PlayerId = "rossda01", Bats = "R", Throws = "R", NameFirst = "David", NameLast = "Ross", BbrefId = "rossda01", BirthCity = "Bainbridge", BirthDay = 19, BirthCountry = "USA", BirthState = "GA", BirthMonth = 3, BirthYear = 1977, Debut = "2002-06-29 00:00:00", FinalGame = "2016-10-01 00:00:00", Height = 74, Weight = 230, RetroId = "rossd001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "russeja02") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "russeja02", Bats = "L", Throws = "L", NameFirst = "James", NameLast = "Russell", BbrefId = "russeja02", BirthCity = "Cincinnati", BirthDay = 8, BirthCountry = "USA", BirthState = "OH", BirthMonth = 1, BirthYear = 1986, Debut = "2010-04-05 00:00:00", FinalGame = "2016-04-19 00:00:00", Height = 76, Weight = 205, RetroId = "russj003" });
+				dbContext.People.Add(new Person() { PlayerId = "russeja02", Bats = "L", Throws = "L", NameFirst = "James", NameLast = "Russell", BbrefId = "russeja02", BirthCity = "Cincinnati", BirthDay = 8, BirthCountry = "USA", BirthState = "OH", BirthMonth = 1, BirthYear = 1986, Debut = "2010-04-05 00:00:00", FinalGame = "2016-04-19 00:00:00", Height = 76, Weight = 205, RetroId = "russj003" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "schlibr01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "schlibr01", Bats = "R", Throws = "R", NameFirst = "Brian", NameLast = "Schlitter", BbrefId = "schlibr01", BirthCity = "Oak Park", BirthDay = 21, BirthCountry = "USA", BirthState = "IL", BirthMonth = 12, BirthYear = 1985, Debut = "2010-06-28 00:00:00", FinalGame = "2015-06-14 00:00:00", Height = 77, Weight = 240, RetroId = "schlb001" });
+				dbContext.People.Add(new Person() { PlayerId = "schlibr01", Bats = "R", Throws = "R", NameFirst = "Brian", NameLast = "Schlitter", BbrefId = "schlibr01", BirthCity = "Oak Park", BirthDay = 21, BirthCountry = "USA", BirthState = "IL", BirthMonth = 12, BirthYear = 1985, Debut = "2010-06-28 00:00:00", FinalGame = "2015-06-14 00:00:00", Height = 77, Weight = 240, RetroId = "schlb001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "soriara01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "soriara01", Bats = "R", Throws = "R", NameFirst = "Rafael", NameLast = "Soriano", BbrefId = "soriara01", BirthCity = "San Jose", BirthDay = 19, BirthCountry = "D.R.", BirthState = "San Pedro de Macoris", BirthMonth = 12, BirthYear = 1979, Debut = "2002-05-10 00:00:00", FinalGame = "2015-07-30 00:00:00", Height = 76, Weight = 230, RetroId = "sorir001" });
+				dbContext.People.Add(new Person() { PlayerId = "soriara01", Bats = "R", Throws = "R", NameFirst = "Rafael", NameLast = "Soriano", BbrefId = "soriara01", BirthCity = "San Jose", BirthDay = 19, BirthCountry = "D.R.", BirthState = "San Pedro de Macoris", BirthMonth = 12, BirthYear = 1979, Debut = "2002-05-10 00:00:00", FinalGame = "2015-07-30 00:00:00", Height = 76, Weight = 230, RetroId = "sorir001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "stroppe01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "stroppe01", Bats = "R", Throws = "R", NameFirst = "Pedro", NameLast = "Strop", BbrefId = "stroppe01", BirthCity = "San Cristobal", BirthDay = 13, BirthCountry = "D.R.", BirthState = "San Cristobal", BirthMonth = 6, BirthYear = 1985, Debut = "2009-08-28 00:00:00", FinalGame = "2018-09-13 00:00:00", Height = 73, Weight = 220, RetroId = "strop001" });
+				dbContext.People.Add(new Person() { PlayerId = "stroppe01", Bats = "R", Throws = "R", NameFirst = "Pedro", NameLast = "Strop", BbrefId = "stroppe01", BirthCity = "San Cristobal", BirthDay = 13, BirthCountry = "D.R.", BirthState = "San Cristobal", BirthMonth = 6, BirthYear = 1985, Debut = "2009-08-28 00:00:00", FinalGame = "2018-09-13 00:00:00", Height = 73, Weight = 220, RetroId = "strop001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "wadats01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "wadats01", Bats = "L", Throws = "L", NameFirst = "Tsuyoshi", NameLast = "Wada", BbrefId = "wadats01", BirthCity = "Izumo", BirthDay = 21, BirthCountry = "Japan", BirthState = "Shimane", BirthMonth = 2, BirthYear = 1981, Debut = "2014-07-08 00:00:00", FinalGame = "2015-09-04 00:00:00", Height = 71, Weight = 180, RetroId = "wadat001" });
+				dbContext.People.Add(new Person() { PlayerId = "wadats01", Bats = "L", Throws = "L", NameFirst = "Tsuyoshi", NameLast = "Wada", BbrefId = "wadats01", BirthCity = "Izumo", BirthDay = 21, BirthCountry = "Japan", BirthState = "Shimane", BirthMonth = 2, BirthYear = 1981, Debut = "2014-07-08 00:00:00", FinalGame = "2015-09-04 00:00:00", Height = 71, Weight = 180, RetroId = "wadat001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "woodtr01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "woodtr01", Bats = "R", Throws = "L", NameFirst = "Travis", NameLast = "Wood", BbrefId = "woodtr01", BirthCity = "Little Rock", BirthDay = 6, BirthCountry = "USA", BirthState = "AR", BirthMonth = 2, BirthYear = 1987, Debut = "2010-07-01 00:00:00", FinalGame = "2017-09-25 00:00:00", Height = 71, Weight = 175, RetroId = "woodt004" });
+				dbContext.People.Add(new Person() { PlayerId = "woodtr01", Bats = "R", Throws = "L", NameFirst = "Travis", NameLast = "Wood", BbrefId = "woodtr01", BirthCity = "Little Rock", BirthDay = 6, BirthCountry = "USA", BirthState = "AR", BirthMonth = 2, BirthYear = 1987, Debut = "2010-07-01 00:00:00", FinalGame = "2017-09-25 00:00:00", Height = 71, Weight = 175, RetroId = "woodt004" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "alcanar01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "alcanar01", Bats = "B", Throws = "R", NameFirst = "Arismendy", NameLast = "Alcantara", BbrefId = "alcanar01", BirthCity = "Santo Domingo", BirthDay = 29, BirthCountry = "D.R.", BirthState = "Distrito Nacional", BirthMonth = 10, BirthYear = 1991, Debut = "2014-07-09 00:00:00", FinalGame = "2017-08-09 00:00:00", Height = 70, Weight = 170, RetroId = "alcaa001" });
+				dbContext.People.Add(new Person() { PlayerId = "alcanar01", Bats = "B", Throws = "R", NameFirst = "Arismendy", NameLast = "Alcantara", BbrefId = "alcanar01", BirthCity = "Santo Domingo", BirthDay = 29, BirthCountry = "D.R.", BirthState = "Distrito Nacional", BirthMonth = 10, BirthYear = 1991, Debut = "2014-07-09 00:00:00", FinalGame = "2017-08-09 00:00:00", Height = 70, Weight = 170, RetroId = "alcaa001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "baezja01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "baezja01", Bats = "R", Throws = "R", NameFirst = "Javier", NameLast = "Baez", BbrefId = "baezja01", BirthCity = "Bayamon", BirthDay = 1, BirthCountry = "P.R.", BirthMonth = 12, BirthYear = 1992, Debut = "2014-08-05 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 72, Weight = 190, RetroId = "baezj001" });
+				dbContext.People.Add(new Person() { PlayerId = "baezja01", Bats = "R", Throws = "R", NameFirst = "Javier", NameLast = "Baez", BbrefId = "baezja01", BirthCity = "Bayamon", BirthDay = 1, BirthCountry = "P.R.", BirthMonth = 12, BirthYear = 1992, Debut = "2014-08-05 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 72, Weight = 190, RetroId = "baezj001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "baxtemi01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "baxtemi01", Bats = "L", Throws = "R", NameFirst = "Mike", NameLast = "Baxter", BbrefId = "baxtemi01", BirthCity = "Queens", BirthDay = 7, BirthCountry = "USA", BirthState = "NY", BirthMonth = 12, BirthYear = 1984, Debut = "2010-09-06 00:00:00", FinalGame = "2015-07-08 00:00:00", Height = 72, Weight = 205, RetroId = "baxtm001" });
+				dbContext.People.Add(new Person() { PlayerId = "baxtemi01", Bats = "L", Throws = "R", NameFirst = "Mike", NameLast = "Baxter", BbrefId = "baxtemi01", BirthCity = "Queens", BirthDay = 7, BirthCountry = "USA", BirthState = "NY", BirthMonth = 12, BirthYear = 1984, Debut = "2010-09-06 00:00:00", FinalGame = "2015-07-08 00:00:00", Height = 72, Weight = 205, RetroId = "baxtm001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "berryqu01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "berryqu01", Bats = "L", Throws = "L", NameFirst = "Quintin", NameLast = "Berry", BbrefId = "berryqu01", BirthCity = "San Diego", BirthDay = 21, BirthCountry = "USA", BirthState = "CA", BirthMonth = 11, BirthYear = 1984, Debut = "2012-05-23 00:00:00", FinalGame = "2017-10-01 00:00:00", Height = 73, Weight = 195, RetroId = "berrq001" });
+				dbContext.People.Add(new Person() { PlayerId = "berryqu01", Bats = "L", Throws = "L", NameFirst = "Quintin", NameLast = "Berry", BbrefId = "berryqu01", BirthCity = "San Diego", BirthDay = 21, BirthCountry = "USA", BirthState = "CA", BirthMonth = 11, BirthYear = 1984, Debut = "2012-05-23 00:00:00", FinalGame = "2017-10-01 00:00:00", Height = 73, Weight = 195, RetroId = "berrq001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "bryankr01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "bryankr01", Bats = "R", Throws = "R", NameFirst = "Kris", NameLast = "Bryant", BbrefId = "bryankr01", BirthCity = "Las Vegas", BirthDay = 4, BirthCountry = "USA", BirthState = "NV", BirthMonth = 1, BirthYear = 1992, Debut = "2015-04-17 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 77, Weight = 230, RetroId = "bryak001" });
+				dbContext.People.Add(new Person() { PlayerId = "bryankr01", Bats = "R", Throws = "R", NameFirst = "Kris", NameLast = "Bryant", BbrefId = "bryankr01", BirthCity = "Las Vegas", BirthDay = 4, BirthCountry = "USA", BirthState = "NV", BirthMonth = 1, BirthYear = 1992, Debut = "2015-04-17 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 77, Weight = 230, RetroId = "bryak001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "castiwe01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "castiwe01", Bats = "R", Throws = "R", NameFirst = "Welington", NameLast = "Castillo", BbrefId = "castiwe01", BirthCity = "San Isidro", BirthDay = 24, BirthCountry = "D.R.", BirthState = "Distrito Nacional", BirthMonth = 4, BirthYear = 1987, Debut = "2010-08-11 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 70, Weight = 220, RetroId = "castw002" });
+				dbContext.People.Add(new Person() { PlayerId = "castiwe01", Bats = "R", Throws = "R", NameFirst = "Welington", NameLast = "Castillo", BbrefId = "castiwe01", BirthCity = "San Isidro", BirthDay = 24, BirthCountry = "D.R.", BirthState = "Distrito Nacional", BirthMonth = 4, BirthYear = 1987, Debut = "2010-08-11 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 70, Weight = 220, RetroId = "castw002" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "castrst01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "castrst01", Bats = "R", Throws = "R", NameFirst = "Starlin", NameLast = "Castro", BbrefId = "castrst01", BirthCity = "Monte Cristi", BirthDay = 24, BirthCountry = "D.R.", BirthState = "Monte Cristi", BirthMonth = 3, BirthYear = 1990, Debut = "2010-05-07 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 74, Weight = 230, RetroId = "casts001" });
+				dbContext.People.Add(new Person() { PlayerId = "castrst01", Bats = "R", Throws = "R", NameFirst = "Starlin", NameLast = "Castro", BbrefId = "castrst01", BirthCity = "Monte Cristi", BirthDay = 24, BirthCountry = "D.R.", BirthState = "Monte Cristi", BirthMonth = 3, BirthYear = 1990, Debut = "2010-05-07 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 74, Weight = 230, RetroId = "casts001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "coghlch01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "coghlch01", Bats = "L", Throws = "R", NameFirst = "Chris", NameLast = "Coghlan", BbrefId = "coghlch01", BirthCity = "Rockville", BirthDay = 18, BirthCountry = "USA", BirthState = "MD", BirthMonth = 6, BirthYear = 1985, Debut = "2009-05-08 00:00:00", FinalGame = "2017-06-07 00:00:00", Height = 72, Weight = 195, RetroId = "coghc001" });
+				dbContext.People.Add(new Person() { PlayerId = "coghlch01", Bats = "L", Throws = "R", NameFirst = "Chris", NameLast = "Coghlan", BbrefId = "coghlch01", BirthCity = "Rockville", BirthDay = 18, BirthCountry = "USA", BirthState = "MD", BirthMonth = 6, BirthYear = 1985, Debut = "2009-05-08 00:00:00", FinalGame = "2017-06-07 00:00:00", Height = 72, Weight = 195, RetroId = "coghc001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "fowlede01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "fowlede01", Bats = "B", Throws = "R", NameFirst = "Dexter", NameLast = "Fowler", BbrefId = "fowlede01", BirthCity = "Atlanta", BirthDay = 22, BirthCountry = "USA", BirthState = "GA", BirthMonth = 3, BirthYear = 1986, Debut = "2008-09-02 00:00:00", FinalGame = "2018-08-03 00:00:00", Height = 77, Weight = 195, RetroId = "fowld001" });
+				dbContext.People.Add(new Person() { PlayerId = "fowlede01", Bats = "B", Throws = "R", NameFirst = "Dexter", NameLast = "Fowler", BbrefId = "fowlede01", BirthCity = "Atlanta", BirthDay = 22, BirthCountry = "USA", BirthState = "GA", BirthMonth = 3, BirthYear = 1986, Debut = "2008-09-02 00:00:00", FinalGame = "2018-08-03 00:00:00", Height = 77, Weight = 195, RetroId = "fowld001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "herrejo03") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "herrejo03", Bats = "B", Throws = "R", NameFirst = "Jonathan", NameLast = "Herrera", BbrefId = "herrejo03", BirthCity = "Maracaibo", BirthDay = 3, BirthCountry = "Venezuela", BirthState = "Zulia", BirthMonth = 11, BirthYear = 1984, Debut = "2008-04-30 00:00:00", FinalGame = "2015-09-09 00:00:00", Height = 69, Weight = 180, RetroId = "herrj002" });
+				dbContext.People.Add(new Person() { PlayerId = "herrejo03", Bats = "B", Throws = "R", NameFirst = "Jonathan", NameLast = "Herrera", BbrefId = "herrejo03", BirthCity = "Maracaibo", BirthDay = 3, BirthCountry = "Venezuela", BirthState = "Zulia", BirthMonth = 11, BirthYear = 1984, Debut = "2008-04-30 00:00:00", FinalGame = "2015-09-09 00:00:00", Height = 69, Weight = 180, RetroId = "herrj002" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "jacksau01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "jacksau01", Bats = "R", Throws = "R", NameFirst = "Austin", NameLast = "Jackson", BbrefId = "jacksau01", BirthCity = "Denton", BirthDay = 1, BirthCountry = "USA", BirthState = "TX", BirthMonth = 2, BirthYear = 1987, Debut = "2010-04-05 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 73, Weight = 198, RetroId = "jacka001" });
+				dbContext.People.Add(new Person() { PlayerId = "jacksau01", Bats = "R", Throws = "R", NameFirst = "Austin", NameLast = "Jackson", BbrefId = "jacksau01", BirthCity = "Denton", BirthDay = 1, BirthCountry = "USA", BirthState = "TX", BirthMonth = 2, BirthYear = 1987, Debut = "2010-04-05 00:00:00", FinalGame = "2018-09-30 00:00:00", Height = 73, Weight = 198, RetroId = "jacka001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "lakeju01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "lakeju01", Bats = "R", Throws = "R", NameFirst = "Junior", NameLast = "Lake", BbrefId = "lakeju01", BirthCity = "San Pedro de Macoris", BirthDay = 27, BirthCountry = "D.R.", BirthState = "San Pedro de Macoris", BirthMonth = 3, BirthYear = 1990, Debut = "2013-07-19 00:00:00", FinalGame = "2016-08-15 00:00:00", Height = 74, Weight = 230, RetroId = "lakej001" });
+				dbContext.People.Add(new Person() { PlayerId = "lakeju01", Bats = "R", Throws = "R", NameFirst = "Junior", NameLast = "Lake", BbrefId = "lakeju01", BirthCity = "San Pedro de Macoris", BirthDay = 27, BirthCountry = "D.R.", BirthState = "San Pedro de Macoris", BirthMonth = 3, BirthYear = 1990, Debut = "2013-07-19 00:00:00", FinalGame = "2016-08-15 00:00:00", Height = 74, Weight = 230, RetroId = "lakej001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "lasteto01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "lasteto01", Bats = "L", Throws = "R", NameFirst = "Tommy", NameLast = "La Stella", BbrefId = "lasteto01", BirthCity = "Westwood", BirthDay = 31, BirthCountry = "USA", BirthState = "NJ", BirthMonth = 1, BirthYear = 1989, Debut = "2014-05-28 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 71, Weight = 180, RetroId = "lastt001" });
+				dbContext.People.Add(new Person() { PlayerId = "lasteto01", Bats = "L", Throws = "R", NameFirst = "Tommy", NameLast = "La Stella", BbrefId = "lasteto01", BirthCity = "Westwood", BirthDay = 31, BirthCountry = "USA", BirthState = "NJ", BirthMonth = 1, BirthYear = 1989, Debut = "2014-05-28 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 71, Weight = 180, RetroId = "lastt001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "montemi01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "montemi01", Bats = "L", Throws = "R", NameFirst = "Miguel", NameLast = "Montero", BbrefId = "montemi01", BirthCity = "Caracas", BirthDay = 9, BirthCountry = "Venezuela", BirthState = "Distrito Federal", BirthMonth = 7, BirthYear = 1983, Debut = "2006-09-06 00:00:00", FinalGame = "2018-04-05 00:00:00", Height = 71, Weight = 221, RetroId = "montm001" });
+				dbContext.People.Add(new Person() { PlayerId = "montemi01", Bats = "L", Throws = "R", NameFirst = "Miguel", NameLast = "Montero", BbrefId = "montemi01", BirthCity = "Caracas", BirthDay = 9, BirthCountry = "Venezuela", BirthState = "Distrito Federal", BirthMonth = 7, BirthYear = 1983, Debut = "2006-09-06 00:00:00", FinalGame = "2018-04-05 00:00:00", Height = 71, Weight = 221, RetroId = "montm001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "oltmi01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "oltmi01", Bats = "R", Throws = "R", NameFirst = "Mike", NameLast = "Olt", BbrefId = "oltmi01", BirthCity = "New Haven", BirthDay = 27, BirthCountry = "USA", BirthState = "CT", BirthMonth = 8, BirthYear = 1988, Debut = "2012-08-02 00:00:00", FinalGame = "2015-10-04 00:00:00", Height = 74, Weight = 210, RetroId = "olt-m001" });
+				dbContext.People.Add(new Person() { PlayerId = "oltmi01", Bats = "R", Throws = "R", NameFirst = "Mike", NameLast = "Olt", BbrefId = "oltmi01", BirthCity = "New Haven", BirthDay = 27, BirthCountry = "USA", BirthState = "CT", BirthMonth = 8, BirthYear = 1988, Debut = "2012-08-02 00:00:00", FinalGame = "2015-10-04 00:00:00", Height = 74, Weight = 210, RetroId = "olt-m001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "rizzoan01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "rizzoan01", Bats = "L", Throws = "L", NameFirst = "Anthony", NameLast = "Rizzo", BbrefId = "rizzoan01", BirthCity = "Fort Lauderdale", BirthDay = 8, BirthCountry = "USA", BirthState = "FL", BirthMonth = 8, BirthYear = 1989, Debut = "2011-06-09 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 75, Weight = 240, RetroId = "rizza001" });
+				dbContext.People.Add(new Person() { PlayerId = "rizzoan01", Bats = "L", Throws = "L", NameFirst = "Anthony", NameLast = "Rizzo", BbrefId = "rizzoan01", BirthCity = "Fort Lauderdale", BirthDay = 8, BirthCountry = "USA", BirthState = "FL", BirthMonth = 8, BirthYear = 1989, Debut = "2011-06-09 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 75, Weight = 240, RetroId = "rizza001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "russead02") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "russead02", Bats = "R", Throws = "R", NameFirst = "Addison", NameLast = "Russell", BbrefId = "russead02", BirthCity = "Pensacola", BirthDay = 23, BirthCountry = "USA", BirthState = "FL", BirthMonth = 1, BirthYear = 1994, Debut = "2015-04-21 00:00:00", FinalGame = "2018-09-19 00:00:00", Height = 72, Weight = 200, RetroId = "russa002" });
+				dbContext.People.Add(new Person() { PlayerId = "russead02", Bats = "R", Throws = "R", NameFirst = "Addison", NameLast = "Russell", BbrefId = "russead02", BirthCity = "Pensacola", BirthDay = 23, BirthCountry = "USA", BirthState = "FL", BirthMonth = 1, BirthYear = 1994, Debut = "2015-04-21 00:00:00", FinalGame = "2018-09-19 00:00:00", Height = 72, Weight = 200, RetroId = "russa002" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "schwaky01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "schwaky01", Bats = "L", Throws = "R", NameFirst = "Kyle", NameLast = "Schwarber", BbrefId = "schwaky01", BirthCity = "Middletown", BirthDay = 5, BirthCountry = "USA", BirthState = "OH", BirthMonth = 3, BirthYear = 1993, Debut = "2015-06-16 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 72, Weight = 235, RetroId = "schwk001" });
+				dbContext.People.Add(new Person() { PlayerId = "schwaky01", Bats = "L", Throws = "R", NameFirst = "Kyle", NameLast = "Schwarber", BbrefId = "schwaky01", BirthCity = "Middletown", BirthDay = 5, BirthCountry = "USA", BirthState = "OH", BirthMonth = 3, BirthYear = 1993, Debut = "2015-06-16 00:00:00", FinalGame = "2018-10-01 00:00:00", Height = 72, Weight = 235, RetroId = "schwk001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "solerjo01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "solerjo01", Bats = "R", Throws = "R", NameFirst = "Jorge", NameLast = "Soler", BbrefId = "solerjo01", BirthCity = "La Habana", BirthDay = 25, BirthCountry = "Cuba", BirthState = "La Habana", BirthMonth = 2, BirthYear = 1992, Debut = "2014-08-27 00:00:00", FinalGame = "2018-06-15 00:00:00", Height = 76, Weight = 230, RetroId = "solej001" });
+				dbContext.People.Add(new Person() { PlayerId = "solerjo01", Bats = "R", Throws = "R", NameFirst = "Jorge", NameLast = "Soler", BbrefId = "solerjo01", BirthCity = "La Habana", BirthDay = 25, BirthCountry = "Cuba", BirthState = "La Habana", BirthMonth = 2, BirthYear = 1992, Debut = "2014-08-27 00:00:00", FinalGame = "2018-06-15 00:00:00", Height = 76, Weight = 230, RetroId = "solej001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "szczuma01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "szczuma01", Bats = "R", Throws = "R", NameFirst = "Matt", NameLast = "Szczur", BbrefId = "szczuma01", BirthCity = "Cape May", BirthDay = 20, BirthCountry = "USA", BirthState = "NJ", BirthMonth = 7, BirthYear = 1989, Debut = "2014-08-17 00:00:00", FinalGame = "2018-06-30 00:00:00", Height = 72, Weight = 200, RetroId = "szczm001" });
+				dbContext.People.Add(new Person() { PlayerId = "szczuma01", Bats = "R", Throws = "R", NameFirst = "Matt", NameLast = "Szczur", BbrefId = "szczuma01", BirthCity = "Cape May", BirthDay = 20, BirthCountry = "USA", BirthState = "NJ", BirthMonth = 7, BirthYear = 1989, Debut = "2014-08-17 00:00:00", FinalGame = "2018-06-30 00:00:00", Height = 72, Weight = 200, RetroId = "szczm001" });
 			}
 			if (dbContext.People.Count(m => m.PlayerId == "teagata01") == 0)
 			{
-				dbContext.People.Add(new People() { PlayerId = "teagata01", Bats = "R", Throws = "R", NameFirst = "Taylor", NameLast = "Teagarden", BbrefId = "teagata01", BirthCity = "Dallas", BirthDay = 21, BirthCountry = "USA", BirthState = "TX", BirthMonth = 12, BirthYear = 1983, Debut = "2008-07-18 00:00:00", FinalGame = "2015-07-26 00:00:00", Height = 72, Weight = 210, RetroId = "teagt001" });
+				dbContext.People.Add(new Person() { PlayerId = "teagata01", Bats = "R", Throws = "R", NameFirst = "Taylor", NameLast = "Teagarden", BbrefId = "teagata01", BirthCity = "Dallas", BirthDay = 21, BirthCountry = "USA", BirthState = "TX", BirthMonth = 12, BirthYear = 1983, Debut = "2008-07-18 00:00:00", FinalGame = "2015-07-26 00:00:00", Height = 72, Weight = 210, RetroId = "teagt001" });
 			}
 			dbContext.SaveChanges();
 		}

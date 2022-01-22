@@ -1,114 +1,134 @@
-﻿#region Copyright & OSS License
-// Copyright Information
-// All source is copyright, Kevin Wittmer
-// See License.txt for more information (check Visual Studio Solution Items)
-// ==================================
-#endregion
-
-using Baseball.ApiSharp.Data.Lahman;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Baseball.ApiSharp.Data.Lahman;
 
 namespace Baseball.ApiSharp.Dal.EfStructures
 {
     public partial class LahmansDbContext : DbContext
     {
+        public LahmansDbContext()
+        {
+        }
+
         public LahmansDbContext(DbContextOptions<LahmansDbContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<AllstarFull> AllstarFull { get; set; }
-        public virtual DbSet<Appearances> Appearances { get; set; }
-        public virtual DbSet<AwardsManagers> AwardsManagers { get; set; }
-        public virtual DbSet<AwardsPlayers> AwardsPlayers { get; set; }
-        public virtual DbSet<AwardsShareManagers> AwardsShareManagers { get; set; }
-        public virtual DbSet<AwardsSharePlayers> AwardsSharePlayers { get; set; }
+        public virtual DbSet<Allstarfull> Allstarfulls { get; set; }
+        public virtual DbSet<Appearance> Appearances { get; set; }
+        public virtual DbSet<Awardsmanager> Awardsmanagers { get; set; }
+        public virtual DbSet<Awardsplayer> Awardsplayers { get; set; }
+        public virtual DbSet<Awardssharemanager> Awardssharemanagers { get; set; }
+        public virtual DbSet<Awardsshareplayer> Awardsshareplayers { get; set; }
         public virtual DbSet<Batting> Batting { get; set; }
-        public virtual DbSet<BattingPost> BattingPost { get; set; }
-        public virtual DbSet<CollegePlaying> CollegePlaying { get; set; }
+        public virtual DbSet<Battingpost> Battingposts { get; set; }
+        public virtual DbSet<Collegeplaying> Collegeplayings { get; set; }
+        public virtual DbSet<Division> Divisions { get; set; }
+        public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
         public virtual DbSet<Fielding> Fielding { get; set; }
-        public virtual DbSet<FieldingOf> FieldingOf { get; set; }
-        public virtual DbSet<FieldingOfsplit> FieldingOfsplit { get; set; }
-        public virtual DbSet<FieldingPost> FieldingPost { get; set; }
-        public virtual DbSet<HallOfFame> HallOfFame { get; set; }
-        public virtual DbSet<HomeGames> HomeGames { get; set; }
-        public virtual DbSet<Managers> Managers { get; set; }
-        public virtual DbSet<ManagersHalf> ManagersHalf { get; set; }
-        public virtual DbSet<Parks> Parks { get; set; }
-        public virtual DbSet<People> People { get; set; }
+        public virtual DbSet<Fieldingof> Fieldingofs { get; set; }
+        public virtual DbSet<Fieldingofsplit> Fieldingofsplits { get; set; }
+        public virtual DbSet<Fieldingpost> Fieldingposts { get; set; }
+        public virtual DbSet<Halloffame> Halloffames { get; set; }
+        public virtual DbSet<Homegame> Homegames { get; set; }
+        public virtual DbSet<League> Leagues { get; set; }
+        public virtual DbSet<Manager> Managers { get; set; }
+        public virtual DbSet<Managershalf> Managershalves { get; set; }
+        public virtual DbSet<Park> Parks { get; set; }
+        public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Pitching> Pitching { get; set; }
-        public virtual DbSet<PitchingPost> PitchingPost { get; set; }
-        public virtual DbSet<Salaries> Salaries { get; set; }
-        public virtual DbSet<Schools> Schools { get; set; }
-        public virtual DbSet<SeriesPost> SeriesPost { get; set; }
-        public virtual DbSet<Teams> Teams { get; set; }
-        public virtual DbSet<TeamsFranchises> TeamsFranchises { get; set; }
-        public virtual DbSet<TeamsHalf> TeamsHalf { get; set; }
-
-        public bool IsSqlServerDb { get; set; } = false;
+        public virtual DbSet<Pitchingpost> Pitchingposts { get; set; }
+        public virtual DbSet<Richjsontagdatum> Richjsontagdata { get; set; }
+        public virtual DbSet<School> Schools { get; set; }
+        public virtual DbSet<Tag> Tags2 { get; set; }
+        public virtual DbSet<Tagrelationship> Tagrelationships { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Teamsfranchise> Teamsfranchises { get; set; }
+        public virtual DbSet<Teamshalf> Teamshalves { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                if (IsSqlServerDb)
-                {
-                    optionsBuilder.UseSqlServer("Server=DBSERVER\\SQLEXPRESS17;Database=LahmansDB;User Id=dbuser;Password=dbpassw0RD;");
-                }
-                else
-                {
-                    optionsBuilder.UseMySql(@"server=dbserver;database=Lahmans2019DB;uid=dbuser;pwd=dbpassw0RD;");
-                }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseMySql("server=localhost;database=LahmansOBH;uid=root;pwd=MiSs-8v0r$", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.27-mysql"));
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AllstarFull>(entity =>
+            modelBuilder.UseCollation("utf8mb4_0900_ai_ci")
+                .HasCharSet("utf8mb4");
+
+            modelBuilder.Entity<Allstarfull>(entity =>
             {
-                entity.HasKey(e => new { e.PlayerId, e.YearId, e.GameNum })
-                    .HasName("AllstarFull$Index_2BD68208_C8B4_4347");
+                entity.ToTable("allstarfull");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                entity.HasIndex(e => e.LgId, "lgID");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.GameNum, e.GameId, e.LgId }, "playerID")
+                    .IsUnique();
 
-                entity.Property(e => e.GameNum).HasColumnName("gameNum");
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.GameId)
-                    .HasColumnName("gameID")
-                    .HasMaxLength(12);
+                    .HasMaxLength(12)
+                    .HasColumnName("gameID");
+
+                entity.Property(e => e.GameNum).HasColumnName("gameNum");
 
                 entity.Property(e => e.Gp).HasColumnName("GP");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
+
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.StartingPos).HasColumnName("startingPos");
 
                 entity.Property(e => e.TeamId)
+                    .HasMaxLength(3)
                     .HasColumnName("teamID")
-                    .HasMaxLength(3);
-            });
+                    .IsFixedLength();
 
-            modelBuilder.Entity<Appearances>(entity =>
-            {
-                entity.HasKey(e => new { e.YearId, e.TeamId, e.PlayerId })
-                    .HasName("Appearances$Index_70924BF9_C76C_4076");
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
-                entity.Property(e => e.TeamId)
-                    .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Allstarfulls)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("allstarfull_ibfk_1");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Allstarfulls)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("allstarfull_ibfk_2");
+            });
+
+            modelBuilder.Entity<Appearance>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("appearances");
+
+                entity.HasIndex(e => new { e.Id, e.YearId, e.TeamId, e.PlayerId }, "comp_indx");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => e.PlayerId, "playerID");
+
+                entity.HasIndex(e => e.TeamId1, "team_ID");
 
                 entity.Property(e => e.G1b).HasColumnName("G_1b");
 
@@ -144,131 +164,257 @@ namespace Baseball.ApiSharp.Dal.EfStructures
 
                 entity.Property(e => e.Gs).HasColumnName("GS");
 
-                entity.Property(e => e.LgId)
-                    .HasColumnName("lgID")
-                    .HasMaxLength(2);
-            });
+                entity.Property(e => e.Id)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
 
-            modelBuilder.Entity<AwardsManagers>(entity =>
-            {
-                entity.HasKey(e => new { e.YearId, e.AwardId, e.LgId, e.PlayerId })
-                    .HasName("AwardsManagers$Index_5B79AD08_A7C1_426E");
+                entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
+                    .HasColumnName("lgID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
+
+                entity.Property(e => e.TeamId)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .HasColumnName("teamID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
+                entity.HasOne(d => d.Lg)
+                    .WithMany()
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("appearances_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany()
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("appearances_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany()
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("appearances_ibfk_2");
+            });
+
+            modelBuilder.Entity<Awardsmanager>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("awardsmanagers");
+
+                entity.HasIndex(e => new { e.Id, e.PlayerId, e.AwardId, e.YearId }, "comp_indx");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => e.PlayerId, "playerID");
+
                 entity.Property(e => e.AwardId)
-                    .HasColumnName("awardID")
-                    .HasMaxLength(75);
+                    .IsRequired()
+                    .HasMaxLength(75)
+                    .HasColumnName("awardID");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.LgId)
+                    .IsRequired()
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
-
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(10);
+                    .IsFixedLength();
 
                 entity.Property(e => e.Notes)
-                    .HasColumnName("notes")
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .HasColumnName("notes");
+
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.Tie)
-                    .HasColumnName("tie")
-                    .HasMaxLength(1);
-            });
-
-            modelBuilder.Entity<AwardsPlayers>(entity =>
-            {
-                entity.HasKey(e => new { e.YearId, e.AwardId, e.LgId, e.PlayerId })
-                    .HasName("AwardsPlayers$Index_99C7A5A6_27CA_44FC");
+                    .HasMaxLength(1)
+                    .HasColumnName("tie");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
+                entity.HasOne(d => d.Lg)
+                    .WithMany()
+                    .HasForeignKey(d => d.LgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("awardsmanagers_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany()
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("awardsmanagers_ibfk_2");
+            });
+
+            modelBuilder.Entity<Awardsplayer>(entity =>
+            {
+                entity.ToTable("awardsplayers");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => new { e.PlayerId, e.AwardId, e.YearId, e.LgId }, "playerID")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
                 entity.Property(e => e.AwardId)
-                    .HasColumnName("awardID")
-                    .HasMaxLength(255);
+                    .IsRequired()
+                    .HasColumnName("awardID");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
-
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                    .IsFixedLength();
 
                 entity.Property(e => e.Notes)
-                    .HasColumnName("notes")
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .HasColumnName("notes");
+
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.Tie)
-                    .HasColumnName("tie")
-                    .HasMaxLength(1);
-            });
-
-            modelBuilder.Entity<AwardsShareManagers>(entity =>
-            {
-                entity.HasKey(e => new { e.AwardId, e.YearId, e.LgId, e.PlayerId })
-                    .HasName("AwardsShareManagers$Index_4D947987_0BEF_4B9B");
-
-                entity.Property(e => e.AwardId)
-                    .HasColumnName("awardID")
-                    .HasMaxLength(25);
+                    .HasMaxLength(1)
+                    .HasColumnName("tie");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Awardsplayers)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("awardsplayers_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Awardsplayers)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("awardsplayers_ibfk_2");
+            });
+
+            modelBuilder.Entity<Awardssharemanager>(entity =>
+            {
+                entity.ToTable("awardssharemanagers");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => new { e.PlayerId, e.AwardId, e.YearId, e.LgId }, "playerID")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.AwardId)
+                    .IsRequired()
+                    .HasMaxLength(25)
+                    .HasColumnName("awardID");
+
                 entity.Property(e => e.LgId)
+                    .IsRequired()
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
 
                 entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(10);
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.PointsMax).HasColumnName("pointsMax");
 
                 entity.Property(e => e.PointsWon).HasColumnName("pointsWon");
 
                 entity.Property(e => e.VotesFirst).HasColumnName("votesFirst");
-            });
-
-            modelBuilder.Entity<AwardsSharePlayers>(entity =>
-            {
-                entity.HasKey(e => new { e.AwardId, e.YearId, e.LgId, e.PlayerId })
-                    .HasName("AwardsSharePlayers$Index_020E6DB1_95E2_44F1");
-
-                entity.Property(e => e.AwardId)
-                    .HasColumnName("awardID")
-                    .HasMaxLength(25);
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Awardssharemanagers)
+                    .HasForeignKey(d => d.LgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("awardssharemanagers_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Awardssharemanagers)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("awardssharemanagers_ibfk_2");
+            });
+
+            modelBuilder.Entity<Awardsshareplayer>(entity =>
+            {
+                entity.ToTable("awardsshareplayers");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => new { e.PlayerId, e.AwardId, e.YearId, e.LgId }, "playerID")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.AwardId)
+                    .IsRequired()
+                    .HasMaxLength(25)
+                    .HasColumnName("awardID");
+
                 entity.Property(e => e.LgId)
+                    .IsRequired()
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
 
                 entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.PointsMax).HasColumnName("pointsMax");
 
                 entity.Property(e => e.PointsWon).HasColumnName("pointsWon");
 
                 entity.Property(e => e.VotesFirst).HasColumnName("votesFirst");
+
+                entity.Property(e => e.YearId).HasColumnName("yearID");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Awardsshareplayers)
+                    .HasForeignKey(d => d.LgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("awardsshareplayers_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Awardsshareplayers)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("awardsshareplayers_ibfk_2");
             });
 
             modelBuilder.Entity<Batting>(entity =>
             {
-                entity.HasKey(e => new { e.PlayerId, e.YearId, e.Stint })
-                    .HasName("Batting$Index_7170BE9D_268A_46B8");
+                entity.ToTable("batting");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                entity.HasIndex(e => e.LgId, "lgID");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.Stint }, "playerID")
+                    .IsUnique();
 
-                entity.Property(e => e.Stint).HasColumnName("stint");
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Ab).HasColumnName("AB");
 
@@ -287,8 +433,14 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.Ibb).HasColumnName("IBB");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
+
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.Rbi).HasColumnName("RBI");
 
@@ -300,29 +452,52 @@ namespace Baseball.ApiSharp.Dal.EfStructures
 
                 entity.Property(e => e.So).HasColumnName("SO");
 
+                entity.Property(e => e.Stint).HasColumnName("stint");
+
                 entity.Property(e => e.TeamId)
+                    .HasMaxLength(3)
                     .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
+
+                entity.Property(e => e.YearId).HasColumnName("yearID");
 
                 entity.Property(e => e._2b).HasColumnName("2B");
 
                 entity.Property(e => e._3b).HasColumnName("3B");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Battings)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("batting_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Battings)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("batting_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Battings)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("batting_ibfk_2");
             });
 
-            modelBuilder.Entity<BattingPost>(entity =>
+            modelBuilder.Entity<Battingpost>(entity =>
             {
-                entity.HasKey(e => new { e.YearId, e.Round, e.PlayerId })
-                    .HasName("BattingPost$Index_8C81D106_6E96_4318");
+                entity.ToTable("battingpost");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.HasIndex(e => e.LgId, "lgID");
 
-                entity.Property(e => e.Round)
-                    .HasColumnName("round")
-                    .HasMaxLength(10);
+                entity.HasIndex(e => e.PlayerId, "playerID");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.HasIndex(e => new { e.YearId, e.Round, e.PlayerId }, "yearID")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Ab).HasColumnName("AB");
 
@@ -339,10 +514,21 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.Ibb).HasColumnName("IBB");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
+
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.Rbi).HasColumnName("RBI");
+
+                entity.Property(e => e.Round)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("round");
 
                 entity.Property(e => e.Sb).HasColumnName("SB");
 
@@ -353,46 +539,135 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.So).HasColumnName("SO");
 
                 entity.Property(e => e.TeamId)
+                    .HasMaxLength(3)
                     .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
+
+                entity.Property(e => e.YearId).HasColumnName("yearID");
 
                 entity.Property(e => e._2b).HasColumnName("2B");
 
                 entity.Property(e => e._3b).HasColumnName("3B");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Battingposts)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("battingpost_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Battingposts)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("battingpost_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Battingposts)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("battingpost_ibfk_2");
             });
 
-            modelBuilder.Entity<CollegePlaying>(entity =>
+            modelBuilder.Entity<Collegeplaying>(entity =>
             {
-                entity.HasNoKey();
+                entity.ToTable("collegeplaying");
+
+                entity.HasIndex(e => e.PlayerId, "playerID");
+
+                entity.HasIndex(e => e.SchoolId, "schoolID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.PlayerId)
                     .IsRequired()
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.SchoolId)
-                    .HasColumnName("schoolID")
-                    .HasMaxLength(15);
+                    .HasMaxLength(15)
+                    .HasColumnName("schoolID");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Collegeplayings)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("collegeplaying_ibfk_2");
+
+                entity.HasOne(d => d.School)
+                    .WithMany(p => p.Collegeplayings)
+                    .HasForeignKey(d => d.SchoolId)
+                    .HasConstraintName("collegeplaying_ibfk_1");
+            });
+
+            modelBuilder.Entity<Division>(entity =>
+            {
+                entity.ToTable("divisions");
+
+                entity.HasIndex(e => new { e.DivId, e.LgId }, "divID")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .HasColumnName("active")
+                    .IsFixedLength();
+
+                entity.Property(e => e.DivId)
+                    .IsRequired()
+                    .HasMaxLength(2)
+                    .HasColumnName("divID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Division1)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("division");
+
+                entity.Property(e => e.LgId)
+                    .IsRequired()
+                    .HasMaxLength(2)
+                    .HasColumnName("lgID")
+                    .IsFixedLength();
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Divisions)
+                    .HasForeignKey(d => d.LgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("divisions_ibfk_1");
+            });
+
+            modelBuilder.Entity<Efmigrationshistory>(entity =>
+            {
+                entity.HasKey(e => e.MigrationId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("__efmigrationshistory");
+
+                entity.Property(e => e.MigrationId).HasMaxLength(95);
+
+                entity.Property(e => e.ProductVersion)
+                    .IsRequired()
+                    .HasMaxLength(32);
             });
 
             modelBuilder.Entity<Fielding>(entity =>
             {
-                entity.HasKey(e => new { e.PlayerId, e.YearId, e.Stint, e.Pos })
-                    .HasName("Fielding$Index_97751AED_0076_4367");
+                entity.ToTable("fielding");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                entity.HasIndex(e => e.LgId, "lgID");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.Stint, e.Pos }, "playerID")
+                    .IsUnique();
 
-                entity.Property(e => e.Stint).HasColumnName("stint");
+                entity.HasIndex(e => e.TeamId1, "team_ID");
 
-                entity.Property(e => e.Pos)
-                    .HasColumnName("POS")
-                    .HasMaxLength(2);
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Cs).HasColumnName("CS");
 
@@ -401,58 +676,95 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.Gs).HasColumnName("GS");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
 
                 entity.Property(e => e.Pb).HasColumnName("PB");
 
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
+
                 entity.Property(e => e.Po).HasColumnName("PO");
+
+                entity.Property(e => e.Pos)
+                    .IsRequired()
+                    .HasMaxLength(2)
+                    .HasColumnName("POS");
 
                 entity.Property(e => e.Sb).HasColumnName("SB");
 
+                entity.Property(e => e.Stint).HasColumnName("stint");
+
                 entity.Property(e => e.TeamId)
+                    .HasMaxLength(3)
                     .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
 
                 entity.Property(e => e.Wp).HasColumnName("WP");
 
+                entity.Property(e => e.YearId).HasColumnName("yearID");
+
                 entity.Property(e => e.Zr).HasColumnName("ZR");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Fieldings)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("fielding_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Fieldings)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fielding_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Fieldings)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("fielding_ibfk_2");
             });
 
-            modelBuilder.Entity<FieldingOf>(entity =>
+            modelBuilder.Entity<Fieldingof>(entity =>
             {
-                entity.HasKey(e => new { e.PlayerId, e.YearId, e.Stint })
-                    .HasName("FieldingOF$Index_8983CB74_6371_424E");
+                entity.ToTable("fieldingof");
 
-                entity.ToTable("FieldingOF");
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.Stint }, "playerID")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
+
+                entity.Property(e => e.Stint).HasColumnName("stint");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
-                entity.Property(e => e.Stint).HasColumnName("stint");
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Fieldingofs)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fieldingof_ibfk_1");
             });
 
-            modelBuilder.Entity<FieldingOfsplit>(entity =>
+            modelBuilder.Entity<Fieldingofsplit>(entity =>
             {
-                entity.HasKey(e => new { e.PlayerId, e.YearId, e.Stint, e.Pos })
-                    .HasName("FieldingOFsplit$Index_97751AED_0076_4367");
+                entity.ToTable("fieldingofsplit");
 
-                entity.ToTable("FieldingOFsplit");
+                entity.HasIndex(e => e.LgId, "lgID");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.Stint, e.Pos }, "playerID")
+                    .IsUnique();
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.HasIndex(e => e.TeamId1, "team_ID");
 
-                entity.Property(e => e.Stint).HasColumnName("stint");
-
-                entity.Property(e => e.Pos)
-                    .HasColumnName("POS")
-                    .HasMaxLength(2);
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Cs).HasColumnName("CS");
 
@@ -461,316 +773,612 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.Gs).HasColumnName("GS");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
 
                 entity.Property(e => e.Pb).HasColumnName("PB");
 
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
+
                 entity.Property(e => e.Po).HasColumnName("PO");
+
+                entity.Property(e => e.Pos)
+                    .IsRequired()
+                    .HasMaxLength(2)
+                    .HasColumnName("POS");
 
                 entity.Property(e => e.Sb).HasColumnName("SB");
 
+                entity.Property(e => e.Stint).HasColumnName("stint");
+
                 entity.Property(e => e.TeamId)
+                    .HasMaxLength(3)
                     .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
 
                 entity.Property(e => e.Wp).HasColumnName("WP");
 
+                entity.Property(e => e.YearId).HasColumnName("yearID");
+
                 entity.Property(e => e.Zr).HasColumnName("ZR");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Fieldingofsplits)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("fieldingofsplit_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Fieldingofsplits)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fieldingofsplit_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Fieldingofsplits)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("fieldingofsplit_ibfk_2");
             });
 
-            modelBuilder.Entity<FieldingPost>(entity =>
+            modelBuilder.Entity<Fieldingpost>(entity =>
             {
-                entity.HasKey(e => new { e.PlayerId, e.YearId, e.Round, e.Pos })
-                    .HasName("FieldingPost$Index_E1DA201A_3B38_486D");
+                entity.ToTable("fieldingpost");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.Round, e.Pos }, "playerID")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Cs).HasColumnName("CS");
+
+                entity.Property(e => e.Dp).HasColumnName("DP");
+
+                entity.Property(e => e.Gs).HasColumnName("GS");
+
+                entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
+                    .HasColumnName("lgID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Pb).HasColumnName("PB");
 
                 entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.Property(e => e.Po).HasColumnName("PO");
+
+                entity.Property(e => e.Pos)
+                    .IsRequired()
+                    .HasMaxLength(2)
+                    .HasColumnName("POS");
 
                 entity.Property(e => e.Round)
-                    .HasColumnName("round")
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.Pos)
-                    .HasColumnName("POS")
-                    .HasMaxLength(2);
-
-                entity.Property(e => e.Cs).HasColumnName("CS");
-
-                entity.Property(e => e.Dp).HasColumnName("DP");
-
-                entity.Property(e => e.Gs).HasColumnName("GS");
-
-                entity.Property(e => e.LgId)
-                    .HasColumnName("lgID")
-                    .HasMaxLength(2);
-
-                entity.Property(e => e.Pb).HasColumnName("PB");
-
-                entity.Property(e => e.Po).HasColumnName("PO");
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("round");
 
                 entity.Property(e => e.Sb).HasColumnName("SB");
 
                 entity.Property(e => e.TeamId)
+                    .HasMaxLength(3)
                     .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
 
                 entity.Property(e => e.Tp).HasColumnName("TP");
+
+                entity.Property(e => e.YearId).HasColumnName("yearID");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Fieldingposts)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("fieldingpost_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Fieldingposts)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fieldingpost_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Fieldingposts)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("fieldingpost_ibfk_2");
             });
 
-            modelBuilder.Entity<HallOfFame>(entity =>
+            modelBuilder.Entity<Halloffame>(entity =>
             {
-                entity.HasKey(e => new { e.PlayerId, e.Yearid, e.VotedBy })
-                    .HasName("HallOfFame$PrimaryKey");
+                entity.ToTable("halloffame");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(10);
+                entity.HasIndex(e => new { e.PlayerId, e.Yearid, e.VotedBy }, "playerID")
+                    .IsUnique();
 
-                entity.Property(e => e.Yearid).HasColumnName("yearid");
-
-                entity.Property(e => e.VotedBy)
-                    .HasColumnName("votedBy")
-                    .HasMaxLength(64);
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Ballots).HasColumnName("ballots");
 
                 entity.Property(e => e.Category)
-                    .HasColumnName("category")
-                    .HasMaxLength(20);
+                    .HasMaxLength(20)
+                    .HasColumnName("category");
 
                 entity.Property(e => e.Inducted)
-                    .HasColumnName("inducted")
-                    .HasMaxLength(1);
+                    .HasMaxLength(1)
+                    .HasColumnName("inducted");
 
                 entity.Property(e => e.Needed).HasColumnName("needed");
 
                 entity.Property(e => e.NeededNote)
-                    .HasColumnName("needed_note")
-                    .HasMaxLength(25);
+                    .HasMaxLength(25)
+                    .HasColumnName("needed_note");
+
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("playerID");
+
+                entity.Property(e => e.VotedBy)
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .HasColumnName("votedBy");
 
                 entity.Property(e => e.Votes).HasColumnName("votes");
+
+                entity.Property(e => e.Yearid).HasColumnName("yearid");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Halloffames)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("halloffame_ibfk_1");
             });
 
-            modelBuilder.Entity<HomeGames>(entity =>
+            modelBuilder.Entity<Homegame>(entity =>
             {
-                entity.HasNoKey();
+                entity.ToTable("homegames");
+
+                entity.HasIndex(e => e.Leaguekey, "leaguekey");
+
+                entity.HasIndex(e => e.ParkId, "park_ID");
+
+                entity.HasIndex(e => e.TeamId, "team_ID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Attendance).HasColumnName("attendance");
 
                 entity.Property(e => e.Games).HasColumnName("games");
 
                 entity.Property(e => e.Leaguekey)
+                    .HasMaxLength(2)
                     .HasColumnName("leaguekey")
-                    .HasMaxLength(255);
+                    .IsFixedLength();
 
                 entity.Property(e => e.Openings).HasColumnName("openings");
 
+                entity.Property(e => e.ParkId).HasColumnName("park_ID");
+
                 entity.Property(e => e.Parkkey)
-                    .HasColumnName("parkkey")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("parkkey");
 
                 entity.Property(e => e.Spanfirst)
-                    .HasColumnName("spanfirst")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("spanfirst");
+
+                entity.Property(e => e.SpanfirstDate).HasColumnName("spanfirst_date");
 
                 entity.Property(e => e.Spanlast)
-                    .HasColumnName("spanlast")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("spanlast");
+
+                entity.Property(e => e.SpanlastDate).HasColumnName("spanlast_date");
+
+                entity.Property(e => e.TeamId).HasColumnName("team_ID");
 
                 entity.Property(e => e.Teamkey)
+                    .HasMaxLength(3)
                     .HasColumnName("teamkey")
-                    .HasMaxLength(255);
+                    .IsFixedLength();
 
                 entity.Property(e => e.Yearkey).HasColumnName("yearkey");
+
+                entity.HasOne(d => d.LeaguekeyNavigation)
+                    .WithMany(p => p.Homegames)
+                    .HasForeignKey(d => d.Leaguekey)
+                    .HasConstraintName("homegames_ibfk_1");
+
+                entity.HasOne(d => d.Park)
+                    .WithMany(p => p.Homegames)
+                    .HasForeignKey(d => d.ParkId)
+                    .HasConstraintName("homegames_ibfk_3");
+
+                entity.HasOne(d => d.Team)
+                    .WithMany(p => p.Homegames)
+                    .HasForeignKey(d => d.TeamId)
+                    .HasConstraintName("homegames_ibfk_2");
             });
 
-            modelBuilder.Entity<Managers>(entity =>
+            modelBuilder.Entity<League>(entity =>
             {
-                entity.HasKey(e => new { e.YearId, e.TeamId, e.Inseason })
-                    .HasName("Managers$Index_836DE8E8_FEBD_469A");
+                entity.HasKey(e => e.LgId)
+                    .HasName("PRIMARY");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.ToTable("leagues");
 
-                entity.Property(e => e.TeamId)
-                    .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
+                    .HasColumnName("lgID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .HasColumnName("active")
+                    .IsFixedLength();
+
+                entity.Property(e => e.League1)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("league");
+            });
+
+            modelBuilder.Entity<Manager>(entity =>
+            {
+                entity.ToTable("managers");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => e.PlayerId, "playerID");
+
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.HasIndex(e => new { e.YearId, e.TeamId, e.Inseason }, "yearID")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Inseason).HasColumnName("inseason");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
 
                 entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(10);
+                    .HasMaxLength(10)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.PlyrMgr)
-                    .HasColumnName("plyrMgr")
-                    .HasMaxLength(1);
+                    .HasMaxLength(1)
+                    .HasColumnName("plyrMgr");
 
-                entity.Property(e => e.Rank).HasColumnName("rank");
-            });
+                entity.Property(e => e.TeamId)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .HasColumnName("teamID")
+                    .IsFixedLength();
 
-            modelBuilder.Entity<ManagersHalf>(entity =>
-            {
-                entity.HasKey(e => new { e.YearId, e.TeamId, e.PlayerId, e.Half })
-                    .HasName("ManagersHalf$Index_C2906EEF_9F52_4968");
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
+
+                entity.Property(e => e.TeamRank).HasColumnName("teamRank");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
-                entity.Property(e => e.TeamId)
-                    .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Managers)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("managers_ibfk_1");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(10);
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Managers)
+                    .HasForeignKey(d => d.PlayerId)
+                    .HasConstraintName("managers_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Managers)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("managers_ibfk_2");
+            });
+
+            modelBuilder.Entity<Managershalf>(entity =>
+            {
+                entity.ToTable("managershalf");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.TeamId, e.Half }, "playerID")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Half).HasColumnName("half");
 
                 entity.Property(e => e.Inseason).HasColumnName("inseason");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
 
-                entity.Property(e => e.Rank).HasColumnName("rank");
+                entity.Property(e => e.PlayerId)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("playerID");
+
+                entity.Property(e => e.TeamId)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .HasColumnName("teamID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
+
+                entity.Property(e => e.TeamRank).HasColumnName("teamRank");
+
+                entity.Property(e => e.YearId).HasColumnName("yearID");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Managershalves)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("managershalf_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Managershalves)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("managershalf_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Managershalves)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("managershalf_ibfk_2");
             });
 
-            modelBuilder.Entity<Parks>(entity =>
+            modelBuilder.Entity<Park>(entity =>
             {
+                entity.ToTable("parks");
+
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.City)
-                    .HasColumnName("city")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("city");
 
                 entity.Property(e => e.Country)
-                    .HasColumnName("country")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("country");
 
                 entity.Property(e => e.Parkalias)
-                    .HasColumnName("parkalias")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("parkalias");
 
                 entity.Property(e => e.Parkkey)
-                    .HasColumnName("parkkey")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("parkkey");
 
                 entity.Property(e => e.Parkname)
-                    .HasColumnName("parkname")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("parkname");
 
                 entity.Property(e => e.State)
-                    .HasColumnName("state")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("state");
             });
 
-            modelBuilder.Entity<People>(entity =>
+            modelBuilder.Entity<Person>(entity =>
             {
-                // TODO: entity.HasNoKey();
-                entity.HasKey("PlayerId", "NameLast", "NameFirst")
-                    .HasName("People$PrimaryKey");
+                entity.HasKey(e => e.PlayerId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("people");
+
+                entity.Property(e => e.PlayerId)
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.Bats)
-                    .HasColumnName("bats")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("bats");
 
                 entity.Property(e => e.BbrefId)
-                    .HasColumnName("bbrefID")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("bbrefID");
 
                 entity.Property(e => e.BirthCity)
-                    .HasColumnName("birthCity")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("birthCity");
 
                 entity.Property(e => e.BirthCountry)
-                    .HasColumnName("birthCountry")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("birthCountry");
+
+                entity.Property(e => e.BirthDate).HasColumnName("birth_date");
 
                 entity.Property(e => e.BirthDay).HasColumnName("birthDay");
 
                 entity.Property(e => e.BirthMonth).HasColumnName("birthMonth");
 
                 entity.Property(e => e.BirthState)
-                    .HasColumnName("birthState")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("birthState");
 
                 entity.Property(e => e.BirthYear).HasColumnName("birthYear");
 
                 entity.Property(e => e.DeathCity)
-                    .HasColumnName("deathCity")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("deathCity");
 
                 entity.Property(e => e.DeathCountry)
-                    .HasColumnName("deathCountry")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("deathCountry");
+
+                entity.Property(e => e.DeathDate).HasColumnName("death_date");
 
                 entity.Property(e => e.DeathDay).HasColumnName("deathDay");
 
                 entity.Property(e => e.DeathMonth).HasColumnName("deathMonth");
 
                 entity.Property(e => e.DeathState)
-                    .HasColumnName("deathState")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("deathState");
 
                 entity.Property(e => e.DeathYear).HasColumnName("deathYear");
 
                 entity.Property(e => e.Debut)
-                    .HasColumnName("debut")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("debut");
+
+                entity.Property(e => e.DebutDate).HasColumnName("debut_date");
 
                 entity.Property(e => e.FinalGame)
-                    .HasColumnName("finalGame")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("finalGame");
+
+                entity.Property(e => e.FinalgameDate).HasColumnName("finalgame_date");
 
                 entity.Property(e => e.Height).HasColumnName("height");
 
                 entity.Property(e => e.NameFirst)
-                    .HasColumnName("nameFirst")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("nameFirst");
 
                 entity.Property(e => e.NameGiven)
-                    .HasColumnName("nameGiven")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("nameGiven");
 
                 entity.Property(e => e.NameLast)
-                    .HasColumnName("nameLast")
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("nameLast");
 
                 entity.Property(e => e.RetroId)
-                    .HasColumnName("retroID")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("retroID");
 
                 entity.Property(e => e.Throws)
-                    .HasColumnName("throws")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("throws");
 
                 entity.Property(e => e.Weight).HasColumnName("weight");
             });
 
             modelBuilder.Entity<Pitching>(entity =>
             {
-                entity.HasKey(e => new { e.PlayerId, e.YearId, e.Stint })
-                    .HasName("Pitching$Index_481778A5_18F2_430E");
+                entity.ToTable("pitching");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.Stint }, "playerID")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Baopp).HasColumnName("BAOpp");
+
+                entity.Property(e => e.Bb).HasColumnName("BB");
+
+                entity.Property(e => e.Bfp).HasColumnName("BFP");
+
+                entity.Property(e => e.Bk).HasColumnName("BK");
+
+                entity.Property(e => e.Cg).HasColumnName("CG");
+
+                entity.Property(e => e.Er).HasColumnName("ER");
+
+                entity.Property(e => e.Era).HasColumnName("ERA");
+
+                entity.Property(e => e.Gf).HasColumnName("GF");
+
+                entity.Property(e => e.Gidp).HasColumnName("GIDP");
+
+                entity.Property(e => e.Gs).HasColumnName("GS");
+
+                entity.Property(e => e.Hbp).HasColumnName("HBP");
+
+                entity.Property(e => e.Hr).HasColumnName("HR");
+
+                entity.Property(e => e.Ibb).HasColumnName("IBB");
+
+                entity.Property(e => e.Ipouts).HasColumnName("IPouts");
+
+                entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
+                    .HasColumnName("lgID")
+                    .IsFixedLength();
 
                 entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.Property(e => e.Sf).HasColumnName("SF");
+
+                entity.Property(e => e.Sh).HasColumnName("SH");
+
+                entity.Property(e => e.Sho).HasColumnName("SHO");
+
+                entity.Property(e => e.So).HasColumnName("SO");
 
                 entity.Property(e => e.Stint).HasColumnName("stint");
 
+                entity.Property(e => e.Sv).HasColumnName("SV");
+
+                entity.Property(e => e.TeamId)
+                    .HasMaxLength(3)
+                    .HasColumnName("teamID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
+
+                entity.Property(e => e.Wp).HasColumnName("WP");
+
+                entity.Property(e => e.YearId).HasColumnName("yearID");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Pitchings)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("pitching_ibfk_1");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Pitchings)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("pitching_ibfk_3");
+
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Pitchings)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("pitching_ibfk_2");
+            });
+
+            modelBuilder.Entity<Pitchingpost>(entity =>
+            {
+                entity.ToTable("pitchingpost");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => new { e.PlayerId, e.YearId, e.Round }, "playerID")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
                 entity.Property(e => e.Baopp).HasColumnName("BAOpp");
 
                 entity.Property(e => e.Bb).HasColumnName("BB");
@@ -800,72 +1408,19 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.Ipouts).HasColumnName("IPouts");
 
                 entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
                     .HasColumnName("lgID")
-                    .HasMaxLength(2);
-
-                entity.Property(e => e.Sf).HasColumnName("SF");
-
-                entity.Property(e => e.Sh).HasColumnName("SH");
-
-                entity.Property(e => e.Sho).HasColumnName("SHO");
-
-                entity.Property(e => e.So).HasColumnName("SO");
-
-                entity.Property(e => e.Sv).HasColumnName("SV");
-
-                entity.Property(e => e.TeamId)
-                    .HasColumnName("teamID")
-                    .HasMaxLength(3);
-
-                entity.Property(e => e.Wp).HasColumnName("WP");
-            });
-
-            modelBuilder.Entity<PitchingPost>(entity =>
-            {
-                entity.HasKey(e => new { e.PlayerId, e.YearId, e.Round })
-                    .HasName("PitchingPost$Index_E71336E6_AB00_432C");
+                    .IsFixedLength();
 
                 entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
-
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .HasColumnName("playerID");
 
                 entity.Property(e => e.Round)
-                    .HasColumnName("round")
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.Baopp).HasColumnName("BAOpp");
-
-                entity.Property(e => e.Bb).HasColumnName("BB");
-
-                entity.Property(e => e.Bfp).HasColumnName("BFP");
-
-                entity.Property(e => e.Bk).HasColumnName("BK");
-
-                entity.Property(e => e.Cg).HasColumnName("CG");
-
-                entity.Property(e => e.Er).HasColumnName("ER");
-
-                entity.Property(e => e.Era).HasColumnName("ERA");
-
-                entity.Property(e => e.Gf).HasColumnName("GF");
-
-                entity.Property(e => e.Gidp).HasColumnName("GIDP");
-
-                entity.Property(e => e.Gs).HasColumnName("GS");
-
-                entity.Property(e => e.Hbp).HasColumnName("HBP");
-
-                entity.Property(e => e.Hr).HasColumnName("HR");
-
-                entity.Property(e => e.Ibb).HasColumnName("IBB");
-
-                entity.Property(e => e.Ipouts).HasColumnName("IPouts");
-
-                entity.Property(e => e.LgId)
-                    .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("round");
 
                 entity.Property(e => e.Sf).HasColumnName("SF");
 
@@ -878,108 +1433,129 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.Sv).HasColumnName("SV");
 
                 entity.Property(e => e.TeamId)
+                    .HasMaxLength(3)
                     .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
 
                 entity.Property(e => e.Wp).HasColumnName("WP");
-            });
-
-            modelBuilder.Entity<Salaries>(entity =>
-            {
-                entity.HasKey(e => new { e.YearId, e.TeamId, e.LgId, e.PlayerId })
-                    .HasName("Salaries$Index_E5568031_00FA_49CA");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
-                entity.Property(e => e.TeamId)
-                    .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Pitchingposts)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("pitchingpost_ibfk_1");
 
-                entity.Property(e => e.LgId)
-                    .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Pitchingposts)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("pitchingpost_ibfk_3");
 
-                entity.Property(e => e.PlayerId)
-                    .HasColumnName("playerID")
-                    .HasMaxLength(9);
-
-                entity.Property(e => e.Salary).HasColumnName("salary");
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Pitchingposts)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("pitchingpost_ibfk_2");
             });
 
-            modelBuilder.Entity<Schools>(entity =>
+            modelBuilder.Entity<Richjsontagdatum>(entity =>
             {
-                entity.HasKey(e => e.SchoolId)
-                    .HasName("Schools$Index_3D308CF0_821E_4DAB");
+                entity.HasNoKey();
+
+                entity.ToTable("richjsontagdata");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_at");
+
+                entity.Property(e => e.TagId).HasColumnName("tag_id");
+
+                entity.Property(e => e.TagRichDetail)
+                    .HasColumnType("json")
+                    .HasColumnName("tag_rich_detail");
+            });
+
+            modelBuilder.Entity<School>(entity =>
+            {
+                entity.ToTable("schools");
 
                 entity.Property(e => e.SchoolId)
-                    .HasColumnName("schoolID")
-                    .HasMaxLength(15);
+                    .HasMaxLength(15)
+                    .HasColumnName("schoolID");
 
                 entity.Property(e => e.City)
-                    .HasColumnName("city")
-                    .HasMaxLength(55);
+                    .HasMaxLength(55)
+                    .HasColumnName("city");
 
                 entity.Property(e => e.Country)
-                    .HasColumnName("country")
-                    .HasMaxLength(55);
+                    .HasMaxLength(55)
+                    .HasColumnName("country");
 
                 entity.Property(e => e.NameFull)
-                    .HasColumnName("name_full")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("name_full");
 
                 entity.Property(e => e.State)
-                    .HasColumnName("state")
-                    .HasMaxLength(55);
+                    .HasMaxLength(55)
+                    .HasColumnName("state");
             });
 
-            modelBuilder.Entity<SeriesPost>(entity =>
+            modelBuilder.Entity<Tag>(entity =>
             {
-                entity.HasKey(e => new { e.YearId, e.Round })
-                    .HasName("SeriesPost$Index_4F4214D5_9891_4F3C");
+                entity.ToTable("tags");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.Property(e => e.TagId)
+                    .HasMaxLength(64)
+                    .UseCollation("utf8_general_ci")
+                    .HasCharSet("utf8");
 
-                entity.Property(e => e.Round)
-                    .HasColumnName("round")
-                    .HasMaxLength(5);
+                entity.Property(e => e.DataFieldReferencesAsJson)
+                    .HasMaxLength(1024)
+                    .UseCollation("utf8_general_ci")
+                    .HasCharSet("utf8");
 
-                entity.Property(e => e.LgIdloser)
-                    .HasColumnName("lgIDloser")
-                    .HasMaxLength(2);
-
-                entity.Property(e => e.LgIdwinner)
-                    .HasColumnName("lgIDwinner")
-                    .HasMaxLength(2);
-
-                entity.Property(e => e.Losses).HasColumnName("losses");
-
-                entity.Property(e => e.TeamIdloser)
-                    .HasColumnName("teamIDloser")
-                    .HasMaxLength(3);
-
-                entity.Property(e => e.TeamIdwinner)
-                    .HasColumnName("teamIDwinner")
-                    .HasMaxLength(3);
-
-                entity.Property(e => e.Ties).HasColumnName("ties");
-
-                entity.Property(e => e.Wins).HasColumnName("wins");
+                entity.Property(e => e.TagValue)
+                    .HasMaxLength(512)
+                    .UseCollation("utf8_general_ci")
+                    .HasCharSet("utf8");
             });
 
-            modelBuilder.Entity<Teams>(entity =>
+            modelBuilder.Entity<Tagrelationship>(entity =>
             {
-                entity.HasKey(e => new { e.YearId, e.LgId, e.TeamId })
-                    .HasName("Teams$Index_285058F1_D841_4142");
+                entity.ToTable("tagrelationships");
 
-                entity.Property(e => e.YearId).HasColumnName("yearID");
+                entity.Property(e => e.TagRelationshipId)
+                    .HasMaxLength(64)
+                    .UseCollation("utf8_general_ci")
+                    .HasCharSet("utf8");
 
-                entity.Property(e => e.LgId)
-                    .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                entity.Property(e => e.DataEntityId)
+                    .HasMaxLength(64)
+                    .UseCollation("utf8_general_ci")
+                    .HasCharSet("utf8");
 
-                entity.Property(e => e.TeamId)
-                    .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                entity.Property(e => e.TagId)
+                    .HasMaxLength(64)
+                    .UseCollation("utf8_general_ci")
+                    .HasCharSet("utf8");
+            });
+
+            modelBuilder.Entity<Team>(entity =>
+            {
+                entity.ToTable("teams");
+
+                entity.HasIndex(e => e.DivId1, "div_ID");
+
+                entity.HasIndex(e => e.FranchId, "franchID");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => new { e.YearId, e.LgId, e.TeamId }, "yearID")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Ab).HasColumnName("AB");
 
@@ -996,8 +1572,11 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.Cs).HasColumnName("CS");
 
                 entity.Property(e => e.DivId)
+                    .HasMaxLength(1)
                     .HasColumnName("divID")
-                    .HasMaxLength(1);
+                    .IsFixedLength();
+
+                entity.Property(e => e.DivId1).HasColumnName("div_ID");
 
                 entity.Property(e => e.DivWin).HasMaxLength(1);
 
@@ -1010,8 +1589,8 @@ namespace Baseball.ApiSharp.Dal.EfStructures
                 entity.Property(e => e.Fp).HasColumnName("FP");
 
                 entity.Property(e => e.FranchId)
-                    .HasColumnName("franchID")
-                    .HasMaxLength(3);
+                    .HasMaxLength(3)
+                    .HasColumnName("franchID");
 
                 entity.Property(e => e.Ha).HasColumnName("HA");
 
@@ -1023,15 +1602,20 @@ namespace Baseball.ApiSharp.Dal.EfStructures
 
                 entity.Property(e => e.Ipouts).HasColumnName("IPouts");
 
+                entity.Property(e => e.LgId)
+                    .HasMaxLength(2)
+                    .HasColumnName("lgID")
+                    .IsFixedLength();
+
                 entity.Property(e => e.LgWin).HasMaxLength(1);
 
                 entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .HasColumnName("name");
 
                 entity.Property(e => e.Park)
-                    .HasColumnName("park")
-                    .HasMaxLength(255);
+                    .HasMaxLength(255)
+                    .HasColumnName("park");
 
                 entity.Property(e => e.Ppf).HasColumnName("PPF");
 
@@ -1049,75 +1633,141 @@ namespace Baseball.ApiSharp.Dal.EfStructures
 
                 entity.Property(e => e.Sv).HasColumnName("SV");
 
+                entity.Property(e => e.TeamId)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .HasColumnName("teamID")
+                    .IsFixedLength();
+
                 entity.Property(e => e.TeamIdbr)
-                    .HasColumnName("teamIDBR")
-                    .HasMaxLength(3);
+                    .HasMaxLength(3)
+                    .HasColumnName("teamIDBR");
 
                 entity.Property(e => e.TeamIdlahman45)
-                    .HasColumnName("teamIDlahman45")
-                    .HasMaxLength(3);
+                    .HasMaxLength(3)
+                    .HasColumnName("teamIDlahman45");
 
                 entity.Property(e => e.TeamIdretro)
-                    .HasColumnName("teamIDretro")
-                    .HasMaxLength(3);
+                    .HasMaxLength(3)
+                    .HasColumnName("teamIDretro");
+
+                entity.Property(e => e.TeamRank).HasColumnName("teamRank");
 
                 entity.Property(e => e.Wcwin)
-                    .HasColumnName("WCWin")
-                    .HasMaxLength(1);
+                    .HasMaxLength(1)
+                    .HasColumnName("WCWin");
 
                 entity.Property(e => e.Wswin)
-                    .HasColumnName("WSWin")
-                    .HasMaxLength(1);
+                    .HasMaxLength(1)
+                    .HasColumnName("WSWin");
+
+                entity.Property(e => e.YearId).HasColumnName("yearID");
 
                 entity.Property(e => e._2b).HasColumnName("2B");
 
                 entity.Property(e => e._3b).HasColumnName("3B");
+
+                entity.HasOne(d => d.DivId1Navigation)
+                    .WithMany(p => p.Teams)
+                    .HasForeignKey(d => d.DivId1)
+                    .HasConstraintName("teams_ibfk_2");
+
+                entity.HasOne(d => d.Franch)
+                    .WithMany(p => p.Teams)
+                    .HasForeignKey(d => d.FranchId)
+                    .HasConstraintName("teams_ibfk_3");
+
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Teams)
+                    .HasForeignKey(d => d.LgId)
+                    .HasConstraintName("teams_ibfk_1");
             });
 
-            modelBuilder.Entity<TeamsFranchises>(entity =>
+            modelBuilder.Entity<Teamsfranchise>(entity =>
             {
                 entity.HasKey(e => e.FranchId)
-                    .HasName("TeamsFranchises$Index_D181F923_2BF9_4281");
+                    .HasName("PRIMARY");
+
+                entity.ToTable("teamsfranchises");
 
                 entity.Property(e => e.FranchId)
-                    .HasColumnName("franchID")
-                    .HasMaxLength(3);
+                    .HasMaxLength(3)
+                    .HasColumnName("franchID");
 
                 entity.Property(e => e.Active)
+                    .HasMaxLength(1)
                     .HasColumnName("active")
-                    .HasMaxLength(2);
+                    .IsFixedLength();
 
                 entity.Property(e => e.FranchName)
-                    .HasColumnName("franchName")
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .HasColumnName("franchName");
 
                 entity.Property(e => e.Naassoc)
-                    .HasColumnName("NAassoc")
-                    .HasMaxLength(3);
+                    .HasMaxLength(3)
+                    .HasColumnName("NAassoc");
             });
 
-            modelBuilder.Entity<TeamsHalf>(entity =>
+            modelBuilder.Entity<Teamshalf>(entity =>
             {
-                entity.HasKey(e => new { e.YearId, e.TeamId, e.LgId, e.Half })
-                    .HasName("TeamsHalf$Index_3FD773F5_2FC0_415C");
+                entity.ToTable("teamshalf");
+
+                entity.HasIndex(e => e.DivId1, "div_ID");
+
+                entity.HasIndex(e => e.LgId, "lgID");
+
+                entity.HasIndex(e => e.TeamId1, "team_ID");
+
+                entity.HasIndex(e => new { e.YearId, e.LgId, e.TeamId, e.Half }, "yearID")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.DivId)
+                    .HasMaxLength(1)
+                    .HasColumnName("divID");
+
+                entity.Property(e => e.DivId1).HasColumnName("div_ID");
+
+                entity.Property(e => e.DivWin).HasMaxLength(1);
+
+                entity.Property(e => e.Half)
+                    .IsRequired()
+                    .HasMaxLength(1);
+
+                entity.Property(e => e.LgId)
+                    .IsRequired()
+                    .HasMaxLength(2)
+                    .HasColumnName("lgID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .HasColumnName("teamID")
+                    .IsFixedLength();
+
+                entity.Property(e => e.TeamId1).HasColumnName("team_ID");
+
+                entity.Property(e => e.TeamRank).HasColumnName("teamRank");
 
                 entity.Property(e => e.YearId).HasColumnName("yearID");
 
-                entity.Property(e => e.TeamId)
-                    .HasColumnName("teamID")
-                    .HasMaxLength(3);
+                entity.HasOne(d => d.DivId1Navigation)
+                    .WithMany(p => p.Teamshalves)
+                    .HasForeignKey(d => d.DivId1)
+                    .HasConstraintName("teamshalf_ibfk_2");
 
-                entity.Property(e => e.LgId)
-                    .HasColumnName("lgID")
-                    .HasMaxLength(2);
+                entity.HasOne(d => d.Lg)
+                    .WithMany(p => p.Teamshalves)
+                    .HasForeignKey(d => d.LgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("teamshalf_ibfk_1");
 
-                entity.Property(e => e.Half).HasMaxLength(1);
-
-                entity.Property(e => e.DivId)
-                    .HasColumnName("divID")
-                    .HasMaxLength(1);
-
-                entity.Property(e => e.DivWin).HasMaxLength(1);
+                entity.HasOne(d => d.TeamId1Navigation)
+                    .WithMany(p => p.Teamshalves)
+                    .HasForeignKey(d => d.TeamId1)
+                    .HasConstraintName("teamshalf_ibfk_3");
             });
 
             OnModelCreatingPartial(modelBuilder);
