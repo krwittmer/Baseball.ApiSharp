@@ -1,0 +1,10 @@
+
+dotnet tool update --global dotnet-ef
+
+dotnet ef migrations add IAT -o EfStructures\Migrations -c Baseball.ApiSharp.Dal.EfStructures.LahmansDbMigrationContext
+
+dotnet ef database update -c Baseball.ApiSharp.Dal.EfStructures.LahmansDbMigrationContext
+
+dotnet ef dbcontext scaffold "server=localhost;database=LahmansOBH;uid=root;pwd=M********;" Pomelo.EntityFrameworkCore.MySql -o strike2 --namespace Baseball.ApiSharp.Data.Lahman -f
+
+doskey /h > ef-tool-command-history.txt

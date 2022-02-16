@@ -3,7 +3,6 @@ using System;
 using Baseball.ApiSharp.Dal.EfStructures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
@@ -16,14 +15,13 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.AllstarFull", b =>
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short>("YearId")
@@ -36,7 +34,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("GameId")
                         .HasColumnName("gameID")
-                        .HasColumnType("nvarchar(12)")
+                        .HasColumnType("varchar(12) CHARACTER SET utf8mb4")
                         .HasMaxLength(12);
 
                     b.Property<short?>("Gp")
@@ -45,7 +43,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("StartingPos")
@@ -54,7 +52,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.HasKey("PlayerId", "YearId", "GameNum")
@@ -71,12 +69,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short?>("G1b")
@@ -149,7 +147,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.HasKey("YearId", "TeamId", "PlayerId")
@@ -166,27 +164,27 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("AwardId")
                         .HasColumnName("awardID")
-                        .HasColumnType("nvarchar(75)")
+                        .HasColumnType("varchar(75) CHARACTER SET utf8mb4")
                         .HasMaxLength(75);
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<string>("Notes")
                         .HasColumnName("notes")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
                         .HasMaxLength(100);
 
                     b.Property<string>("Tie")
                         .HasColumnName("tie")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.HasKey("YearId", "AwardId", "LgId", "PlayerId")
@@ -203,27 +201,27 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("AwardId")
                         .HasColumnName("awardID")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<string>("Notes")
                         .HasColumnName("notes")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
                         .HasMaxLength(100);
 
                     b.Property<string>("Tie")
                         .HasColumnName("tie")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.HasKey("YearId", "AwardId", "LgId", "PlayerId")
@@ -236,7 +234,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("AwardId")
                         .HasColumnName("awardID")
-                        .HasColumnType("nvarchar(25)")
+                        .HasColumnType("varchar(25) CHARACTER SET utf8mb4")
                         .HasMaxLength(25);
 
                     b.Property<short>("YearId")
@@ -245,12 +243,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<short?>("PointsMax")
@@ -275,7 +273,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("AwardId")
                         .HasColumnName("awardID")
-                        .HasColumnType("nvarchar(25)")
+                        .HasColumnType("varchar(25) CHARACTER SET utf8mb4")
                         .HasMaxLength(25);
 
                     b.Property<short>("YearId")
@@ -284,12 +282,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short?>("PointsMax")
@@ -298,11 +296,11 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<double?>("PointsWon")
                         .HasColumnName("pointsWon")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<double?>("VotesFirst")
                         .HasColumnName("votesFirst")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.HasKey("AwardId", "YearId", "LgId", "PlayerId")
                         .HasName("AwardsSharePlayers$Index_020E6DB1_95E2_44F1");
@@ -314,7 +312,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short>("YearId")
@@ -365,7 +363,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("R")
@@ -393,7 +391,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("_2b")
@@ -418,12 +416,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Round")
                         .HasColumnName("round")
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short?>("Ab")
@@ -462,7 +460,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("R")
@@ -490,7 +488,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("_2b")
@@ -512,12 +510,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                     b.Property<string>("PlayerId")
                         .IsRequired()
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<string>("SchoolId")
                         .HasColumnName("schoolID")
-                        .HasColumnType("nvarchar(15)")
+                        .HasColumnType("varchar(15) CHARACTER SET utf8mb4")
                         .HasMaxLength(15);
 
                     b.Property<short?>("YearId")
@@ -530,15 +528,15 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
             modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.ExtendedSchema.Tag", b =>
                 {
                     b.Property<string>("TagId")
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("DataFieldReferencesAsJson")
-                        .HasColumnType("nvarchar(1024)")
+                        .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
                         .HasMaxLength(1024);
 
                     b.Property<string>("TagValue")
-                        .HasColumnType("nvarchar(512)")
+                        .HasColumnType("varchar(512) CHARACTER SET utf8mb4")
                         .HasMaxLength(512);
 
                     b.HasKey("TagId");
@@ -549,15 +547,15 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
             modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.ExtendedSchema.TagRelationship", b =>
                 {
                     b.Property<string>("TagRelationshipId")
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("DataEntityId")
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("TagId")
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.HasKey("TagRelationshipId");
@@ -569,7 +567,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short>("YearId")
@@ -582,7 +580,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Pos")
                         .HasColumnName("POS")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("A")
@@ -611,7 +609,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("Pb")
@@ -628,7 +626,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("Wp")
@@ -637,7 +635,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<double?>("Zr")
                         .HasColumnName("ZR")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.HasKey("PlayerId", "YearId", "Stint", "Pos")
                         .HasName("Fielding$Index_97751AED_0076_4367");
@@ -649,7 +647,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short>("YearId")
@@ -679,7 +677,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short>("YearId")
@@ -692,7 +690,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Pos")
                         .HasColumnName("POS")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("A")
@@ -721,7 +719,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("Pb")
@@ -738,7 +736,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("Wp")
@@ -747,7 +745,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<double?>("Zr")
                         .HasColumnName("ZR")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.HasKey("PlayerId", "YearId", "Stint", "Pos")
                         .HasName("FieldingOFsplit$Index_97751AED_0076_4367");
@@ -759,7 +757,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short>("YearId")
@@ -768,12 +766,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Round")
                         .HasColumnName("round")
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<string>("Pos")
                         .HasColumnName("POS")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("A")
@@ -802,7 +800,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("Pb")
@@ -819,7 +817,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("Tp")
@@ -836,7 +834,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<short>("Yearid")
@@ -845,7 +843,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("VotedBy")
                         .HasColumnName("votedBy")
-                        .HasColumnType("nvarchar(64)")
+                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<short?>("Ballots")
@@ -854,12 +852,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Category")
                         .HasColumnName("category")
-                        .HasColumnType("nvarchar(20)")
+                        .HasColumnType("varchar(20) CHARACTER SET utf8mb4")
                         .HasMaxLength(20);
 
                     b.Property<string>("Inducted")
                         .HasColumnName("inducted")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<short?>("Needed")
@@ -868,7 +866,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("NeededNote")
                         .HasColumnName("needed_note")
-                        .HasColumnType("nvarchar(25)")
+                        .HasColumnType("varchar(25) CHARACTER SET utf8mb4")
                         .HasMaxLength(25);
 
                     b.Property<short?>("Votes")
@@ -893,7 +891,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Leaguekey")
                         .HasColumnName("leaguekey")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("Openings")
@@ -902,22 +900,22 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Parkkey")
                         .HasColumnName("parkkey")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Spanfirst")
                         .HasColumnName("spanfirst")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Spanlast")
                         .HasColumnName("spanlast")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Teamkey")
                         .HasColumnName("teamkey")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("Yearkey")
@@ -935,7 +933,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short>("Inseason")
@@ -950,17 +948,17 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<string>("PlyrMgr")
                         .HasColumnName("plyrMgr")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<short?>("Rank")
@@ -984,12 +982,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<short>("Half")
@@ -1008,7 +1006,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("Rank")
@@ -1029,37 +1027,36 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("ID")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("City")
                         .HasColumnName("city")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Country")
                         .HasColumnName("country")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Parkalias")
                         .HasColumnName("parkalias")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Parkkey")
                         .HasColumnName("parkkey")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Parkname")
                         .HasColumnName("parkname")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("State")
                         .HasColumnName("state")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.HasKey("Id");
@@ -1071,37 +1068,37 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("NameLast")
                         .HasColumnName("nameLast")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("NameFirst")
                         .HasColumnName("nameFirst")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Bats")
                         .HasColumnName("bats")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("BbrefId")
                         .HasColumnName("bbrefID")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("BirthCity")
                         .HasColumnName("birthCity")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("BirthCountry")
                         .HasColumnName("birthCountry")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("BirthDay")
@@ -1114,7 +1111,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("BirthState")
                         .HasColumnName("birthState")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("BirthYear")
@@ -1123,12 +1120,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("DeathCity")
                         .HasColumnName("deathCity")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("DeathCountry")
                         .HasColumnName("deathCountry")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("DeathDay")
@@ -1141,7 +1138,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("DeathState")
                         .HasColumnName("deathState")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("DeathYear")
@@ -1150,12 +1147,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Debut")
                         .HasColumnName("debut")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("FinalGame")
                         .HasColumnName("finalGame")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("Height")
@@ -1164,17 +1161,17 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("NameGiven")
                         .HasColumnName("nameGiven")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("RetroId")
                         .HasColumnName("retroID")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("Throws")
                         .HasColumnName("throws")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("Weight")
@@ -1191,7 +1188,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short>("YearId")
@@ -1204,7 +1201,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<double?>("Baopp")
                         .HasColumnName("BAOpp")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<short?>("Bb")
                         .HasColumnName("BB")
@@ -1228,7 +1225,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<double?>("Era")
                         .HasColumnName("ERA")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<short?>("G")
                         .HasColumnType("smallint");
@@ -1269,7 +1266,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("R")
@@ -1297,7 +1294,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("W")
@@ -1317,7 +1314,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<short>("YearId")
@@ -1326,12 +1323,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Round")
                         .HasColumnName("round")
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<double?>("Baopp")
                         .HasColumnName("BAOpp")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<short?>("Bb")
                         .HasColumnName("BB")
@@ -1355,7 +1352,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<double?>("Era")
                         .HasColumnName("ERA")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<short?>("G")
                         .HasColumnType("smallint");
@@ -1396,7 +1393,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("R")
@@ -1424,7 +1421,7 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("W")
@@ -1448,22 +1445,22 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("PlayerId")
                         .HasColumnName("playerID")
-                        .HasColumnType("nvarchar(9)")
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
                         .HasMaxLength(9);
 
                     b.Property<double?>("Salary")
                         .HasColumnName("salary")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.HasKey("YearId", "TeamId", "LgId", "PlayerId")
                         .HasName("Salaries$Index_E5568031_00FA_49CA");
@@ -1475,27 +1472,27 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("SchoolId")
                         .HasColumnName("schoolID")
-                        .HasColumnType("nvarchar(15)")
+                        .HasColumnType("varchar(15) CHARACTER SET utf8mb4")
                         .HasMaxLength(15);
 
                     b.Property<string>("City")
                         .HasColumnName("city")
-                        .HasColumnType("nvarchar(55)")
+                        .HasColumnType("varchar(55) CHARACTER SET utf8mb4")
                         .HasMaxLength(55);
 
                     b.Property<string>("Country")
                         .HasColumnName("country")
-                        .HasColumnType("nvarchar(55)")
+                        .HasColumnType("varchar(55) CHARACTER SET utf8mb4")
                         .HasMaxLength(55);
 
                     b.Property<string>("NameFull")
                         .HasColumnName("name_full")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<string>("State")
                         .HasColumnName("state")
-                        .HasColumnType("nvarchar(55)")
+                        .HasColumnType("varchar(55) CHARACTER SET utf8mb4")
                         .HasMaxLength(55);
 
                     b.HasKey("SchoolId")
@@ -1512,17 +1509,17 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Round")
                         .HasColumnName("round")
-                        .HasColumnType("nvarchar(5)")
+                        .HasColumnType("varchar(5) CHARACTER SET utf8mb4")
                         .HasMaxLength(5);
 
                     b.Property<string>("LgIdloser")
                         .HasColumnName("lgIDloser")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("LgIdwinner")
                         .HasColumnName("lgIDwinner")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<short?>("Losses")
@@ -1531,12 +1528,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamIdloser")
                         .HasColumnName("teamIDloser")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<string>("TeamIdwinner")
                         .HasColumnName("teamIDwinner")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("Ties")
@@ -1561,12 +1558,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("Ab")
@@ -1599,11 +1596,11 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("DivId")
                         .HasColumnName("divID")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<string>("DivWin")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<int?>("Dp")
@@ -1619,15 +1616,15 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<double?>("Era")
                         .HasColumnName("ERA")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<double?>("Fp")
                         .HasColumnName("FP")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<string>("FranchId")
                         .HasColumnName("franchID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("G")
@@ -1663,17 +1660,17 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                         .HasColumnType("smallint");
 
                     b.Property<string>("LgWin")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<string>("Name")
                         .HasColumnName("name")
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
                     b.Property<string>("Park")
                         .HasColumnName("park")
-                        .HasColumnType("nvarchar(255)")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.Property<int?>("Ppf")
@@ -1716,17 +1713,17 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamIdbr")
                         .HasColumnName("teamIDBR")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<string>("TeamIdlahman45")
                         .HasColumnName("teamIDlahman45")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<string>("TeamIdretro")
                         .HasColumnName("teamIDretro")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<short?>("W")
@@ -1734,12 +1731,12 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("Wcwin")
                         .HasColumnName("WCWin")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<string>("Wswin")
                         .HasColumnName("WSWin")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<short?>("_2b")
@@ -1760,22 +1757,22 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                 {
                     b.Property<string>("FranchId")
                         .HasColumnName("franchID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<string>("Active")
                         .HasColumnName("active")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("FranchName")
                         .HasColumnName("franchName")
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
                     b.Property<string>("Naassoc")
                         .HasColumnName("NAassoc")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.HasKey("FranchId")
@@ -1792,25 +1789,25 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
                     b.Property<string>("TeamId")
                         .HasColumnName("teamID")
-                        .HasColumnType("nvarchar(3)")
+                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
                         .HasMaxLength(3);
 
                     b.Property<string>("LgId")
                         .HasColumnName("lgID")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
                     b.Property<string>("Half")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<string>("DivId")
                         .HasColumnName("divID")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<string>("DivWin")
-                        .HasColumnType("nvarchar(1)")
+                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
                         .HasMaxLength(1);
 
                     b.Property<short?>("G")

@@ -126,7 +126,7 @@ namespace Baseball.ApiSharp.Dal.ExtendedSchema
                 join tr in context.TagRelationships on t.TagId equals tr.TagId
                 join b in context.Batting on tr.DataEntityId equals b.PlayerId
                 select b;
-            if (queryResults.Any()) battingResults.AddRange(queryResults);
+            // TODO: if (queryResults.Any()) battingResults.AddRange(queryResults.ToList());
 
             return battingResults;
         }

@@ -25,31 +25,31 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
         {
             if (dbContext.People.Count(m => m.PlayerId == "cobbty01") == 0)
             {
-                dbContext.People.Add(new People() { PlayerId = "cobbty01", Bats = "L", Throws = "R", NameFirst = "Ty", NameLast = "Cobb", BbrefId = "cobbty01", BirthCity = "Narrows", BirthDay = 18, BirthCountry = "USA", BirthState = "GA", BirthMonth = 12, BirthYear = 1886, DeathMonth = 7, DeathDay = 17, DeathCountry = "USA", DeathState = "GA", DeathCity = "Atlanta", Debut = "1905-08-30", FinalGame = "1928-09-11", Height = 73, Weight = 175, RetroId = "cobbt101" });
+                dbContext.People.Add(new Person() { PlayerId = "cobbty01", Bats = "L", Throws = "R", NameFirst = "Ty", NameLast = "Cobb", BbrefId = "cobbty01", BirthCity = "Narrows", BirthDay = 18, BirthCountry = "USA", BirthState = "GA", BirthMonth = 12, BirthYear = 1886, DeathMonth = 7, DeathDay = 17, DeathCountry = "USA", DeathState = "GA", DeathCity = "Atlanta", Debut = "1905-08-30", FinalGame = "1928-09-11", Height = 73, Weight = 175, RetroId = "cobbt101" });
             }
             if (dbContext.People.Count(m => m.PlayerId == "musiast01") == 0)
             {
-                dbContext.People.Add(new People() { PlayerId = "musiast01", Bats = "L", Throws = "L", NameFirst = "Stan", NameLast = "Musial", BbrefId = "musiast01", BirthCity = "Donora", BirthDay = 21, BirthCountry = "USA", BirthState = "PA", BirthMonth = 11, BirthYear = 1920, DeathMonth = 1, DeathDay = 19, DeathCountry = "USA", DeathState = "MO", DeathCity = "Ladue", Debut = "1941-09-17", FinalGame = "1963-09-29", Height = 72, Weight = 175, RetroId = "musis101" });
+                dbContext.People.Add(new Person() { PlayerId = "musiast01", Bats = "L", Throws = "L", NameFirst = "Stan", NameLast = "Musial", BbrefId = "musiast01", BirthCity = "Donora", BirthDay = 21, BirthCountry = "USA", BirthState = "PA", BirthMonth = 11, BirthYear = 1920, DeathMonth = 1, DeathDay = 19, DeathCountry = "USA", DeathState = "MO", DeathCity = "Ladue", Debut = "1941-09-17", FinalGame = "1963-09-29", Height = 72, Weight = 175, RetroId = "musis101" });
             }
             if (dbContext.People.Count(m => m.PlayerId == "ruthba01") == 0)
             {
-                dbContext.People.Add(new People() { PlayerId = "ruthba01", Bats = "L", Throws = "L", NameFirst = "Babe", NameLast = "Ruth", BbrefId = "ruthba01", BirthCity = "Baltimore", BirthDay = 6, BirthCountry = "USA", BirthState = "MD", BirthMonth = 2, BirthYear = 1895, DeathMonth = 8, DeathDay = 16, DeathCountry = "USA", DeathState = "NY", DeathCity = "New York", Debut = "1914-07-11", FinalGame = "1935-05-30", Height = 74, Weight = 215, RetroId = "ruthb101" });
+                dbContext.People.Add(new Person() { PlayerId = "ruthba01", Bats = "L", Throws = "L", NameFirst = "Babe", NameLast = "Ruth", BbrefId = "ruthba01", BirthCity = "Baltimore", BirthDay = 6, BirthCountry = "USA", BirthState = "MD", BirthMonth = 2, BirthYear = 1895, DeathMonth = 8, DeathDay = 16, DeathCountry = "USA", DeathState = "NY", DeathCity = "New York", Debut = "1914-07-11", FinalGame = "1935-05-30", Height = 74, Weight = 215, RetroId = "ruthb101" });
             }
             if (dbContext.People.Count(m => m.PlayerId == "aaronha01") == 0)
             {
-                dbContext.People.Add(new People() { PlayerId = "aaronha01", Bats = "R", Throws = "R", NameFirst = "Hank", NameLast = "Aaron", BbrefId = "aaronha01", BirthCity = "Mobile", BirthDay = 5, BirthCountry = "USA", BirthState = "AL", BirthMonth = 2, BirthYear = 1934, Debut = "1954-04-13", FinalGame = "1976-10-03", Height = 72, Weight = 180, RetroId = "aaroh101" });
+                dbContext.People.Add(new Person() { PlayerId = "aaronha01", Bats = "R", Throws = "R", NameFirst = "Hank", NameLast = "Aaron", BbrefId = "aaronha01", BirthCity = "Mobile", BirthDay = 5, BirthCountry = "USA", BirthState = "AL", BirthMonth = 2, BirthYear = 1934, Debut = "1954-04-13", FinalGame = "1976-10-03", Height = 72, Weight = 180, RetroId = "aaroh101" });
             }
             if (dbContext.People.Count(m => m.PlayerId == "collied02") == 0)
             {
-                dbContext.People.Add(new People() { PlayerId = "collied02", Bats = "L", Throws = "R", NameFirst = "Eddie", NameLast = "Collins", BbrefId = "collied02", BirthCity = "Lansdowne", BirthDay = 23, BirthCountry = "USA", BirthState = "PA", BirthMonth = 11, BirthYear = 1916, DeathMonth = 11, DeathDay = 2, DeathCountry = "USA", DeathState = "PA", DeathCity = "Jennersville", Debut = "1939-07-04", FinalGame = "1942-05-26", Height = 70, Weight = 175, RetroId = "colle102" });
+                dbContext.People.Add(new Person() { PlayerId = "collied02", Bats = "L", Throws = "R", NameFirst = "Eddie", NameLast = "Collins", BbrefId = "collied02", BirthCity = "Lansdowne", BirthDay = 23, BirthCountry = "USA", BirthState = "PA", BirthMonth = 11, BirthYear = 1916, DeathMonth = 11, DeathDay = 2, DeathCountry = "USA", DeathState = "PA", DeathCity = "Jennersville", Debut = "1939-07-04", FinalGame = "1942-05-26", Height = 70, Weight = 175, RetroId = "colle102" });
             }
             if (dbContext.People.Count(m => m.PlayerId == "gehrilo01") == 0)
             {
-                dbContext.People.Add(new People() { PlayerId = "gehrilo01", Bats = "L", Throws = "L", NameFirst = "Lou", NameLast = "Gehrig", BbrefId = "gehrilo01", BirthCity = "New York", BirthDay = 19, BirthCountry = "USA", BirthState = "NY", BirthMonth = 6, BirthYear = 1903, DeathMonth = 6, DeathDay = 2, DeathCountry = "USA", DeathState = "NY", DeathCity = "Bronx", Debut = "1923-06-15", FinalGame = "1939-04-30", Height = 72, Weight = 200, RetroId = "gehrl101" });
+                dbContext.People.Add(new Person() { PlayerId = "gehrilo01", Bats = "L", Throws = "L", NameFirst = "Lou", NameLast = "Gehrig", BbrefId = "gehrilo01", BirthCity = "New York", BirthDay = 19, BirthCountry = "USA", BirthState = "NY", BirthMonth = 6, BirthYear = 1903, DeathMonth = 6, DeathDay = 2, DeathCountry = "USA", DeathState = "NY", DeathCity = "Bronx", Debut = "1923-06-15", FinalGame = "1939-04-30", Height = 72, Weight = 200, RetroId = "gehrl101" });
             }
             if (dbContext.People.Count(m => m.PlayerId == "mayswi01") == 0)
             {
-                dbContext.People.Add(new People() { PlayerId = "mayswi01", Bats = "R", Throws = "R", NameFirst = "Willie", NameLast = "Mays", BbrefId = "mayswi01", BirthCity = "Westfield", BirthDay = 6, BirthCountry = "USA", BirthState = "AL", BirthMonth = 5, BirthYear = 1931, Debut = "1951-05-25", FinalGame = "1973-09-09", Height = 70, Weight = 170, RetroId = "maysw101" });
+                dbContext.People.Add(new Person() { PlayerId = "mayswi01", Bats = "R", Throws = "R", NameFirst = "Willie", NameLast = "Mays", BbrefId = "mayswi01", BirthCity = "Westfield", BirthDay = 6, BirthCountry = "USA", BirthState = "AL", BirthMonth = 5, BirthYear = 1931, Debut = "1951-05-25", FinalGame = "1973-09-09", Height = 70, Weight = 170, RetroId = "maysw101" });
             }
             dbContext.SaveChanges();
         }

@@ -25,7 +25,7 @@ namespace Baseball.ApiSharp.Dal.Initialization.SampleData
         {
             if (dbContext.People.Count(m => m.PlayerId == "thomafr04") == 0)
             {
-                dbContext.People.Add(new People()
+                dbContext.People.Add(new Person()
                 {
                     PlayerId = "thomafr04",
                     Bats = "R",

@@ -3,14 +3,32 @@ using System.Collections.Generic;
 
 namespace Baseball.ApiSharp.Data.Lahman
 {
-    public partial class Teams
+    public partial class Team
     {
+        public Team()
+        {
+            Allstarfulls = new HashSet<Allstarfull>();
+            Battingposts = new HashSet<Battingpost>();
+            Battings = new HashSet<Batting>();
+            Fieldingofsplits = new HashSet<Fieldingofsplit>();
+            Fieldingposts = new HashSet<Fieldingpost>();
+            Fieldings = new HashSet<Fielding>();
+            Homegames = new HashSet<Homegame>();
+            Managers = new HashSet<Manager>();
+            Managershalves = new HashSet<Managershalf>();
+            Pitchingposts = new HashSet<Pitchingpost>();
+            Pitchings = new HashSet<Pitching>();
+            Teamshalves = new HashSet<Teamshalf>();
+        }
+
+        public int Id { get; set; }
         public short YearId { get; set; }
         public string LgId { get; set; }
         public string TeamId { get; set; }
         public string FranchId { get; set; }
         public string DivId { get; set; }
-        public short? Rank { get; set; }
+        public int? DivId1 { get; set; }
+        public short? TeamRank { get; set; }
         public short? G { get; set; }
         public short? Ghome { get; set; }
         public short? W { get; set; }
@@ -53,5 +71,21 @@ namespace Baseball.ApiSharp.Data.Lahman
         public string TeamIdbr { get; set; }
         public string TeamIdlahman45 { get; set; }
         public string TeamIdretro { get; set; }
+
+        public virtual Division DivId1Navigation { get; set; }
+        public virtual Teamsfranchise Franch { get; set; }
+        public virtual League Lg { get; set; }
+        public virtual ICollection<Allstarfull> Allstarfulls { get; set; }
+        public virtual ICollection<Battingpost> Battingposts { get; set; }
+        public virtual ICollection<Batting> Battings { get; set; }
+        public virtual ICollection<Fieldingofsplit> Fieldingofsplits { get; set; }
+        public virtual ICollection<Fieldingpost> Fieldingposts { get; set; }
+        public virtual ICollection<Fielding> Fieldings { get; set; }
+        public virtual ICollection<Homegame> Homegames { get; set; }
+        public virtual ICollection<Manager> Managers { get; set; }
+        public virtual ICollection<Managershalf> Managershalves { get; set; }
+        public virtual ICollection<Pitchingpost> Pitchingposts { get; set; }
+        public virtual ICollection<Pitching> Pitchings { get; set; }
+        public virtual ICollection<Teamshalf> Teamshalves { get; set; }
     }
 }

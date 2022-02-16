@@ -47,15 +47,13 @@ namespace Baseball.ApiSharp.Dal
                 {
                     var connectionString = GenerateSqlServerConnectionString();
                     return options => options
-                        .UseSqlServer(connectionString, o => o.EnableRetryOnFailure())
-                        .ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
+                        .UseSqlServer(connectionString, o => o.EnableRetryOnFailure());
                 }
                 else if (IsMySqlConnectionStringDefined())
                 {
                     var connectionString = GenerateMySqlConnectionString();
                     return options => options
-                        .UseMySql(connectionString, o => o.EnableRetryOnFailure())
-                        .ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
+                        .UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion, o => o.EnableRetryOnFailure());
                 }
                 else
                 {

@@ -5,7 +5,6 @@
 // ==================================
 #endregion
 
-#pragma warning disable 1591 
 namespace Baseball.ApiSharp.Models {
 
     public class TeamIdModel

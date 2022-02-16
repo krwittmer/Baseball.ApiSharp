@@ -5,13 +5,10 @@
 // ==================================
 #endregion
 
-#pragma warning disable 1591 
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Baseball.ApiSharp.Models
 {
-    [JsonObject(Title = "Team")]
     public class TeamModel
     {
         /// <summary>yearID</summary>

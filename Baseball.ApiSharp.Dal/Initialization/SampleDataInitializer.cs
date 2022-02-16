@@ -34,7 +34,7 @@ namespace Baseball.ApiSharp.Dal.Initialization
             {
                 var rawSqlString = $"DBCC CHECKIDENT (\"{table}\", RESEED, 0);";
 #pragma warning disable EF1000 // Possible SQL injection vulnerability.
-                context.Database.ExecuteSqlCommand(rawSqlString);
+                context.Database.ExecuteSqlRaw(rawSqlString);
 #pragma warning restore EF1000 // Possible SQL injection vulnerability.
             }
         }
@@ -45,7 +45,7 @@ namespace Baseball.ApiSharp.Dal.Initialization
             {
                 var rawSqlString = $"DELETE FROM \"{table}\";";
 #pragma warning disable EF1000 // Possible SQL injection vulnerability.
-                context.Database.ExecuteSqlCommand(rawSqlString);
+                context.Database.ExecuteSqlRaw(rawSqlString);
 #pragma warning restore EF1000 // Possible SQL injection vulnerability.
             }
             // TODO: Add primary keys or identity columns on all Lahmans DB tables, then uncomment.

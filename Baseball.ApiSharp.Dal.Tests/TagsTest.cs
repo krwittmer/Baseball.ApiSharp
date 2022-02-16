@@ -33,7 +33,7 @@ namespace Baseball.ApiSharp.Dal.Tests
         public void AddTagData()
         {
             int uniqueId = RandomNumberHelper.NextInteger();
-            var tagData = new Tag() { DataFieldReferencesAsJson = "{ }", TagId = $"tagId-{uniqueId}", TagValue = $"tagValue" };
+            var tagData = new Data.Lahman.Tag() { DataFieldReferencesAsJson = "{ }", TagId = $"tagId-{uniqueId}", TagValue = $"tagValue" };
             _dbContext.Add(tagData);
             int saveCount = _dbContext.SaveChanges();
             Assert.Equal(1, saveCount);
@@ -46,7 +46,7 @@ namespace Baseball.ApiSharp.Dal.Tests
             int uniqueId = RandomNumberHelper.NextInteger();
             var tagId = $"tagId-{uniqueId}";
             var tagValue = $"tagValue";
-            var tagData = new Tag() { DataFieldReferencesAsJson = "{ }", TagId = tagId, TagValue = tagValue };
+            var tagData = new Data.Lahman.Tag() { DataFieldReferencesAsJson = "{ }", TagId = tagId, TagValue = tagValue };
             _dbContext.Add(tagData);
             int saveCount = _dbContext.SaveChanges();
             Assert.Equal(1, saveCount);
@@ -62,7 +62,7 @@ namespace Baseball.ApiSharp.Dal.Tests
             int uniqueId = RandomNumberHelper.NextInteger();
             var tagId = $"tagId-{uniqueId}";
             var tagValue = $"tagValue";
-            var tagData = new Tag() {DataFieldReferencesAsJson = "{ }", TagId = tagId, TagValue = tagValue};
+            var tagData = new Data.Lahman.Tag() {DataFieldReferencesAsJson = "{ }", TagId = tagId, TagValue = tagValue};
             _dbContext.Add(tagData);
             int saveCount = _dbContext.SaveChanges();
             Assert.Equal(1, saveCount);
@@ -97,7 +97,7 @@ namespace Baseball.ApiSharp.Dal.Tests
             int uniqueId = RandomNumberHelper.NextInteger();
             var tagId = $"tagId-{uniqueId}";
             var tagValue = $"tagValue";
-            var tagData = new Tag() { DataFieldReferencesAsJson = "{ Highlight = \"Hr was 120. Best year ever.\" }", TagId = tagId, TagValue = tagValue };
+            var tagData = new Data.Lahman.Tag() { DataFieldReferencesAsJson = "{ Highlight = \"Hr was 120. Best year ever.\" }", TagId = tagId, TagValue = tagValue };
             // TODO: Persist tag data 
 
             var relationship = new TagRelationship {TagId = tagId, DataEntityId = entityId};

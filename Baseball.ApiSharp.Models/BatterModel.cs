@@ -5,12 +5,8 @@
 // ==================================
 #endregion
 
-#pragma warning disable 1591 
-using Newtonsoft.Json;
-
 namespace Baseball.ApiSharp.Models {
 
-    [JsonObject(Title="Batting")]
     public class BatterModel : ModelBase
     {
         public int PlayerForeignKey { get; set; }

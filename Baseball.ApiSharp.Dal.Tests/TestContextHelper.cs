@@ -36,7 +36,7 @@ namespace Baseball.ApiSharp.Dal.Tests
                 }
                 else if (envConfig.IsMySqlConnectionStringDefined())
                 {
-                    optionsBuilder.UseMySql(connectionString);
+                    optionsBuilder.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion);
                 }
                 else
                 {
