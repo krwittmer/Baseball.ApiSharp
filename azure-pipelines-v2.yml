@@ -6,7 +6,7 @@ variables:
 
 stages:
 - stage: 'Build'
-  displayName: 'Build the web application'
+  displayName: 'Build the Web/API apps'
   jobs: 
   - job: 'Build'
     displayName: 'Build job'
@@ -23,14 +23,6 @@ stages:
       displayName: 'Use .NET SDK $(dotnetSdkVersion)'
       inputs:
         version: '$(dotnetSdkVersion)'
-
-    - task: Npm@1
-      displayName: 'Run npm install'
-      inputs:
-        verbose: false
-
-    - task: gulp@1
-      displayName: 'Run gulp tasks'
 
     - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
       displayName: 'Write build info'
@@ -62,7 +54,7 @@ stages:
       artifact: drop
 
 - stage: 'Deploy'
-  displayName: 'Deploy the web application'
+  displayName: 'Deploy the Web/API apps'
   dependsOn: Build
   jobs:
   - deployment: Deploy
