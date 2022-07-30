@@ -42,7 +42,7 @@ stages:
       displayName: 'Publish the project - $(buildConfiguration)'
       inputs:
         command: 'publish'
-        projects: "!(Tests|Dal|Data|Models)"
+        projects: "*!(Tests|Dal|Data|Models)/*.csproj"
         publishWebProjects: false
         arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
         zipAfterPublish: true
