@@ -16,7 +16,7 @@ namespace Baseball.ApiSharp.Api.Tests
     {
         public BasicApiTests(WebApplicationFactory<Startup> factory) : base(factory) { }
 
-        [Theory]
+        [Theory(Skip = "TODO: Resolve HUT-integration testing")]
         [InlineData("/")]
         public async Task GetEndpointReturnSuccessStatusCodeAndCorrectContentType(string url)
         {

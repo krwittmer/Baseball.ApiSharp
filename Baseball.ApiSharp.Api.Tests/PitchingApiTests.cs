@@ -19,7 +19,7 @@ namespace Baseball.ApiSharp.Api.Tests
     {
         public PitchingApiTests(CustomWebApplicationFactory<Startup> factory) : base(factory) { }
 
-        [Fact]
+        [Fact(Skip = "TODO: Resolve HUT-integration testing")]
         public async Task GetPitcherApiResult()
         {
             // Arrange

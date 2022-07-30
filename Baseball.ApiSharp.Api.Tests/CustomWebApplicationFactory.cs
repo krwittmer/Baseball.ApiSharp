@@ -63,25 +63,29 @@ namespace Baseball.ApiSharp.Api.Tests
                     var serviceProvider = services.BuildServiceProvider();
 
                     // Create a scope to obtain a reference to the database
-                    using var scope = serviceProvider.CreateScope();
-                    var scopedServices = scope.ServiceProvider;
-                    var context = scopedServices.GetRequiredService<LahmansDbContext>();
-                    var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
-
-                    logger.LogDebug("Preparing database creation (if necessary)");
-                    // Ensure the database is created.
-                    context.Database.EnsureCreated();
-                    logger.LogDebug("Database created (if necessary)");
-
-                    try
+                    using (var scope = serviceProvider.CreateScope())
                     {
-                        // Seed the database with test data.
-                        SampleDataInitializer.InitializeInMemoryDb(context);
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.LogError(ex, "An error occurred seeding the " +
-                                            "database with sample data. Error: {Message}", ex.Message);
+                        var scopedServices = scope.ServiceProvider;
+                        using (var context = scopedServices.GetRequiredService<LahmansDbContext>())
+                        {
+                            var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+
+                            logger.LogDebug("Preparing database creation (if necessary)");
+                            // Ensure the database is created.
+                            context.Database.EnsureCreated();
+                            logger.LogDebug("Database created (if necessary)");
+
+                            try
+                            {
+                                // Seed the database with test data.
+                                SampleDataInitializer.InitializeInMemoryDb(context);
+                            }
+                            catch (Exception ex)
+                            {
+                                logger.LogError(ex, "An error occurred seeding the " +
+                                                    "database with sample data. Error: {Message}", ex.Message);
+                            }
+                        }
                     }
                 });
             }

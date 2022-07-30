@@ -19,7 +19,7 @@ namespace Baseball.ApiSharp.Api.Tests
     {
         public PlayerIdTests(CustomWebApplicationFactory<Startup> factory) : base(factory) { }
 
-        [Theory]
+        [Theory(Skip = "TODO: Resolve HUT-integration testing")]
         [InlineData("Willie%20Mays", "mayswi01")]
         [InlineData("Hank%20Aaron", "aaronha01")]
         [InlineData("Babe%20Ruth", "ruthba01")]
@@ -44,7 +44,7 @@ namespace Baseball.ApiSharp.Api.Tests
             client.Dispose();
         }
 
-        [Theory]
+        [Theory(Skip = "TODO: Resolve HUT-integration testing")]
         [InlineData("John", 5)]
         [InlineData("Mike", 9)]
         public async Task ReturnsOkForPlayersWhoAreGreatBatterWithPaging(string playerName, int playerMatchCount)
@@ -66,7 +66,7 @@ namespace Baseball.ApiSharp.Api.Tests
             client.Dispose();
         }
 
-        [Theory]
+        [Theory(Skip = "TODO: Resolve HUT-integration testing")]
         [InlineData("Stan%20Musial", "musiast01")]
         [InlineData("Ty%20Cobb", "cobbty01")]
         [InlineData("Lou%20Gehrig", "gehrilo01")]
@@ -90,7 +90,7 @@ namespace Baseball.ApiSharp.Api.Tests
             client.Dispose();
         }
 
-        [Theory]
+        [Theory(Skip = "TODO: Resolve HUT-integration testing")]
         [InlineData("Mark%20Buehrle", "buehrma01")]
         [InlineData("Eddie%20Collins", "collied02")]
         [InlineData("Frank%20Thomas", "thomafr04")]

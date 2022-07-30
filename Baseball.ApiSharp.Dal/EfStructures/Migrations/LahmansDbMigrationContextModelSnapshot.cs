@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 {
     [DbContext(typeof(LahmansDbMigrationContext))]
@@ -14,530 +16,743 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .UseCollation("utf8mb4_0900_ai_ci")
+                .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.AllstarFull", b =>
+            MySqlModelBuilderExtensions.HasCharSet(modelBuilder, "utf8mb4");
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Allstarfull", b =>
                 {
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
-
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("GameNum")
-                        .HasColumnName("gameNum")
-                        .HasColumnType("smallint");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     b.Property<string>("GameId")
-                        .HasColumnName("gameID")
-                        .HasColumnType("varchar(12) CHARACTER SET utf8mb4")
-                        .HasMaxLength(12);
+                        .HasMaxLength(12)
+                        .HasColumnType("varchar(12)")
+                        .HasColumnName("gameID");
+
+                    b.Property<short>("GameNum")
+                        .HasColumnType("smallint")
+                        .HasColumnName("gameNum");
 
                     b.Property<short?>("Gp")
-                        .HasColumnName("GP")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("GP");
 
                     b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
                         .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .IsFixedLength();
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
 
                     b.Property<short?>("StartingPos")
-                        .HasColumnName("startingPos")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("startingPos");
 
                     b.Property<string>("TeamId")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
                         .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .IsFixedLength();
 
-                    b.HasKey("PlayerId", "YearId", "GameNum")
-                        .HasName("AllstarFull$Index_2BD68208_C8B4_4347");
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
 
-                    b.ToTable("AllstarFull");
+                    b.Property<short?>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID");
+
+                    b.HasIndex(new[] { "PlayerId", "YearId", "GameNum", "GameId", "LgId" }, "playerID")
+                        .IsUnique();
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID");
+
+                    b.ToTable("allstarfull", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Appearances", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Appearance", b =>
                 {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
-
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
-
                     b.Property<short?>("G1b")
-                        .HasColumnName("G_1b")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_1b");
 
                     b.Property<short?>("G2b")
-                        .HasColumnName("G_2b")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_2b");
 
                     b.Property<short?>("G3b")
-                        .HasColumnName("G_3b")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_3b");
 
                     b.Property<short?>("GAll")
-                        .HasColumnName("G_all")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_all");
 
                     b.Property<short?>("GBatting")
-                        .HasColumnName("G_batting")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_batting");
 
                     b.Property<short?>("GC")
-                        .HasColumnName("G_c")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_c");
 
                     b.Property<short?>("GCf")
-                        .HasColumnName("G_cf")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_cf");
 
                     b.Property<short?>("GDefense")
-                        .HasColumnName("G_defense")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_defense");
 
                     b.Property<short?>("GDh")
-                        .HasColumnName("G_dh")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_dh");
 
                     b.Property<short?>("GLf")
-                        .HasColumnName("G_lf")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_lf");
 
                     b.Property<short?>("GOf")
-                        .HasColumnName("G_of")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_of");
 
                     b.Property<short?>("GP")
-                        .HasColumnName("G_p")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_p");
 
                     b.Property<short?>("GPh")
-                        .HasColumnName("G_ph")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_ph");
 
                     b.Property<short?>("GPr")
-                        .HasColumnName("G_pr")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_pr");
 
                     b.Property<short?>("GRf")
-                        .HasColumnName("G_rf")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_rf");
 
                     b.Property<short?>("GSs")
-                        .HasColumnName("G_ss")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_ss");
 
                     b.Property<short?>("Gs")
-                        .HasColumnName("GS")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("GS");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
                         .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.HasKey("YearId", "TeamId", "PlayerId")
-                        .HasName("Appearances$Index_70924BF9_C76C_4076");
-
-                    b.ToTable("Appearances");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.AwardsManagers", b =>
-                {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("AwardId")
-                        .HasColumnName("awardID")
-                        .HasColumnType("varchar(75) CHARACTER SET utf8mb4")
-                        .HasMaxLength(75);
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .IsFixedLength();
 
                     b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
-                        .HasMaxLength(10);
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
+
+                    b.Property<string>("TeamId")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamID")
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasIndex(new[] { "Id", "YearId", "TeamId", "PlayerId" }, "comp_indx");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID");
+
+                    b.HasIndex(new[] { "PlayerId" }, "playerID");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID");
+
+                    b.ToTable("appearances", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Awardsmanager", b =>
+                {
+                    b.Property<string>("AwardId")
+                        .IsRequired()
+                        .HasMaxLength(75)
+                        .HasColumnType("varchar(75)")
+                        .HasColumnName("awardID");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<string>("LgId")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
 
                     b.Property<string>("Notes")
-                        .HasColumnName("notes")
-                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Tie")
-                        .HasColumnName("tie")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
-
-                    b.HasKey("YearId", "AwardId", "LgId", "PlayerId")
-                        .HasName("AwardsManagers$Index_5B79AD08_A7C1_426E");
-
-                    b.ToTable("AwardsManagers");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.AwardsPlayers", b =>
-                {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("AwardId")
-                        .HasColumnName("awardID")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("notes");
 
                     b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("playerID");
+
+                    b.Property<string>("Tie")
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("tie");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasIndex(new[] { "Id", "PlayerId", "AwardId", "YearId" }, "comp_indx");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID");
+
+                    b.HasIndex(new[] { "PlayerId" }, "playerID");
+
+                    b.ToTable("awardsmanagers", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Awardsplayer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<string>("AwardId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("awardID");
+
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
 
                     b.Property<string>("Notes")
-                        .HasColumnName("notes")
-                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Tie")
-                        .HasColumnName("tie")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
-
-                    b.HasKey("YearId", "AwardId", "LgId", "PlayerId")
-                        .HasName("AwardsPlayers$Index_99C7A5A6_27CA_44FC");
-
-                    b.ToTable("AwardsPlayers");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.AwardsShareManagers", b =>
-                {
-                    b.Property<string>("AwardId")
-                        .HasColumnName("awardID")
-                        .HasColumnType("varchar(25) CHARACTER SET utf8mb4")
-                        .HasMaxLength(25);
-
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("notes");
 
                     b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
-                        .HasMaxLength(10);
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
+
+                    b.Property<string>("Tie")
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("tie");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID1");
+
+                    b.HasIndex(new[] { "PlayerId", "AwardId", "YearId", "LgId" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID1");
+
+                    b.ToTable("awardsplayers", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Awardssharemanager", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<string>("AwardId")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)")
+                        .HasColumnName("awardID");
+
+                    b.Property<string>("LgId")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("playerID");
 
                     b.Property<short?>("PointsMax")
-                        .HasColumnName("pointsMax")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("pointsMax");
 
                     b.Property<short?>("PointsWon")
-                        .HasColumnName("pointsWon")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("pointsWon");
 
                     b.Property<short?>("VotesFirst")
-                        .HasColumnName("votesFirst")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("AwardId", "YearId", "LgId", "PlayerId")
-                        .HasName("AwardsShareManagers$Index_4D947987_0BEF_4B9B");
-
-                    b.ToTable("AwardsShareManagers");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.AwardsSharePlayers", b =>
-                {
-                    b.Property<string>("AwardId")
-                        .HasColumnName("awardID")
-                        .HasColumnType("varchar(25) CHARACTER SET utf8mb4")
-                        .HasMaxLength(25);
+                        .HasColumnType("smallint")
+                        .HasColumnName("votesFirst");
 
                     b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID2");
+
+                    b.HasIndex(new[] { "PlayerId", "AwardId", "YearId", "LgId" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID2");
+
+                    b.ToTable("awardssharemanagers", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Awardsshareplayer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<string>("AwardId")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)")
+                        .HasColumnName("awardID");
 
                     b.Property<string>("LgId")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
                         .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .IsFixedLength();
 
                     b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
 
                     b.Property<short?>("PointsMax")
-                        .HasColumnName("pointsMax")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("pointsMax");
 
                     b.Property<double?>("PointsWon")
-                        .HasColumnName("pointsWon")
-                        .HasColumnType("double");
+                        .HasColumnType("double")
+                        .HasColumnName("pointsWon");
 
                     b.Property<double?>("VotesFirst")
-                        .HasColumnName("votesFirst")
-                        .HasColumnType("double");
+                        .HasColumnType("double")
+                        .HasColumnName("votesFirst");
 
-                    b.HasKey("AwardId", "YearId", "LgId", "PlayerId")
-                        .HasName("AwardsSharePlayers$Index_020E6DB1_95E2_44F1");
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
 
-                    b.ToTable("AwardsSharePlayers");
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID3");
+
+                    b.HasIndex(new[] { "PlayerId", "AwardId", "YearId", "LgId" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID3");
+
+                    b.ToTable("awardsshareplayers", (string)null);
                 });
 
             modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Batting", b =>
                 {
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
-
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("Stint")
-                        .HasColumnName("stint")
-                        .HasColumnType("smallint");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     b.Property<short?>("Ab")
-                        .HasColumnName("AB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("AB");
 
                     b.Property<short?>("Bb")
-                        .HasColumnName("BB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("BB");
 
                     b.Property<short?>("Cs")
-                        .HasColumnName("CS")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("CS");
 
                     b.Property<short?>("G")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("GBatting")
-                        .HasColumnName("G_batting")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("G_batting");
 
                     b.Property<short?>("Gidp")
-                        .HasColumnName("GIDP")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("GIDP");
 
                     b.Property<short?>("H")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Hbp")
-                        .HasColumnName("HBP")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("HBP");
 
                     b.Property<short?>("Hr")
-                        .HasColumnName("HR")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("HR");
 
                     b.Property<short?>("Ibb")
-                        .HasColumnName("IBB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("IBB");
 
                     b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
                         .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .IsFixedLength();
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
 
                     b.Property<short?>("R")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Rbi")
-                        .HasColumnName("RBI")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("RBI");
 
                     b.Property<short?>("Sb")
-                        .HasColumnName("SB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SB");
 
                     b.Property<short?>("Sf")
-                        .HasColumnName("SF")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SF");
 
                     b.Property<short?>("Sh")
-                        .HasColumnName("SH")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SH");
 
                     b.Property<short?>("So")
-                        .HasColumnName("SO")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SO");
+
+                    b.Property<short>("Stint")
+                        .HasColumnType("smallint")
+                        .HasColumnName("stint");
 
                     b.Property<string>("TeamId")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
                         .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
 
                     b.Property<short?>("_2b")
-                        .HasColumnName("2B")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("2B");
 
                     b.Property<short?>("_3b")
-                        .HasColumnName("3B")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("3B");
 
-                    b.HasKey("PlayerId", "YearId", "Stint")
-                        .HasName("Batting$Index_7170BE9D_268A_46B8");
+                    b.HasKey("Id");
 
-                    b.ToTable("Batting");
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID4");
+
+                    b.HasIndex(new[] { "PlayerId", "YearId", "Stint" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID4");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID1");
+
+                    b.ToTable("batting", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.BattingPost", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Battingpost", b =>
                 {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Round")
-                        .HasColumnName("round")
-                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     b.Property<short?>("Ab")
-                        .HasColumnName("AB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("AB");
 
                     b.Property<short?>("Bb")
-                        .HasColumnName("BB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("BB");
 
                     b.Property<short?>("Cs")
-                        .HasColumnName("CS")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("CS");
 
                     b.Property<short?>("G")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Gidp")
-                        .HasColumnName("GIDP")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("GIDP");
 
                     b.Property<short?>("H")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Hbp")
-                        .HasColumnName("HBP")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("HBP");
 
                     b.Property<short?>("Hr")
-                        .HasColumnName("HR")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("HR");
 
                     b.Property<short?>("Ibb")
-                        .HasColumnName("IBB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("IBB");
 
                     b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
                         .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .IsFixedLength();
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
 
                     b.Property<short?>("R")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Rbi")
-                        .HasColumnName("RBI")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("RBI");
+
+                    b.Property<string>("Round")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("round");
 
                     b.Property<short?>("Sb")
-                        .HasColumnName("SB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SB");
 
                     b.Property<short?>("Sf")
-                        .HasColumnName("SF")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SF");
 
                     b.Property<short?>("Sh")
-                        .HasColumnName("SH")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SH");
 
                     b.Property<short?>("So")
-                        .HasColumnName("SO")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SO");
 
                     b.Property<string>("TeamId")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
                         .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
 
                     b.Property<short?>("_2b")
-                        .HasColumnName("2B")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("2B");
 
                     b.Property<short?>("_3b")
-                        .HasColumnName("3B")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("3B");
 
-                    b.HasKey("YearId", "Round", "PlayerId")
-                        .HasName("BattingPost$Index_8C81D106_6E96_4318");
+                    b.HasKey("Id");
 
-                    b.ToTable("BattingPost");
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID5");
+
+                    b.HasIndex(new[] { "PlayerId" }, "playerID")
+                        .HasDatabaseName("playerID5");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID2");
+
+                    b.HasIndex(new[] { "YearId", "Round", "PlayerId" }, "yearID")
+                        .IsUnique();
+
+                    b.ToTable("battingpost", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.CollegePlaying", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Collegeplaying", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
                     b.Property<string>("PlayerId")
                         .IsRequired()
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
 
                     b.Property<string>("SchoolId")
-                        .HasColumnName("schoolID")
-                        .HasColumnType("varchar(15) CHARACTER SET utf8mb4")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)")
+                        .HasColumnName("schoolID");
 
                     b.Property<short?>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
 
-                    b.ToTable("CollegePlaying");
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "PlayerId" }, "playerID")
+                        .HasDatabaseName("playerID6");
+
+                    b.HasIndex(new[] { "SchoolId" }, "schoolID");
+
+                    b.ToTable("collegeplaying", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Division", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Active")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("char(1)")
+                        .HasColumnName("active")
+                        .IsFixedLength();
+
+                    b.Property<string>("DivId")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("divID")
+                        .IsFixedLength();
+
+                    b.Property<string>("Division1")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("division");
+
+                    b.Property<string>("LgId")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "DivId", "LgId" }, "divID")
+                        .IsUnique();
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID6");
+
+                    b.ToTable("divisions", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Efmigrationshistory", b =>
+                {
+                    b.Property<string>("MigrationId")
+                        .HasMaxLength(95)
+                        .HasColumnType("varchar(95)");
+
+                    b.Property<string>("ProductVersion")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("MigrationId")
+                        .HasName("PRIMARY");
+
+                    b.ToTable("__efmigrationshistory", (string)null);
                 });
 
             modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.ExtendedSchema.Tag", b =>
                 {
                     b.Property<string>("TagId")
-                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
-                        .HasMaxLength(64);
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
 
                     b.Property<string>("DataFieldReferencesAsJson")
-                        .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1024);
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)");
 
                     b.Property<string>("TagValue")
-                        .HasColumnType("varchar(512) CHARACTER SET utf8mb4")
-                        .HasMaxLength(512);
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)");
 
                     b.HasKey("TagId");
 
@@ -547,16 +762,16 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
             modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.ExtendedSchema.TagRelationship", b =>
                 {
                     b.Property<string>("TagRelationshipId")
-                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
-                        .HasMaxLength(64);
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
 
                     b.Property<string>("DataEntityId")
-                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
-                        .HasMaxLength(64);
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
 
                     b.Property<string>("TagId")
-                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
-                        .HasMaxLength(64);
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
 
                     b.HasKey("TagRelationshipId");
 
@@ -565,34 +780,21 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
 
             modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Fielding", b =>
                 {
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
-
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("Stint")
-                        .HasColumnName("stint")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Pos")
-                        .HasColumnName("POS")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     b.Property<short?>("A")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Cs")
-                        .HasColumnName("CS")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("CS");
 
                     b.Property<short?>("Dp")
-                        .HasColumnName("DP")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("DP");
 
                     b.Property<short?>("E")
                         .HasColumnType("smallint");
@@ -601,62 +803,89 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Gs")
-                        .HasColumnName("GS")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("GS");
 
                     b.Property<short?>("InnOuts")
                         .HasColumnType("smallint");
 
                     b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
                         .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .IsFixedLength();
 
                     b.Property<short?>("Pb")
-                        .HasColumnName("PB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("PB");
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
 
                     b.Property<short?>("Po")
-                        .HasColumnName("PO")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("PO");
+
+                    b.Property<string>("Pos")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)")
+                        .HasColumnName("POS");
 
                     b.Property<short?>("Sb")
-                        .HasColumnName("SB")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
-
-                    b.Property<short?>("Wp")
-                        .HasColumnName("WP")
-                        .HasColumnType("smallint");
-
-                    b.Property<double?>("Zr")
-                        .HasColumnName("ZR")
-                        .HasColumnType("double");
-
-                    b.HasKey("PlayerId", "YearId", "Stint", "Pos")
-                        .HasName("Fielding$Index_97751AED_0076_4367");
-
-                    b.ToTable("Fielding");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.FieldingOf", b =>
-                {
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
-
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SB");
 
                     b.Property<short>("Stint")
-                        .HasColumnName("stint")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("stint");
+
+                    b.Property<string>("TeamId")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamID")
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short?>("Wp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("WP");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.Property<double?>("Zr")
+                        .HasColumnType("double")
+                        .HasColumnName("ZR");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID7");
+
+                    b.HasIndex(new[] { "PlayerId", "YearId", "Stint", "Pos" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID7");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID3");
+
+                    b.ToTable("fielding", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Fieldingof", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     b.Property<short?>("Gcf")
                         .HasColumnType("smallint");
@@ -667,965 +896,1189 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                     b.Property<short?>("Grf")
                         .HasColumnType("smallint");
 
-                    b.HasKey("PlayerId", "YearId", "Stint")
-                        .HasName("FieldingOF$Index_8983CB74_6371_424E");
-
-                    b.ToTable("FieldingOF");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.FieldingOfsplit", b =>
-                {
                     b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
-
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
 
                     b.Property<short>("Stint")
-                        .HasColumnName("stint")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Pos")
-                        .HasColumnName("POS")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<short?>("A")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Cs")
-                        .HasColumnName("CS")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Dp")
-                        .HasColumnName("DP")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("E")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("G")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Gs")
-                        .HasColumnName("GS")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("InnOuts")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<short?>("Pb")
-                        .HasColumnName("PB")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Po")
-                        .HasColumnName("PO")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Sb")
-                        .HasColumnName("SB")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
-
-                    b.Property<short?>("Wp")
-                        .HasColumnName("WP")
-                        .HasColumnType("smallint");
-
-                    b.Property<double?>("Zr")
-                        .HasColumnName("ZR")
-                        .HasColumnType("double");
-
-                    b.HasKey("PlayerId", "YearId", "Stint", "Pos")
-                        .HasName("FieldingOFsplit$Index_97751AED_0076_4367");
-
-                    b.ToTable("FieldingOFsplit");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.FieldingPost", b =>
-                {
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
+                        .HasColumnType("smallint")
+                        .HasColumnName("stint");
 
                     b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Round")
-                        .HasColumnName("round")
-                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("Pos")
-                        .HasColumnName("POS")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<short?>("A")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Cs")
-                        .HasColumnName("CS")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Dp")
-                        .HasColumnName("DP")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("E")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("G")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Gs")
-                        .HasColumnName("GS")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("InnOuts")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<short?>("Pb")
-                        .HasColumnName("PB")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Po")
-                        .HasColumnName("PO")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Sb")
-                        .HasColumnName("SB")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
-
-                    b.Property<short?>("Tp")
-                        .HasColumnName("TP")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("PlayerId", "YearId", "Round", "Pos")
-                        .HasName("FieldingPost$Index_E1DA201A_3B38_486D");
-
-                    b.ToTable("FieldingPost");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.HallOfFame", b =>
-                {
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
-                        .HasMaxLength(10);
-
-                    b.Property<short>("Yearid")
-                        .HasColumnName("yearid")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("VotedBy")
-                        .HasColumnName("votedBy")
-                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
-                        .HasMaxLength(64);
-
-                    b.Property<short?>("Ballots")
-                        .HasColumnName("ballots")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Category")
-                        .HasColumnName("category")
-                        .HasColumnType("varchar(20) CHARACTER SET utf8mb4")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Inducted")
-                        .HasColumnName("inducted")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
-
-                    b.Property<short?>("Needed")
-                        .HasColumnName("needed")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("NeededNote")
-                        .HasColumnName("needed_note")
-                        .HasColumnType("varchar(25) CHARACTER SET utf8mb4")
-                        .HasMaxLength(25);
-
-                    b.Property<short?>("Votes")
-                        .HasColumnName("votes")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("PlayerId", "Yearid", "VotedBy")
-                        .HasName("HallOfFame$PrimaryKey");
-
-                    b.ToTable("HallOfFame");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.HomeGames", b =>
-                {
-                    b.Property<int?>("Attendance")
-                        .HasColumnName("attendance")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Games")
-                        .HasColumnName("games")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Leaguekey")
-                        .HasColumnName("leaguekey")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<int?>("Openings")
-                        .HasColumnName("openings")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Parkkey")
-                        .HasColumnName("parkkey")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Spanfirst")
-                        .HasColumnName("spanfirst")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Spanlast")
-                        .HasColumnName("spanlast")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Teamkey")
-                        .HasColumnName("teamkey")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<int?>("Yearkey")
-                        .HasColumnName("yearkey")
-                        .HasColumnType("int");
-
-                    b.ToTable("HomeGames");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Managers", b =>
-                {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
-
-                    b.Property<short>("Inseason")
-                        .HasColumnName("inseason")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("G")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("L")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("PlyrMgr")
-                        .HasColumnName("plyrMgr")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
-
-                    b.Property<short?>("Rank")
-                        .HasColumnName("rank")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("W")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("YearId", "TeamId", "Inseason")
-                        .HasName("Managers$Index_836DE8E8_FEBD_469A");
-
-                    b.ToTable("Managers");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.ManagersHalf", b =>
-                {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
-
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
-                        .HasMaxLength(10);
-
-                    b.Property<short>("Half")
-                        .HasColumnName("half")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("G")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Inseason")
-                        .HasColumnName("inseason")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("L")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<short?>("Rank")
-                        .HasColumnName("rank")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("W")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("YearId", "TeamId", "PlayerId", "Half")
-                        .HasName("ManagersHalf$Index_C2906EEF_9F52_4968");
-
-                    b.ToTable("ManagersHalf");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Parks", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("City")
-                        .HasColumnName("city")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Country")
-                        .HasColumnName("country")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Parkalias")
-                        .HasColumnName("parkalias")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Parkkey")
-                        .HasColumnName("parkkey")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Parkname")
-                        .HasColumnName("parkname")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("State")
-                        .HasColumnName("state")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parks");
+                    b.HasIndex(new[] { "PlayerId", "YearId", "Stint" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID8");
+
+                    b.ToTable("fieldingof", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.People", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Fieldingofsplit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<short?>("A")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Cs")
+                        .HasColumnType("smallint")
+                        .HasColumnName("CS");
+
+                    b.Property<short?>("Dp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("DP");
+
+                    b.Property<short?>("E")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("G")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Gs")
+                        .HasColumnType("smallint")
+                        .HasColumnName("GS");
+
+                    b.Property<short?>("InnOuts")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<short?>("Pb")
+                        .HasColumnType("smallint")
+                        .HasColumnName("PB");
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
+
+                    b.Property<short?>("Po")
+                        .HasColumnType("smallint")
+                        .HasColumnName("PO");
+
+                    b.Property<string>("Pos")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)")
+                        .HasColumnName("POS");
+
+                    b.Property<short?>("Sb")
+                        .HasColumnType("smallint")
+                        .HasColumnName("SB");
+
+                    b.Property<short>("Stint")
+                        .HasColumnType("smallint")
+                        .HasColumnName("stint");
+
+                    b.Property<string>("TeamId")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamID")
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short?>("Wp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("WP");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.Property<double?>("Zr")
+                        .HasColumnType("double")
+                        .HasColumnName("ZR");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID8");
+
+                    b.HasIndex(new[] { "PlayerId", "YearId", "Stint", "Pos" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID9");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID4");
+
+                    b.ToTable("fieldingofsplit", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Fieldingpost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<short?>("A")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Cs")
+                        .HasColumnType("smallint")
+                        .HasColumnName("CS");
+
+                    b.Property<short?>("Dp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("DP");
+
+                    b.Property<short?>("E")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("G")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Gs")
+                        .HasColumnType("smallint")
+                        .HasColumnName("GS");
+
+                    b.Property<short?>("InnOuts")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<short?>("Pb")
+                        .HasColumnType("smallint")
+                        .HasColumnName("PB");
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
+
+                    b.Property<short?>("Po")
+                        .HasColumnType("smallint")
+                        .HasColumnName("PO");
+
+                    b.Property<string>("Pos")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)")
+                        .HasColumnName("POS");
+
+                    b.Property<string>("Round")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("round");
+
+                    b.Property<short?>("Sb")
+                        .HasColumnType("smallint")
+                        .HasColumnName("SB");
+
+                    b.Property<string>("TeamId")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamID")
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short?>("Tp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("TP");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID9");
+
+                    b.HasIndex(new[] { "PlayerId", "YearId", "Round", "Pos" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID10");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID5");
+
+                    b.ToTable("fieldingpost", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Halloffame", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<short?>("Ballots")
+                        .HasColumnType("smallint")
+                        .HasColumnName("ballots");
+
+                    b.Property<string>("Category")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)")
+                        .HasColumnName("category");
+
+                    b.Property<string>("Inducted")
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("inducted");
+
+                    b.Property<short?>("Needed")
+                        .HasColumnType("smallint")
+                        .HasColumnName("needed");
+
+                    b.Property<string>("NeededNote")
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)")
+                        .HasColumnName("needed_note");
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("playerID");
+
+                    b.Property<string>("VotedBy")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("votedBy");
+
+                    b.Property<short?>("Votes")
+                        .HasColumnType("smallint")
+                        .HasColumnName("votes");
+
+                    b.Property<short>("Yearid")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "PlayerId", "Yearid", "VotedBy" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID11");
+
+                    b.ToTable("halloffame", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Homegame", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<int?>("Attendance")
+                        .HasColumnType("int")
+                        .HasColumnName("attendance");
+
+                    b.Property<int?>("Games")
+                        .HasColumnType("int")
+                        .HasColumnName("games");
+
+                    b.Property<string>("Leaguekey")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("leaguekey")
+                        .IsFixedLength();
+
+                    b.Property<int?>("Openings")
+                        .HasColumnType("int")
+                        .HasColumnName("openings");
+
+                    b.Property<int?>("ParkId")
+                        .HasColumnType("int")
+                        .HasColumnName("park_ID");
+
+                    b.Property<string>("Parkkey")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("parkkey");
+
+                    b.Property<string>("Spanfirst")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("spanfirst");
+
+                    b.Property<DateOnly?>("SpanfirstDate")
+                        .HasColumnType("date")
+                        .HasColumnName("spanfirst_date");
+
+                    b.Property<string>("Spanlast")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("spanlast");
+
+                    b.Property<DateOnly?>("SpanlastDate")
+                        .HasColumnType("date")
+                        .HasColumnName("spanlast_date");
+
+                    b.Property<int?>("TeamId")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<string>("Teamkey")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamkey")
+                        .IsFixedLength();
+
+                    b.Property<int?>("Yearkey")
+                        .HasColumnType("int")
+                        .HasColumnName("yearkey");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "Leaguekey" }, "leaguekey");
+
+                    b.HasIndex(new[] { "ParkId" }, "park_ID");
+
+                    b.HasIndex(new[] { "TeamId" }, "team_ID")
+                        .HasDatabaseName("team_ID6");
+
+                    b.ToTable("homegames", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.League", b =>
+                {
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<string>("Active")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("char(1)")
+                        .HasColumnName("active")
+                        .IsFixedLength();
+
+                    b.Property<string>("League1")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("league");
+
+                    b.HasKey("LgId")
+                        .HasName("PRIMARY");
+
+                    b.ToTable("leagues", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Manager", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<short?>("G")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("Inseason")
+                        .HasColumnType("smallint")
+                        .HasColumnName("inseason");
+
+                    b.Property<short?>("L")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<string>("PlayerId")
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("playerID");
+
+                    b.Property<string>("PlyrMgr")
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("plyrMgr");
+
+                    b.Property<string>("TeamId")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamID")
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short?>("TeamRank")
+                        .HasColumnType("smallint")
+                        .HasColumnName("teamRank");
+
+                    b.Property<short?>("W")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID10");
+
+                    b.HasIndex(new[] { "PlayerId" }, "playerID")
+                        .HasDatabaseName("playerID12");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID7");
+
+                    b.HasIndex(new[] { "YearId", "TeamId", "Inseason" }, "yearID")
+                        .IsUnique()
+                        .HasDatabaseName("yearID1");
+
+                    b.ToTable("managers", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Managershalf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<short?>("G")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("Half")
+                        .HasColumnType("smallint")
+                        .HasColumnName("half");
+
+                    b.Property<short?>("Inseason")
+                        .HasColumnType("smallint")
+                        .HasColumnName("inseason");
+
+                    b.Property<short?>("L")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("playerID");
+
+                    b.Property<string>("TeamId")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamID")
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short?>("TeamRank")
+                        .HasColumnType("smallint")
+                        .HasColumnName("teamRank");
+
+                    b.Property<short?>("W")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID11");
+
+                    b.HasIndex(new[] { "PlayerId", "YearId", "TeamId", "Half" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID13");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID8");
+
+                    b.ToTable("managershalf", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Park", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("city");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("country");
+
+                    b.Property<string>("Parkalias")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("parkalias");
+
+                    b.Property<string>("Parkkey")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("parkkey");
+
+                    b.Property<string>("Parkname")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("parkname");
+
+                    b.Property<string>("State")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("state");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("parks", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Person", b =>
                 {
                     b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("NameLast")
-                        .HasColumnName("nameLast")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("NameFirst")
-                        .HasColumnName("nameFirst")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
 
                     b.Property<string>("Bats")
-                        .HasColumnName("bats")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("bats");
 
                     b.Property<string>("BbrefId")
-                        .HasColumnName("bbrefID")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("bbrefID");
 
                     b.Property<string>("BirthCity")
-                        .HasColumnName("birthCity")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("birthCity");
 
                     b.Property<string>("BirthCountry")
-                        .HasColumnName("birthCountry")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("birthCountry");
+
+                    b.Property<DateOnly?>("BirthDate")
+                        .HasColumnType("date")
+                        .HasColumnName("birth_date");
 
                     b.Property<int?>("BirthDay")
-                        .HasColumnName("birthDay")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("birthDay");
 
                     b.Property<int?>("BirthMonth")
-                        .HasColumnName("birthMonth")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("birthMonth");
 
                     b.Property<string>("BirthState")
-                        .HasColumnName("birthState")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("birthState");
 
                     b.Property<int?>("BirthYear")
-                        .HasColumnName("birthYear")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("birthYear");
 
                     b.Property<string>("DeathCity")
-                        .HasColumnName("deathCity")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("deathCity");
 
                     b.Property<string>("DeathCountry")
-                        .HasColumnName("deathCountry")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("deathCountry");
+
+                    b.Property<DateOnly?>("DeathDate")
+                        .HasColumnType("date")
+                        .HasColumnName("death_date");
 
                     b.Property<int?>("DeathDay")
-                        .HasColumnName("deathDay")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("deathDay");
 
                     b.Property<int?>("DeathMonth")
-                        .HasColumnName("deathMonth")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("deathMonth");
 
                     b.Property<string>("DeathState")
-                        .HasColumnName("deathState")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("deathState");
 
                     b.Property<int?>("DeathYear")
-                        .HasColumnName("deathYear")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("deathYear");
 
                     b.Property<string>("Debut")
-                        .HasColumnName("debut")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("debut");
+
+                    b.Property<DateOnly?>("DebutDate")
+                        .HasColumnType("date")
+                        .HasColumnName("debut_date");
 
                     b.Property<string>("FinalGame")
-                        .HasColumnName("finalGame")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("finalGame");
+
+                    b.Property<DateOnly?>("FinalgameDate")
+                        .HasColumnType("date")
+                        .HasColumnName("finalgame_date");
 
                     b.Property<int?>("Height")
-                        .HasColumnName("height")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("height");
+
+                    b.Property<string>("NameFirst")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("nameFirst");
 
                     b.Property<string>("NameGiven")
-                        .HasColumnName("nameGiven")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("nameGiven");
+
+                    b.Property<string>("NameLast")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("nameLast");
 
                     b.Property<string>("RetroId")
-                        .HasColumnName("retroID")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("retroID");
 
                     b.Property<string>("Throws")
-                        .HasColumnName("throws")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("throws");
 
                     b.Property<int?>("Weight")
-                        .HasColumnName("weight")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("weight");
 
-                    b.HasKey("PlayerId", "NameLast", "NameFirst")
-                        .HasName("People$PrimaryKey");
+                    b.HasKey("PlayerId")
+                        .HasName("PRIMARY");
 
-                    b.ToTable("People");
+                    b.ToTable("people", (string)null);
                 });
 
             modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Pitching", b =>
                 {
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
+                    b.Property<double?>("Baopp")
+                        .HasColumnType("double")
+                        .HasColumnName("BAOpp");
+
+                    b.Property<short?>("Bb")
+                        .HasColumnType("smallint")
+                        .HasColumnName("BB");
+
+                    b.Property<short?>("Bfp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("BFP");
+
+                    b.Property<short?>("Bk")
+                        .HasColumnType("smallint")
+                        .HasColumnName("BK");
+
+                    b.Property<short?>("Cg")
+                        .HasColumnType("smallint")
+                        .HasColumnName("CG");
+
+                    b.Property<short?>("Er")
+                        .HasColumnType("smallint")
+                        .HasColumnName("ER");
+
+                    b.Property<double?>("Era")
+                        .HasColumnType("double")
+                        .HasColumnName("ERA");
+
+                    b.Property<short?>("G")
                         .HasColumnType("smallint");
+
+                    b.Property<short?>("Gf")
+                        .HasColumnType("smallint")
+                        .HasColumnName("GF");
+
+                    b.Property<short?>("Gidp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("GIDP");
+
+                    b.Property<short?>("Gs")
+                        .HasColumnType("smallint")
+                        .HasColumnName("GS");
+
+                    b.Property<short?>("H")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Hbp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("HBP");
+
+                    b.Property<short?>("Hr")
+                        .HasColumnType("smallint")
+                        .HasColumnName("HR");
+
+                    b.Property<short?>("Ibb")
+                        .HasColumnType("smallint")
+                        .HasColumnName("IBB");
+
+                    b.Property<int?>("Ipouts")
+                        .HasColumnType("int")
+                        .HasColumnName("IPouts");
+
+                    b.Property<short?>("L")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
+
+                    b.Property<short?>("R")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Sf")
+                        .HasColumnType("smallint")
+                        .HasColumnName("SF");
+
+                    b.Property<short?>("Sh")
+                        .HasColumnType("smallint")
+                        .HasColumnName("SH");
+
+                    b.Property<short?>("Sho")
+                        .HasColumnType("smallint")
+                        .HasColumnName("SHO");
+
+                    b.Property<short?>("So")
+                        .HasColumnType("smallint")
+                        .HasColumnName("SO");
 
                     b.Property<short>("Stint")
-                        .HasColumnName("stint")
-                        .HasColumnType("smallint");
-
-                    b.Property<double?>("Baopp")
-                        .HasColumnName("BAOpp")
-                        .HasColumnType("double");
-
-                    b.Property<short?>("Bb")
-                        .HasColumnName("BB")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Bfp")
-                        .HasColumnName("BFP")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Bk")
-                        .HasColumnName("BK")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Cg")
-                        .HasColumnName("CG")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Er")
-                        .HasColumnName("ER")
-                        .HasColumnType("smallint");
-
-                    b.Property<double?>("Era")
-                        .HasColumnName("ERA")
-                        .HasColumnType("double");
-
-                    b.Property<short?>("G")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Gf")
-                        .HasColumnName("GF")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Gidp")
-                        .HasColumnName("GIDP")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Gs")
-                        .HasColumnName("GS")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("H")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Hbp")
-                        .HasColumnName("HBP")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Hr")
-                        .HasColumnName("HR")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Ibb")
-                        .HasColumnName("IBB")
-                        .HasColumnType("smallint");
-
-                    b.Property<int?>("Ipouts")
-                        .HasColumnName("IPouts")
-                        .HasColumnType("int");
-
-                    b.Property<short?>("L")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<short?>("R")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Sf")
-                        .HasColumnName("SF")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Sh")
-                        .HasColumnName("SH")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Sho")
-                        .HasColumnName("SHO")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("So")
-                        .HasColumnName("SO")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("stint");
 
                     b.Property<short?>("Sv")
-                        .HasColumnName("SV")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SV");
 
                     b.Property<string>("TeamId")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
                         .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
 
                     b.Property<short?>("W")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Wp")
-                        .HasColumnName("WP")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("PlayerId", "YearId", "Stint")
-                        .HasName("Pitching$Index_481778A5_18F2_430E");
-
-                    b.ToTable("Pitching");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.PitchingPost", b =>
-                {
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
+                        .HasColumnType("smallint")
+                        .HasColumnName("WP");
 
                     b.Property<short>("YearId")
-                        .HasColumnName("yearID")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID12");
+
+                    b.HasIndex(new[] { "PlayerId", "YearId", "Stint" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID14");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID9");
+
+                    b.ToTable("pitching", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Pitchingpost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    b.Property<double?>("Baopp")
+                        .HasColumnType("double")
+                        .HasColumnName("BAOpp");
+
+                    b.Property<short?>("Bb")
+                        .HasColumnType("smallint")
+                        .HasColumnName("BB");
+
+                    b.Property<short?>("Bfp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("BFP");
+
+                    b.Property<short?>("Bk")
+                        .HasColumnType("smallint")
+                        .HasColumnName("BK");
+
+                    b.Property<short?>("Cg")
+                        .HasColumnType("smallint")
+                        .HasColumnName("CG");
+
+                    b.Property<short?>("Er")
+                        .HasColumnType("smallint")
+                        .HasColumnName("ER");
+
+                    b.Property<double?>("Era")
+                        .HasColumnType("double")
+                        .HasColumnName("ERA");
+
+                    b.Property<short?>("G")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Gf")
+                        .HasColumnType("smallint")
+                        .HasColumnName("GF");
+
+                    b.Property<short?>("Gidp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("GIDP");
+
+                    b.Property<short?>("Gs")
+                        .HasColumnType("smallint")
+                        .HasColumnName("GS");
+
+                    b.Property<short?>("H")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Hbp")
+                        .HasColumnType("smallint")
+                        .HasColumnName("HBP");
+
+                    b.Property<short?>("Hr")
+                        .HasColumnType("smallint")
+                        .HasColumnName("HR");
+
+                    b.Property<short?>("Ibb")
+                        .HasColumnType("smallint")
+                        .HasColumnName("IBB");
+
+                    b.Property<int?>("Ipouts")
+                        .HasColumnType("int")
+                        .HasColumnName("IPouts");
+
+                    b.Property<short?>("L")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<string>("PlayerId")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("playerID");
+
+                    b.Property<short?>("R")
                         .HasColumnType("smallint");
 
                     b.Property<string>("Round")
-                        .HasColumnName("round")
-                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
-                        .HasMaxLength(10);
-
-                    b.Property<double?>("Baopp")
-                        .HasColumnName("BAOpp")
-                        .HasColumnType("double");
-
-                    b.Property<short?>("Bb")
-                        .HasColumnName("BB")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Bfp")
-                        .HasColumnName("BFP")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Bk")
-                        .HasColumnName("BK")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Cg")
-                        .HasColumnName("CG")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Er")
-                        .HasColumnName("ER")
-                        .HasColumnType("smallint");
-
-                    b.Property<double?>("Era")
-                        .HasColumnName("ERA")
-                        .HasColumnType("double");
-
-                    b.Property<short?>("G")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Gf")
-                        .HasColumnName("GF")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Gidp")
-                        .HasColumnName("GIDP")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Gs")
-                        .HasColumnName("GS")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("H")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Hbp")
-                        .HasColumnName("HBP")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Hr")
-                        .HasColumnName("HR")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Ibb")
-                        .HasColumnName("IBB")
-                        .HasColumnType("smallint");
-
-                    b.Property<int?>("Ipouts")
-                        .HasColumnName("IPouts")
-                        .HasColumnType("int");
-
-                    b.Property<short?>("L")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<short?>("R")
-                        .HasColumnType("smallint");
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("round");
 
                     b.Property<short?>("Sf")
-                        .HasColumnName("SF")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SF");
 
                     b.Property<short?>("Sh")
-                        .HasColumnName("SH")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SH");
 
                     b.Property<short?>("Sho")
-                        .HasColumnName("SHO")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SHO");
 
                     b.Property<short?>("So")
-                        .HasColumnName("SO")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SO");
 
                     b.Property<short?>("Sv")
-                        .HasColumnName("SV")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SV");
 
                     b.Property<string>("TeamId")
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
                         .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
 
                     b.Property<short?>("W")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Wp")
-                        .HasColumnName("WP")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("WP");
 
-                    b.HasKey("PlayerId", "YearId", "Round")
-                        .HasName("PitchingPost$Index_E71336E6_AB00_432C");
-
-                    b.ToTable("PitchingPost");
-                });
-
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Salaries", b =>
-                {
                     b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
 
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                    b.HasKey("Id");
 
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID13");
 
-                    b.Property<string>("PlayerId")
-                        .HasColumnName("playerID")
-                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
-                        .HasMaxLength(9);
+                    b.HasIndex(new[] { "PlayerId", "YearId", "Round" }, "playerID")
+                        .IsUnique()
+                        .HasDatabaseName("playerID15");
 
-                    b.Property<double?>("Salary")
-                        .HasColumnName("salary")
-                        .HasColumnType("double");
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID10");
 
-                    b.HasKey("YearId", "TeamId", "LgId", "PlayerId")
-                        .HasName("Salaries$Index_E5568031_00FA_49CA");
-
-                    b.ToTable("Salaries");
+                    b.ToTable("pitchingpost", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Schools", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Richjsontagdatum", b =>
+                {
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int")
+                        .HasColumnName("tag_id");
+
+                    b.Property<string>("TagRichDetail")
+                        .HasColumnType("json")
+                        .HasColumnName("tag_rich_detail");
+
+                    b.ToTable("richjsontagdata", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.School", b =>
                 {
                     b.Property<string>("SchoolId")
-                        .HasColumnName("schoolID")
-                        .HasColumnType("varchar(15) CHARACTER SET utf8mb4")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)")
+                        .HasColumnName("schoolID");
 
                     b.Property<string>("City")
-                        .HasColumnName("city")
-                        .HasColumnType("varchar(55) CHARACTER SET utf8mb4")
-                        .HasMaxLength(55);
+                        .HasMaxLength(55)
+                        .HasColumnType("varchar(55)")
+                        .HasColumnName("city");
 
                     b.Property<string>("Country")
-                        .HasColumnName("country")
-                        .HasColumnType("varchar(55) CHARACTER SET utf8mb4")
-                        .HasMaxLength(55);
+                        .HasMaxLength(55)
+                        .HasColumnType("varchar(55)")
+                        .HasColumnName("country");
 
                     b.Property<string>("NameFull")
-                        .HasColumnName("name_full")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("name_full");
 
                     b.Property<string>("State")
-                        .HasColumnName("state")
-                        .HasColumnType("varchar(55) CHARACTER SET utf8mb4")
-                        .HasMaxLength(55);
+                        .HasMaxLength(55)
+                        .HasColumnType("varchar(55)")
+                        .HasColumnName("state");
 
-                    b.HasKey("SchoolId")
-                        .HasName("Schools$Index_3D308CF0_821E_4DAB");
+                    b.HasKey("SchoolId");
 
-                    b.ToTable("Schools");
+                    b.ToTable("schools", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.SeriesPost", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Tag", b =>
                 {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
+                    b.Property<string>("TagId")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .UseCollation("utf8_general_ci");
 
-                    b.Property<string>("Round")
-                        .HasColumnName("round")
-                        .HasColumnType("varchar(5) CHARACTER SET utf8mb4")
-                        .HasMaxLength(5);
+                    MySqlPropertyBuilderExtensions.HasCharSet(b.Property<string>("TagId"), "utf8");
 
-                    b.Property<string>("LgIdloser")
-                        .HasColumnName("lgIDloser")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                    b.Property<string>("DataFieldReferencesAsJson")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
+                        .UseCollation("utf8_general_ci");
 
-                    b.Property<string>("LgIdwinner")
-                        .HasColumnName("lgIDwinner")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                    MySqlPropertyBuilderExtensions.HasCharSet(b.Property<string>("DataFieldReferencesAsJson"), "utf8");
 
-                    b.Property<short?>("Losses")
-                        .HasColumnName("losses")
-                        .HasColumnType("smallint");
+                    b.Property<string>("TagValue")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .UseCollation("utf8_general_ci");
 
-                    b.Property<string>("TeamIdloser")
-                        .HasColumnName("teamIDloser")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                    MySqlPropertyBuilderExtensions.HasCharSet(b.Property<string>("TagValue"), "utf8");
 
-                    b.Property<string>("TeamIdwinner")
-                        .HasColumnName("teamIDwinner")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                    b.HasKey("TagId");
 
-                    b.Property<short?>("Ties")
-                        .HasColumnName("ties")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Wins")
-                        .HasColumnName("wins")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("YearId", "Round")
-                        .HasName("SeriesPost$Index_4F4214D5_9891_4F3C");
-
-                    b.ToTable("SeriesPost");
+                    b.ToTable("tags", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Teams", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Tagrelationship", b =>
                 {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
+                    b.Property<string>("TagRelationshipId")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .UseCollation("utf8_general_ci");
 
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                    MySqlPropertyBuilderExtensions.HasCharSet(b.Property<string>("TagRelationshipId"), "utf8");
 
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                    b.Property<string>("DataEntityId")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .UseCollation("utf8_general_ci");
+
+                    MySqlPropertyBuilderExtensions.HasCharSet(b.Property<string>("DataEntityId"), "utf8");
+
+                    b.Property<string>("TagId")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .UseCollation("utf8_general_ci");
+
+                    MySqlPropertyBuilderExtensions.HasCharSet(b.Property<string>("TagId"), "utf8");
+
+                    b.HasKey("TagRelationshipId");
+
+                    b.ToTable("tagrelationships", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Team", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     b.Property<short?>("Ab")
-                        .HasColumnName("AB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("AB");
 
                     b.Property<int?>("Attendance")
-                        .HasColumnName("attendance")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("attendance");
 
                     b.Property<short?>("Bb")
-                        .HasColumnName("BB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("BB");
 
                     b.Property<short?>("Bba")
-                        .HasColumnName("BBA")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("BBA");
 
                     b.Property<int?>("Bpf")
-                        .HasColumnName("BPF")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("BPF");
 
                     b.Property<short?>("Cg")
-                        .HasColumnName("CG")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("CG");
 
                     b.Property<short?>("Cs")
-                        .HasColumnName("CS")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("CS");
 
                     b.Property<string>("DivId")
+                        .HasMaxLength(1)
+                        .HasColumnType("char(1)")
                         .HasColumnName("divID")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
+                        .IsFixedLength();
+
+                    b.Property<int?>("DivId1")
+                        .HasColumnType("int")
+                        .HasColumnName("div_ID");
 
                     b.Property<string>("DivWin")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)");
 
                     b.Property<int?>("Dp")
-                        .HasColumnName("DP")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("DP");
 
                     b.Property<int?>("E")
                         .HasColumnType("int");
 
                     b.Property<short?>("Er")
-                        .HasColumnName("ER")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("ER");
 
                     b.Property<double?>("Era")
-                        .HasColumnName("ERA")
-                        .HasColumnType("double");
+                        .HasColumnType("double")
+                        .HasColumnName("ERA");
 
                     b.Property<double?>("Fp")
-                        .HasColumnName("FP")
-                        .HasColumnType("double");
+                        .HasColumnType("double")
+                        .HasColumnName("FP");
 
                     b.Property<string>("FranchId")
-                        .HasColumnName("franchID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)")
+                        .HasColumnName("franchID");
 
                     b.Property<short?>("G")
                         .HasColumnType("smallint");
@@ -1637,195 +2090,839 @@ namespace Baseball.ApiSharp.Dal.EfStructures.Migrations
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Ha")
-                        .HasColumnName("HA")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("HA");
 
                     b.Property<short?>("Hbp")
-                        .HasColumnName("HBP")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("HBP");
 
                     b.Property<short?>("Hr")
-                        .HasColumnName("HR")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("HR");
 
                     b.Property<short?>("Hra")
-                        .HasColumnName("HRA")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("HRA");
 
                     b.Property<int?>("Ipouts")
-                        .HasColumnName("IPouts")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IPouts");
 
                     b.Property<short?>("L")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("LgId")
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
                     b.Property<string>("LgWin")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)");
 
                     b.Property<string>("Name")
-                        .HasColumnName("name")
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("name");
 
                     b.Property<string>("Park")
-                        .HasColumnName("park")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("park");
 
                     b.Property<int?>("Ppf")
-                        .HasColumnName("PPF")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("PPF");
 
                     b.Property<short?>("R")
                         .HasColumnType("smallint");
 
                     b.Property<short?>("Ra")
-                        .HasColumnName("RA")
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("Rank")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("RA");
 
                     b.Property<short?>("Sb")
-                        .HasColumnName("SB")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SB");
 
                     b.Property<short?>("Sf")
-                        .HasColumnName("SF")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SF");
 
                     b.Property<short?>("Sho")
-                        .HasColumnName("SHO")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SHO");
 
                     b.Property<short?>("So")
-                        .HasColumnName("SO")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SO");
 
                     b.Property<short?>("Soa")
-                        .HasColumnName("SOA")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SOA");
 
                     b.Property<short?>("Sv")
-                        .HasColumnName("SV")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("SV");
+
+                    b.Property<string>("TeamId")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamID")
+                        .IsFixedLength();
 
                     b.Property<string>("TeamIdbr")
-                        .HasColumnName("teamIDBR")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)")
+                        .HasColumnName("teamIDBR");
 
                     b.Property<string>("TeamIdlahman45")
-                        .HasColumnName("teamIDlahman45")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)")
+                        .HasColumnName("teamIDlahman45");
 
                     b.Property<string>("TeamIdretro")
-                        .HasColumnName("teamIDretro")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)")
+                        .HasColumnName("teamIDretro");
+
+                    b.Property<short?>("TeamRank")
+                        .HasColumnType("smallint")
+                        .HasColumnName("teamRank");
 
                     b.Property<short?>("W")
                         .HasColumnType("smallint");
 
                     b.Property<string>("Wcwin")
-                        .HasColumnName("WCWin")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("WCWin");
 
                     b.Property<string>("Wswin")
-                        .HasColumnName("WSWin")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("WSWin");
+
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
 
                     b.Property<short?>("_2b")
-                        .HasColumnName("2B")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("2B");
 
                     b.Property<short?>("_3b")
-                        .HasColumnName("3B")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasColumnName("3B");
 
-                    b.HasKey("YearId", "LgId", "TeamId")
-                        .HasName("Teams$Index_285058F1_D841_4142");
+                    b.HasKey("Id");
 
-                    b.ToTable("Teams");
+                    b.HasIndex(new[] { "DivId1" }, "div_ID");
+
+                    b.HasIndex(new[] { "FranchId" }, "franchID");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID14");
+
+                    b.HasIndex(new[] { "YearId", "LgId", "TeamId" }, "yearID")
+                        .IsUnique()
+                        .HasDatabaseName("yearID2");
+
+                    b.ToTable("teams", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.TeamsFranchises", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Teamsfranchise", b =>
                 {
                     b.Property<string>("FranchId")
-                        .HasColumnName("franchID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)")
+                        .HasColumnName("franchID");
 
                     b.Property<string>("Active")
+                        .HasMaxLength(1)
+                        .HasColumnType("char(1)")
                         .HasColumnName("active")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
+                        .IsFixedLength();
 
                     b.Property<string>("FranchName")
-                        .HasColumnName("franchName")
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("franchName");
 
                     b.Property<string>("Naassoc")
-                        .HasColumnName("NAassoc")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)")
+                        .HasColumnName("NAassoc");
 
                     b.HasKey("FranchId")
-                        .HasName("TeamsFranchises$Index_D181F923_2BF9_4281");
+                        .HasName("PRIMARY");
 
-                    b.ToTable("TeamsFranchises");
+                    b.ToTable("teamsfranchises", (string)null);
                 });
 
-            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.TeamsHalf", b =>
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Teamshalf", b =>
                 {
-                    b.Property<short>("YearId")
-                        .HasColumnName("yearID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("TeamId")
-                        .HasColumnName("teamID")
-                        .HasColumnType("varchar(3) CHARACTER SET utf8mb4")
-                        .HasMaxLength(3);
-
-                    b.Property<string>("LgId")
-                        .HasColumnName("lgID")
-                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2);
-
-                    b.Property<string>("Half")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     b.Property<string>("DivId")
-                        .HasColumnName("divID")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("divID");
+
+                    b.Property<int?>("DivId1")
+                        .HasColumnType("int")
+                        .HasColumnName("div_ID");
 
                     b.Property<string>("DivWin")
-                        .HasColumnType("varchar(1) CHARACTER SET utf8mb4")
-                        .HasMaxLength(1);
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)");
 
                     b.Property<short?>("G")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Half")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar(1)");
+
                     b.Property<short?>("L")
                         .HasColumnType("smallint");
 
-                    b.Property<short?>("Rank")
-                        .HasColumnType("smallint");
+                    b.Property<string>("LgId")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("char(2)")
+                        .HasColumnName("lgID")
+                        .IsFixedLength();
+
+                    b.Property<string>("TeamId")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("char(3)")
+                        .HasColumnName("teamID")
+                        .IsFixedLength();
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("int")
+                        .HasColumnName("team_ID");
+
+                    b.Property<short?>("TeamRank")
+                        .HasColumnType("smallint")
+                        .HasColumnName("teamRank");
 
                     b.Property<short?>("W")
                         .HasColumnType("smallint");
 
-                    b.HasKey("YearId", "TeamId", "LgId", "Half")
-                        .HasName("TeamsHalf$Index_3FD773F5_2FC0_415C");
+                    b.Property<short>("YearId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("yearID");
 
-                    b.ToTable("TeamsHalf");
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "DivId1" }, "div_ID")
+                        .HasDatabaseName("div_ID1");
+
+                    b.HasIndex(new[] { "LgId" }, "lgID")
+                        .HasDatabaseName("lgID15");
+
+                    b.HasIndex(new[] { "TeamId1" }, "team_ID")
+                        .HasDatabaseName("team_ID11");
+
+                    b.HasIndex(new[] { "YearId", "LgId", "TeamId", "Half" }, "yearID")
+                        .IsUnique()
+                        .HasDatabaseName("yearID3");
+
+                    b.ToTable("teamshalf", (string)null);
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Allstarfull", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Allstarfulls")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("allstarfull_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Allstarfulls")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("allstarfull_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Appearance", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany()
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("appearances_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany()
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("appearances_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany()
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("appearances_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Awardsmanager", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany()
+                        .HasForeignKey("LgId")
+                        .IsRequired()
+                        .HasConstraintName("awardsmanagers_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany()
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("awardsmanagers_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Awardsplayer", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Awardsplayers")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("awardsplayers_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Awardsplayers")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("awardsplayers_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Awardssharemanager", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Awardssharemanagers")
+                        .HasForeignKey("LgId")
+                        .IsRequired()
+                        .HasConstraintName("awardssharemanagers_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Awardssharemanagers")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("awardssharemanagers_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Awardsshareplayer", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Awardsshareplayers")
+                        .HasForeignKey("LgId")
+                        .IsRequired()
+                        .HasConstraintName("awardsshareplayers_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Awardsshareplayers")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("awardsshareplayers_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Batting", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Battings")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("batting_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Battings")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("batting_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Battings")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("batting_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Battingpost", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Battingposts")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("battingpost_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Battingposts")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("battingpost_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Battingposts")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("battingpost_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Collegeplaying", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Collegeplayings")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("collegeplaying_ibfk_2");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.School", "School")
+                        .WithMany("Collegeplayings")
+                        .HasForeignKey("SchoolId")
+                        .HasConstraintName("collegeplaying_ibfk_1");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Division", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Divisions")
+                        .HasForeignKey("LgId")
+                        .IsRequired()
+                        .HasConstraintName("divisions_ibfk_1");
+
+                    b.Navigation("Lg");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Fielding", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Fieldings")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("fielding_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Fieldings")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("fielding_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Fieldings")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("fielding_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Fieldingof", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Fieldingofs")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("fieldingof_ibfk_1");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Fieldingofsplit", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Fieldingofsplits")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("fieldingofsplit_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Fieldingofsplits")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("fieldingofsplit_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Fieldingofsplits")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("fieldingofsplit_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Fieldingpost", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Fieldingposts")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("fieldingpost_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Fieldingposts")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("fieldingpost_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Fieldingposts")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("fieldingpost_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Halloffame", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Halloffames")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("halloffame_ibfk_1");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Homegame", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "LeaguekeyNavigation")
+                        .WithMany("Homegames")
+                        .HasForeignKey("Leaguekey")
+                        .HasConstraintName("homegames_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Park", "Park")
+                        .WithMany("Homegames")
+                        .HasForeignKey("ParkId")
+                        .HasConstraintName("homegames_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "Team")
+                        .WithMany("Homegames")
+                        .HasForeignKey("TeamId")
+                        .HasConstraintName("homegames_ibfk_2");
+
+                    b.Navigation("LeaguekeyNavigation");
+
+                    b.Navigation("Park");
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Manager", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Managers")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("managers_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Managers")
+                        .HasForeignKey("PlayerId")
+                        .HasConstraintName("managers_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Managers")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("managers_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Managershalf", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Managershalves")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("managershalf_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Managershalves")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("managershalf_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Managershalves")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("managershalf_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Pitching", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Pitchings")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("pitching_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Pitchings")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("pitching_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Pitchings")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("pitching_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Pitchingpost", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Pitchingposts")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("pitchingpost_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Person", "Player")
+                        .WithMany("Pitchingposts")
+                        .HasForeignKey("PlayerId")
+                        .IsRequired()
+                        .HasConstraintName("pitchingpost_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Pitchingposts")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("pitchingpost_ibfk_2");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Team", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Division", "DivId1Navigation")
+                        .WithMany("Teams")
+                        .HasForeignKey("DivId1")
+                        .HasConstraintName("teams_ibfk_2");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Teamsfranchise", "Franch")
+                        .WithMany("Teams")
+                        .HasForeignKey("FranchId")
+                        .HasConstraintName("teams_ibfk_3");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Teams")
+                        .HasForeignKey("LgId")
+                        .HasConstraintName("teams_ibfk_1");
+
+                    b.Navigation("DivId1Navigation");
+
+                    b.Navigation("Franch");
+
+                    b.Navigation("Lg");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Teamshalf", b =>
+                {
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Division", "DivId1Navigation")
+                        .WithMany("Teamshalves")
+                        .HasForeignKey("DivId1")
+                        .HasConstraintName("teamshalf_ibfk_2");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.League", "Lg")
+                        .WithMany("Teamshalves")
+                        .HasForeignKey("LgId")
+                        .IsRequired()
+                        .HasConstraintName("teamshalf_ibfk_1");
+
+                    b.HasOne("Baseball.ApiSharp.Data.Lahman.Team", "TeamId1Navigation")
+                        .WithMany("Teamshalves")
+                        .HasForeignKey("TeamId1")
+                        .HasConstraintName("teamshalf_ibfk_3");
+
+                    b.Navigation("DivId1Navigation");
+
+                    b.Navigation("Lg");
+
+                    b.Navigation("TeamId1Navigation");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Division", b =>
+                {
+                    b.Navigation("Teams");
+
+                    b.Navigation("Teamshalves");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.League", b =>
+                {
+                    b.Navigation("Allstarfulls");
+
+                    b.Navigation("Awardsplayers");
+
+                    b.Navigation("Awardssharemanagers");
+
+                    b.Navigation("Awardsshareplayers");
+
+                    b.Navigation("Battingposts");
+
+                    b.Navigation("Battings");
+
+                    b.Navigation("Divisions");
+
+                    b.Navigation("Fieldingofsplits");
+
+                    b.Navigation("Fieldingposts");
+
+                    b.Navigation("Fieldings");
+
+                    b.Navigation("Homegames");
+
+                    b.Navigation("Managers");
+
+                    b.Navigation("Managershalves");
+
+                    b.Navigation("Pitchingposts");
+
+                    b.Navigation("Pitchings");
+
+                    b.Navigation("Teams");
+
+                    b.Navigation("Teamshalves");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Park", b =>
+                {
+                    b.Navigation("Homegames");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Person", b =>
+                {
+                    b.Navigation("Awardsplayers");
+
+                    b.Navigation("Awardssharemanagers");
+
+                    b.Navigation("Awardsshareplayers");
+
+                    b.Navigation("Battingposts");
+
+                    b.Navigation("Battings");
+
+                    b.Navigation("Collegeplayings");
+
+                    b.Navigation("Fieldingofs");
+
+                    b.Navigation("Fieldingofsplits");
+
+                    b.Navigation("Fieldingposts");
+
+                    b.Navigation("Fieldings");
+
+                    b.Navigation("Halloffames");
+
+                    b.Navigation("Managers");
+
+                    b.Navigation("Managershalves");
+
+                    b.Navigation("Pitchingposts");
+
+                    b.Navigation("Pitchings");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.School", b =>
+                {
+                    b.Navigation("Collegeplayings");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Team", b =>
+                {
+                    b.Navigation("Allstarfulls");
+
+                    b.Navigation("Battingposts");
+
+                    b.Navigation("Battings");
+
+                    b.Navigation("Fieldingofsplits");
+
+                    b.Navigation("Fieldingposts");
+
+                    b.Navigation("Fieldings");
+
+                    b.Navigation("Homegames");
+
+                    b.Navigation("Managers");
+
+                    b.Navigation("Managershalves");
+
+                    b.Navigation("Pitchingposts");
+
+                    b.Navigation("Pitchings");
+
+                    b.Navigation("Teamshalves");
+                });
+
+            modelBuilder.Entity("Baseball.ApiSharp.Data.Lahman.Teamsfranchise", b =>
+                {
+                    b.Navigation("Teams");
                 });
 #pragma warning restore 612, 618
         }
