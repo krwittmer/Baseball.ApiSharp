@@ -6,15 +6,13 @@ variables:
 
 stages:
 - stage: 'Build'
-  displayName: 'Build the Web/API apps'
+  displayName: 'Build Baseball Web/API apps'
   jobs: 
   - job: 'Build'
     displayName: 'Build job'
     pool:
       vmImage: 'ubuntu-20.04'
-      demands:
-      - npm
-
+ 
     variables:
       dotnetSdkVersion: '6.x'
 
@@ -26,7 +24,6 @@ stages:
 
     - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
       displayName: 'Write build info'
-      workingDirectory: $(wwwrootDir)
 
     - task: DotNetCoreCLI@2
       displayName: 'Restore project dependencies'
@@ -54,7 +51,7 @@ stages:
       artifact: drop
 
 - stage: 'Deploy'
-  displayName: 'Deploy the Web/API apps'
+  displayName: 'Deploy Baseball Web/API apps'
   dependsOn: Build
   jobs:
   - deployment: Deploy
