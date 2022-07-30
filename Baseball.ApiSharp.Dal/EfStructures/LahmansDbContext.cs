@@ -8,9 +8,11 @@ namespace Baseball.ApiSharp.Dal.EfStructures
 {
     public partial class LahmansDbContext : DbContext
     {
+        /*
         public LahmansDbContext()
         {
         }
+        */
 
         public LahmansDbContext(DbContextOptions<LahmansDbContext> options)
             : base(options)

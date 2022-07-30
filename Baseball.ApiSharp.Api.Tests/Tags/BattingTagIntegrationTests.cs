@@ -59,7 +59,7 @@ namespace Baseball.ApiSharp.Api.Tests.Tags
             return batting;
         }
 
-        [Fact]
+        [Fact(Skip = "TODO: Resolve HUT-integration testing")]
         public async Task SimpleTagApiTest()
         {
             // Arrange
@@ -83,7 +83,7 @@ namespace Baseball.ApiSharp.Api.Tests.Tags
             client.Dispose();
         }
 
-        [Fact]
+        [Fact(Skip = "TODO: Resolve HUT-integration testing")]
         public async Task MultiTagApiTest()
         {
             // Arrange

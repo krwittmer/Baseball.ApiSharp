@@ -40,18 +40,18 @@ namespace Baseball.ApiSharp.Api.Controllers
             _logger.LogInformation("Searching over player data with search pattern string {0}.", playerNameSearchPattern);
 
             var matchingResults = QueryPlayerIds(playerNameSearchPattern);
-            var pagedCollection = new PagedCollection<People>(matchingResults, pageIndex, 16).List;
-            var pagedModelResults = Mapper.MapObjects<PlayerIdModel, People>(pagedCollection.ToList());
+            var pagedCollection = new PagedCollection<Person>(matchingResults, pageIndex, 16).List;
+            var pagedModelResults = Mapper.MapObjects<PlayerIdModel, Person>(pagedCollection.ToList());
 
             // TODO: Investigate how to handcraft Uris returned as part of HATEOS.
             // TODO: Also, as part of a HATEOS response, consider relative Swagger Uris.
             return Ok(pagedModelResults);
         }
 
-        private IQueryable<People> QueryPlayerIds(string nameSearchPattern)
+        private IQueryable<Person> QueryPlayerIds(string nameSearchPattern)
         {
-            var people = _repository.All<People>().ToArray();
-            return _repository.Filter<People>(m => (m.NameFirst + " " + m.NameLast).Contains(nameSearchPattern));
+            var people = _repository.All<Person>().ToArray();
+            return _repository.Filter<Person>(m => (m.NameFirst + " " + m.NameLast).Contains(nameSearchPattern));
         }
     }
 }
