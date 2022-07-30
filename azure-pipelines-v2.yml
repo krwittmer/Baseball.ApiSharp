@@ -51,6 +51,19 @@ stages:
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
 
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish the project - $(buildConfiguration)'
+      inputs:
+        command: 'publish'
+        projects: "Baseball.ApiSharp.Web/*.csproj"
+        publishWebProjects: false
+        arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
+        zipAfterPublish: true
+
+
+    - publish: '$(Build.ArtifactStagingDirectory)'
+      artifact: drop
+
 - stage: 'Deploy'
   displayName: 'Deploy Baseball Web/API apps'
   dependsOn: Build
