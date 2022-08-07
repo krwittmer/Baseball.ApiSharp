@@ -70,4 +70,4 @@ stages:
               appType: 'webAppLinux'
               appName: 'BBWebDemoApp1'
               package: '$(Pipeline.Workspace)/drop/Release/*.zip'
-
+              appSettings: WEBSITE_RUN_FROM_PACKAGE="1"
