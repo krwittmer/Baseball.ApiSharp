@@ -64,11 +64,10 @@ stages:
           steps:
           - download: current
             artifact: drop
-          - task: AzureRmWebAppDeployment@4
+          - task: AzureWebApp@1
             inputs:
-              ConnectionType: 'AzureRM'
               azureSubscription: 'ServiceConnection1'
               appType: 'webAppLinux'
-              WebAppName: 'BBWebDemoApp1'
-              packageForLinux: '$(Pipeline.Workspace/drop/$(buildConfiguration)/*.zip'
+              appName: 'BBWebDemoApp1'
+              package: '$(Pipeline.Workspace/drop/$(buildConfiguration)/*.zip'
 
