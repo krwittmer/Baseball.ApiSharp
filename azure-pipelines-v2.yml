@@ -70,5 +70,5 @@ stages:
               azureSubscription: 'ServiceConnection1'
               appType: 'webAppLinux'
               WebAppName: 'BBWebDemoApp1'
-              packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              packageForLinux: '$(Pipeline.Workspace/drop/$(buildConfiguration/*.zip'
 
