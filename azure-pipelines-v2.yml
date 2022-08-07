@@ -64,3 +64,11 @@ stages:
           steps:
           - download: current
             artifact: drop
+          - task: AzureWebApp@1
+            displayName: 'Azure App Service Deploy: BBAPI'
+            inputs:
+             appType: webAppLinux
+             azureSubscription: 'CI-PFF-DO-SRE-Sandbox'
+             appName: 'BBWebDemoApp1'
+             package: '$(Pipeline.Workspace/drop/$(buildConfiguration/*.zip'
+
