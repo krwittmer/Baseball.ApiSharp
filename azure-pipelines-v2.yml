@@ -14,7 +14,7 @@ stages:
       vmImage: 'ubuntu-20.04'
  
     variables:
-      dotnetSdkVersion: '6.0.302'
+      dotnetSdkVersion: '6.0.202'
 
     steps:
     - task: UseDotNet@2
