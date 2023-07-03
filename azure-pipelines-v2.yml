@@ -66,7 +66,7 @@ stages:
             artifact: drop
           - task: AzureWebApp@1
             inputs:
-              azureSubscription: 'ServiceConnection1'
+              azureSubscription: 'BBWeb-ServiceConnection1'
               appType: webApp
               appName: 'BBWebDemoApp1'
               package: '$(Pipeline.Workspace)/drop/Release/*.zip'
