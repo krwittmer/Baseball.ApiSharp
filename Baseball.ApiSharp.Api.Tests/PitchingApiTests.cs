@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Baseball.ApiSharp.Models;
 using Newtonsoft.Json;
 using Xunit;
+using Baseball.ApiSharp.Api.Tests.Exploratory;
 
 namespace Baseball.ApiSharp.Api.Tests
 {
@@ -19,7 +20,7 @@ namespace Baseball.ApiSharp.Api.Tests
     {
         public PitchingApiTests(CustomWebApplicationFactory<Startup> factory) : base(factory) { }
 
-        [Fact(Skip = "TODO: Resolve HUT-integration testing")]
+        [Fact]
         public async Task GetPitcherApiResult()
         {
             // Arrange

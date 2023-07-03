@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Baseball.ApiSharp.Models;
 using Newtonsoft.Json;
 using Xunit;
+using Baseball.ApiSharp.Api.Tests.Exploratory;
 
 namespace Baseball.ApiSharp.Api.Tests
 {
@@ -21,7 +22,7 @@ namespace Baseball.ApiSharp.Api.Tests
     {
         public FieldingApiTests(CustomWebApplicationFactory<Startup> factory) : base(factory) { }
 
-        [Fact(Skip = "TODO: Resolve HUT-integration testing")]
+        [Fact]
         public async Task GetFielderApiResult()
         {
             // Arrange
@@ -43,7 +44,7 @@ namespace Baseball.ApiSharp.Api.Tests
             client.Dispose();
         }
 
-        [Theory(Skip = "TODO: Resolve HUT-integration testing")]
+        [Theory]
         [InlineData("thomafr04")]
         public async Task ReturnsOkForValidFielderIdWithPagination(string fielderId)
         {
@@ -66,7 +67,7 @@ namespace Baseball.ApiSharp.Api.Tests
             client.Dispose();
         }
 
-        [Theory(Skip = "TODO: Resolve HUT-integration testing")]
+        [Theory]
         [InlineData("thomafr04", 1999, 49)]
         [InlineData("thomafr04", 2000, 30)]
         public async Task ReturnsOkForValidFielderIdAndYear(string fielderId, int year, short expectedGames)

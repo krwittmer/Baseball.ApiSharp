@@ -6,6 +6,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace Baseball.ApiSharp.Models {
 
@@ -26,6 +27,9 @@ namespace Baseball.ApiSharp.Models {
         public char Bats { get; set; }
 
         public char Throws { get; set; }
+
+        public IDictionary<string, string> PlayerData = new SortedDictionary<string, string>();
+ 
         public DateTime BirthDate { get; internal set; }
         public DateTime DebutGameDate { get; set; }
         public DateTime LastGameDate { get; set; }

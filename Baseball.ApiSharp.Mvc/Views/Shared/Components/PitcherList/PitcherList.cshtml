@@ -9,22 +9,18 @@ See License.txt for more information (check Visual Studio Solution Items)
 <table class="table">
 <thead>
 <tr>
-    <th>Home Runs</th>
-    <th>Hits</th>
-    <th>Runs</th>
-    <th>At Bats</th>
+    <th>Wins</th>
+    <th>ERA</th>
 </tr>
 </thead>
 
 @foreach (var item in Model.Players)
 {
-    @foreach(var result in item.BatterResults)
+    @foreach(var result in item.PitchingResults)
     {
         <tr>
-            <td>@result.Hr</td>
-            <td>@result.H</td>
-            <td>@result.R</td>
-            <td>@result.Ab</td>
+            <td>@result.Wins</td>
+            <td>@result.ERA</td>
         </tr>
     }
 }

@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Baseball.ApiSharp.Api.Tests
 {
-    public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
+    public class _____CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
         private static readonly object _lock = new object();
 
@@ -68,7 +68,7 @@ namespace Baseball.ApiSharp.Api.Tests
                         var scopedServices = scope.ServiceProvider;
                         using (var context = scopedServices.GetRequiredService<LahmansDbContext>())
                         {
-                            var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+                            var logger = scopedServices.GetRequiredService<ILogger<_____CustomWebApplicationFactory<TStartup>>>();
 
                             logger.LogDebug("Preparing database creation (if necessary)");
                             // Ensure the database is created.

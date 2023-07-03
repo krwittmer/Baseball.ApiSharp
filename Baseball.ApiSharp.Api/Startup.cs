@@ -32,11 +32,10 @@ namespace Baseball.ApiSharp.Api
         {
             services.AddControllersWithViews();
 
-            var dbConfig = new EnvironmentDbConfig {UseInMemoryDb = ClaHelper.HasMatchingArgument("i")};
-            var dbContextOptions = dbConfig.GetDbContextOptions();
-            services.AddDbContextPool<LahmansDbContext>(dbContextOptions);
-
-            services.AddScoped<DbContext, LahmansDbContext>();
+            //var dbConfig = new EnvironmentDbConfig {UseInMemoryDb = ClaHelper.HasMatchingArgument("i")};
+            //var dbContextOptions = dbConfig.GetDbContextOptions();
+            //services.AddDbContextPool<LahmansDbContext>(dbContextOptions);
+            services.AddDbContext<DbContext, LahmansDbContext>();
             services.AddScoped<IReadRepository, Repository>();
             services.AddScoped<IRepository, Repository>();
         }

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS webapi-build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS webapi-build
 
 WORKDIR /bbshapi/Baseball.ApiSharp.Data.Lahman
 COPY Baseball.ApiSharp.Data.Lahman/*.csproj /bbshapi/Baseball.ApiSharp.Data.Lahman
@@ -62,7 +62,7 @@ WORKDIR /bbshapi/Baseball.ApiSharp.Dal.Tests
 ENTRYPOINT ["dotnet", "test", "--filter=Category=Unit", "--logger:trx"]
 
 
-FROM mcr.microsoft.com/dotnet/sdk:3.1-alpine AS webapi-runtime-alpine
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS webapi-runtime-alpine
 
 WORKDIR /bbshapi/
 COPY --from=webapi-build /bbshapi/Baseball.ApiSharp.Api/api-binary-published/ ./

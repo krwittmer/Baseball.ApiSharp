@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
-using Microsoft.AspNetCore.Mvc.Testing;
+using System.Threading.Tasks;
 
 namespace Baseball.ApiSharp.Api.Tests.Exploratory
 {
-    public class BasicWautTests : IClassFixture<WebApplicationFactory<Baseball.ApiSharp.Api.Startup>>
+    public class IntermediateWautTests : IClassFixture<CustomWebApplicationFactory<Baseball.ApiSharp.Api.Startup>>
     {
-        private readonly WebApplicationFactory<Baseball.ApiSharp.Api.Startup> _factory;
+        private readonly CustomWebApplicationFactory<Baseball.ApiSharp.Api.Startup> _factory;
 
-        public BasicWautTests(WebApplicationFactory<Baseball.ApiSharp.Api.Startup> factory)
+        public IntermediateWautTests(CustomWebApplicationFactory<Baseball.ApiSharp.Api.Startup> factory)
         {
             _factory = factory;
         }

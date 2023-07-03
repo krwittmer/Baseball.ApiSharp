@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Baseball.ApiSharp.Models;
 using Newtonsoft.Json;
 using Xunit;
+using Baseball.ApiSharp.Api.Tests.Exploratory;
 
 namespace Baseball.ApiSharp.Api.Tests
 {
@@ -19,7 +20,7 @@ namespace Baseball.ApiSharp.Api.Tests
     {
         public BattingApiTests(CustomWebApplicationFactory<Startup> factory) : base(factory) { }
 
-        [Fact(Skip = "TODO: Resolve integration issues")]
+        [Fact()]
         public async Task BatterApiNullBatterId()
         {
             // Arrange
@@ -36,7 +37,7 @@ namespace Baseball.ApiSharp.Api.Tests
             client.Dispose();
         }
 
-        [Fact(Skip = "TODO: Resolve integration issues")]
+        [Fact]
         public async Task BatterApiEmptyBatterId()
         {
             // Arrange
@@ -53,7 +54,7 @@ namespace Baseball.ApiSharp.Api.Tests
             client.Dispose();
         }
 
-        [Fact(Skip = "TODO: Resolve HUT-integration testing")]
+        [Fact()]
         public async Task GetBatterApiResult()
         {
             // Arrange
@@ -76,7 +77,7 @@ namespace Baseball.ApiSharp.Api.Tests
             client.Dispose();
         }
 
-        [Theory(Skip = "TODO: Resolve HUT-integration testing")]
+        [Theory]
         [InlineData("thomafr04", 2000)]
         public void ReturnsOkForValidBatterIdAndYearId(string batterId, int yearId)
         {

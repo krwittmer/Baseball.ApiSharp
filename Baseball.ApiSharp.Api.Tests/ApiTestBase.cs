@@ -24,6 +24,11 @@ namespace Baseball.ApiSharp.Api.Tests
 
         protected virtual HttpClient CreateHttpClient()
         {
+            return _factory.CreateClient(new WebApplicationFactoryClientOptions
+            {
+                AllowAutoRedirect = false
+            });
+            /*
             return _factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureTestServices(services => new ServiceCollection()
@@ -31,6 +36,7 @@ namespace Baseball.ApiSharp.Api.Tests
                     .AddLogging(config => config.AddDebug())
                     .BuildServiceProvider());
             }).CreateClient();
+            */
         }
     }
 }

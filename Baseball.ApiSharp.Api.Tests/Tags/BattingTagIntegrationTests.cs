@@ -14,6 +14,7 @@ using Baseball.ApiSharp.Models;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using Xunit;
+using Baseball.ApiSharp.Api.Tests.Exploratory;
 
 namespace Baseball.ApiSharp.Api.Tests.Tags
 {
